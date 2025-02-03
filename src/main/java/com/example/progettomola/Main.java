@@ -1,15 +1,12 @@
-package com.example.ironmaiden;
+package com.example.progettomola;
 
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
 
-    //login diversi per tipi di user diversi USER e DEVELOPER
+    //login diversi per tipi di user diversi USER e ARTIST
     //oppure stesso login con due comandi per tipo di User?
 
 
@@ -25,22 +22,11 @@ public class Main {
         viewManager.gestore(TypesOfViews.valueOf(view));
 
 
-        //inserisco cli
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
+
+
+
+
 }
 

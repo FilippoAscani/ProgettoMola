@@ -1,4 +1,4 @@
-package com.example.ironmaiden;
+package com.example.progettomola;
 
 public enum TypesOfRoles {
 

@@ -2,12 +2,12 @@ package com.example.progettomola;
 
 import java.util.List;
 
-public interface DeveloperDAO {
+public interface ArtistDAO {
 
-    void AddDeveloper(Sponsor developer); //lo sviluppatore si iscrive(?)
-    void UpdateDeveloper(Sponsor developer); //lo sviluppatore aggiorna le sua info
-    void DeleteDeveloper(Sponsor developer); // si disinscrive(?)
-    List<Sponsor> GetAllDevelopers(); // forse non serve sapere tutti gli sviluppatori
-    Sponsor GetDeveloper(int id); //forse non serve cercare uno sviluppatore
+    void AddArtist(Artist artist); //lo sviluppatore si iscrive(?)
+    void UpdateArtist(Artist artist); //lo sviluppatore aggiorna le sua info
+    void DeleteArtist(Artist artist); // si disinscrive(?)
+    List<Artist> GetAllArtists(); // forse non serve sapere tutti gli sviluppatori
+    Artist GetArtist(int id); //forse non serve cercare uno sviluppatore
 
 }

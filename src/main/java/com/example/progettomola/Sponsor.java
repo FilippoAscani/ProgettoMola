@@ -1,11 +1,11 @@
 package com.example.progettomola;
 
-public class Developer {
+public class Sponsor {
 
     private String username;
     private int id;
 
-    public Developer(String username, int id) {
+    public Sponsor(String username, int id) {
         this.username = username;
         this.id = id;
     }

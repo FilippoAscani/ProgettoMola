@@ -1,4 +1,4 @@
-package com.example.ironmaiden;
+package com.example.progettomola;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -19,7 +19,7 @@ public class UserDAOImplCSV implements  UserDAO{
         //concetto di BufferedReader per la lettura e scrittura su un file
         try {
 
-            BufferedWriter bw = new BufferedWriter(new FileWriter( "user.csv"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter( "user.csv", true));
             bw.write(user.getNome() +","+ user.getCognome() + "," + user.getPassword());
             bw.newLine();
             bw.close();

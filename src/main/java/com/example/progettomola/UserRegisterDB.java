@@ -1,4 +1,4 @@
-package com.example.ironmaiden;
+package com.example.progettomola;
 
 import java.util.Scanner;
 
@@ -7,6 +7,8 @@ public class UserRegisterDB {
     public UserRegisterDB() {
 
     }
+
+    //questa classe non è raggiungibile quindi forse la faccio fuori
 
     public void registrati(User user) {
 
@@ -30,8 +32,7 @@ public class UserRegisterDB {
 */
 
             } else {
-                UserLoginCSV userLoginCLI = new UserLoginCSV();
-                userLoginCLI.doReject();
+                LoginCSV userLoginCLI = new LoginCSV();
                 break;
             }
         }

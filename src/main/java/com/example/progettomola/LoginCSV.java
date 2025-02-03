@@ -6,17 +6,17 @@ import java.util.Objects;
 
 
 
-public class UserLoginCSV {
+public class LoginCSV {
 
 
 
-    UserLoginCSV(){
+    LoginCSV(){
 
     }
 
 
 
-    public void login(User user) {
+    public void loginUser(User user) {
 
 
         try {
@@ -127,6 +127,8 @@ public class UserLoginCSV {
             BufferedReader reader = new BufferedReader(new FileReader("sponsor.csv"));
 
 
+
+
             //inizialmente file vuoto aggiungi
             if (!file.exists() || file.length() == 0) {
                 UserRegisterCSV UserCSV = new UserRegisterCSV();
@@ -142,8 +144,8 @@ public class UserLoginCSV {
 
                     String[] colonnetwo = linetwo.split(",");
                     if (Objects.equals(colonnetwo[0], sponsor.getUsername())
-                            && Objects.equals(colonnetwo[1], sponsor.getId())
-                            && Objects.equals(colonnetwo[2], sponsor.getId())) {
+                            && Objects.equals(colonnetwo[1], String.valueOf(sponsor.getId()))
+                            && Objects.equals(colonnetwo[2], String.valueOf(sponsor.getId()))) {
                         isFind = true;
                         doEnterSponsor(sponsor);
                     }

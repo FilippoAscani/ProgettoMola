@@ -5,7 +5,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class ArtistDAOImplCLI implements ArtistDAO {
+public class ArtistDAOImplCSV implements ArtistDAO {
+
+
+    public ArtistDAOImplCSV() {
+
+    }
+
 
 
     @Override
@@ -16,7 +22,7 @@ public class ArtistDAOImplCLI implements ArtistDAO {
         try {
 
             BufferedWriter bw = new BufferedWriter(new FileWriter( "artist.csv", true));
-            bw.write(artist.getNome() + "," + artist.getTipo());
+            bw.write(artist.getNome() + "," + artist.getPassword());
             bw.newLine();
             bw.close();
 

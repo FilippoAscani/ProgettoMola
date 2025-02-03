@@ -1,4 +1,4 @@
-package com.example.ironmaiden;
+package com.example.progettomola;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,6 +11,7 @@ public class UserLoginDB {
 
     }
 
+    //ricorda di copiare su questa pagina UserLoginCSV
 
     public void login(User user) {
 
@@ -33,7 +34,7 @@ public class UserLoginDB {
                 else {
                     System.out.println("Login failed");
                     UserRegisterCSV userRegisterCSV = new UserRegisterCSV();
-                    userRegisterCSV.registrati(user);
+                    userRegisterCSV.registratiDB(user);
                 }
 
                 reader.close();

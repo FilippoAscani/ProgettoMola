@@ -1,4 +1,4 @@
-package com.example.ironmaiden;
+package com.example.progettomola;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

@@ -1,9 +1,7 @@
-package com.example.ironmaiden;
+package com.example.progettomola;
 
 
 import java.util.Scanner;
-
-import static com.example.ironmaiden.TypesOfLayers.*;
 
 
 public class LoginManager {
@@ -28,7 +26,7 @@ public class LoginManager {
             case USER:
 
                 //controlla se arrivi da csv o da jdbc
-                if(typeLayer == JDBC ){
+                if(typeLayer == TypesOfLayers.JDBC ){
 
                     System.out.println("inizializzo la password jdbc");
 
@@ -43,12 +41,12 @@ public class LoginManager {
 
 
                     User newU = new User(nomeUser, cognomeUser, passwordUser);
-                    UserLoginCSV userLogin = new UserLoginCSV();
-                    userLogin.login(newU);
+                    LoginCSV userLogin = new LoginCSV();
+                    userLogin.loginUser(newU);
                 }
 
 
-                if(typeLayer == CSV ){
+                if(typeLayer == TypesOfLayers.CSV ){
                     System.out.println("inizializzo la password csv");
 
                     System.out.println("nome");
@@ -61,8 +59,8 @@ public class LoginManager {
                     String passwordUser = scanner .nextLine();
 
                     User newU = new User(nomeUser, cognomeUser, passwordUser);
-                    UserLoginCSV userLogin = new UserLoginCSV();
-                    userLogin.login(newU);
+                    LoginCSV userLogin = new LoginCSV();
+                    userLogin.loginUser(newU);
 
                 }
 
@@ -73,41 +71,41 @@ public class LoginManager {
             //qui arriviamo da jdbc oppure da csv ma entrambi da cli
             case ARTIST:
 
-                if(typeLayer == JDBC ){
+                if(typeLayer == TypesOfLayers.JDBC ){
 
                     System.out.println("inizializzo la password jdbc da artista");
 
                     System.out.println("nome");
-                    String nomeUser = scanner.nextLine();
+                    String nomeArtist = scanner.nextLine();
 
-                    System.out.println("cognome");
-                    String cognomeUser = scanner.nextLine();
+                    //System.out.println("tipo");
+                    //String tipoArtist = scanner.nextLine();
 
                     System.out.println("password");
-                    String passwordUser = scanner .nextLine();
+                    String passwordArtist = scanner .nextLine();
 
 
-                    User newU = new User(nomeUser, cognomeUser, passwordUser);
-                    UserLoginCSV userLogin = new UserLoginCSV();
-                    userLogin.login(newU);
+                    Artist newA = new Artist(nomeArtist, passwordArtist);
+                    LoginCSV artistLogin = new LoginCSV();
+                    artistLogin.loginArtist(newA);
                 }
 
 
-                if(typeLayer == CSV ){
+                if(typeLayer == TypesOfLayers.CSV ){
                     System.out.println("inizializzo la password csv da artista");
 
-                    System.out.println("nome");
-                    String nomeUser = scanner.nextLine();
+                    System.out.println("nome artista");
+                    String nomeArtist = scanner.nextLine();
 
-                    System.out.println("cognome");
-                    String cognomeUser = scanner.nextLine();
+                    //System.out.println("tipo");
+                    //String tipoArtist = scanner.nextLine();
 
-                    System.out.println("password");
-                    String passwordUser = scanner .nextLine();
+                    System.out.println("password artista");
+                    String passwordArtist = scanner.nextLine();
 
-                    User newU = new User(nomeUser, cognomeUser, passwordUser);
-                    UserLoginCSV userLogin = new UserLoginCSV();
-                    userLogin.login(newU);
+                    Artist newA = new Artist(nomeArtist, passwordArtist);
+                    LoginCSV artistLogin = new LoginCSV();
+                    artistLogin.loginArtist(newA);
 
                 }
 
@@ -116,41 +114,42 @@ public class LoginManager {
 
             case SPONSOR:
 
-                if(typeLayer == JDBC ){
+                if(typeLayer == TypesOfLayers.JDBC ){
 
                     System.out.println("inizializzo la password jdbc da sponsor");
 
                     System.out.println("nome");
-                    String nomeUser = scanner.nextLine();
+                    String nomeSponsor = scanner.nextLine();
 
-                    System.out.println("cognome");
-                    String cognomeUser = scanner.nextLine();
+                    //System.out.println("cognome");
+                    //String cognomeUser = scanner.nextLine();
 
-                    System.out.println("password");
-                    String passwordUser = scanner .nextLine();
+                    System.out.println("id ");
+                    int idSponsor = scanner.nextInt();
 
 
-                    User newU = new User(nomeUser, cognomeUser, passwordUser);
-                    UserLoginCSV userLogin = new UserLoginCSV();
-                    userLogin.login(newU);
+                    Sponsor newS = new Sponsor(nomeSponsor, idSponsor);
+                    LoginCSV sponsorLogin = new LoginCSV();
+                    sponsorLogin.loginSponsor(newS);
                 }
 
 
-                if(typeLayer == CSV ){
+                if(typeLayer == TypesOfLayers.CSV ){
                     System.out.println("inizializzo la password csv da sponsor");
 
                     System.out.println("nome");
-                    String nomeUser = scanner.nextLine();
+                    String nomeSponsor = scanner.nextLine();
 
-                    System.out.println("cognome");
-                    String cognomeUser = scanner.nextLine();
+                    //System.out.println("cognome");
+                    //String cognomeUser = scanner.nextLine();
 
-                    System.out.println("password");
-                    String passwordUser = scanner .nextLine();
+                    System.out.println("id");
+                    int idSponsor = scanner.nextInt();
 
-                    User newU = new User(nomeUser, cognomeUser, passwordUser);
-                    UserLoginCSV userLogin = new UserLoginCSV();
-                    userLogin.login(newU);
+
+                    Sponsor newS = new Sponsor(nomeSponsor, idSponsor);
+                    LoginCSV sponsorLogin = new LoginCSV();
+                    sponsorLogin.loginSponsor(newS);
 
                 }
 
