@@ -57,9 +57,6 @@ public class UserLoginDB {
 
     }
 
-    public void doReject(){
-        System.out.println("Vai via dagli Iron Maiden");
-    }
 
     public void doEnter(){
         System.out.println("Benvenuto tra gli Iron Maiden");

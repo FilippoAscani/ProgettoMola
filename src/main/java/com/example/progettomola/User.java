@@ -1,5 +1,9 @@
 package com.example.progettomola;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class User {
 
     private String nome;
@@ -56,6 +60,30 @@ public class User {
     @Override
     public String toString(){
         return (nome + " " + cognome + " " + password + " ");
+    }
+
+    public Artist cercaArtista(String string){
+
+        try {
+
+            String line;
+            BufferedReader reader = new BufferedReader(new FileReader("artist.csv"));
+
+            while ((line = reader.readLine())!= null){
+                String[] values = line.split(",");
+                if(values[0].equalsIgnoreCase(string)){
+                    return new Artist(values[0],values[1]);
+                }
+
+            }
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+
+
     }
 
 }

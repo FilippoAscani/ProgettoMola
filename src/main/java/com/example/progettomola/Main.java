@@ -25,6 +25,27 @@ public class Main {
 
     }
 
+    /*
+    user
+    cerca spettacolo
+    scrive recensione
+    visualizza proprio profilo
+    vede recensioni che ha scritto
+
+
+    artista
+    visualizza profilo
+    risponde a richieste di sponsor
+    vede le recensioni degli spettacoli dove presente
+
+    sponsor
+    crea eventi con spettacoli
+    invia richieste a artisti
+    altra funzione oppure no
+
+
+     */
+
 
 
 

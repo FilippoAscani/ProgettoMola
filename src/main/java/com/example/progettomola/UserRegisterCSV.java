@@ -43,6 +43,8 @@ public class UserRegisterCSV {
 
     public void registraArtistDB(Artist artist) {
         //registra artist su db
+        ArtistDAOImplDB artistDB = new ArtistDAOImplDB();
+        artistDB.AddArtist(artist);
     }
 
 }

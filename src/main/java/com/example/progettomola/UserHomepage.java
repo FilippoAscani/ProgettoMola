@@ -1,5 +1,8 @@
 package com.example.progettomola;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -45,10 +48,20 @@ public class UserHomepage {
 
 
                 case "2":
-                    System.out.println("cerca un artista");
+                    System.out.println("cerca un artista o spettacolo");
                     //cerca anche spettacolo()
                     //visualizza csv dell'artistacsv
-                    //recensisci artista
+                    //recensisci artista o spettacolo
+
+                    String nome = scanner.nextLine();
+                    Artist trovatoA = user.cercaArtista(nome);
+                    if(trovatoA != null) {
+                        System.out.println("artista trovato: " + nome + "\n");
+                    }
+                    else{
+                        System.out.println("artista non trovato\n");
+                        break;
+                    }
 
 
 
@@ -62,6 +75,11 @@ public class UserHomepage {
 
                 case "3":
                     System.out.println("visualizza recensioni");
+                    //titoli delle recensioni + descrizione recensione
+
+
+
+
                     try {
                         TimeUnit.SECONDS.sleep(20);
                     } catch (InterruptedException e) {
@@ -78,10 +96,29 @@ public class UserHomepage {
                 default:
                     System.out.println("errore imprevisto UserHomepage");
             }
+
         }
 
-
     }
+
+
+
+    /*
+    due cose possibili o cerco nel file artist.csv
+    oppure quando registro artist lo inserisco anche in un array dinamico
+    senza cercarlo nel file
+
+    dal momento che il file e' piccolo sti cazzi
+    dubbio se inserire cercaArtista direttamente nella classe User
+    oppure se inserirlo qua sotto
+
+
+
+
+
+
+     */
+
 
 
 
