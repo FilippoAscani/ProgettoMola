@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface SponsorDAO {
 
-    void AddASponsor(Sponsor sponsor);
-    void UpdateArtist(Sponsor sponsor);
-    void DeleteArtist(Sponsor sponsor);
+    void AddSponsor(Sponsor sponsor);
+    void UpdateSponsor(Sponsor sponsor);
+    void DeleteSponsor(Sponsor sponsor);
     List<Sponsor> GetAllSponsors();
     Sponsor GetSponsor(int id);
 

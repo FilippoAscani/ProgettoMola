@@ -3,18 +3,19 @@ package com.example.progettomola;
 import java.util.List;
 
 public class SponsorDAOImplDB implements  SponsorDAO{
+
     @Override
-    public void AddASponsor(Sponsor sponsor) {
+    public void AddSponsor(Sponsor sponsor) {
 
     }
 
     @Override
-    public void UpdateArtist(Sponsor sponsor) {
+    public void UpdateSponsor(Sponsor sponsor) {
 
     }
 
     @Override
-    public void DeleteArtist(Sponsor sponsor) {
+    public void DeleteSponsor(Sponsor sponsor) {
 
     }
 

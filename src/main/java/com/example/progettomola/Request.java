@@ -2,25 +2,25 @@ package com.example.progettomola;
 
 public class Request {
 
-    private String artista;
+    private String nome;
     private String sponsor;
-    private String show;
+    private String tipo;
     private String status;
 
-    public Request(String artista, String sponsor, String show, String status){
-        this.artista = artista;
+    public Request(String nome, String sponsor, String tipo){
+
+        this.nome = nome;
         this.sponsor = sponsor;
-        this.show = show;
-        this.status = status;
+        this.tipo = tipo;
+        this.status = "inviata";
     }
 
-    public String getArtista() {
-        return artista;
+    @Override
+    public String toString() {
+        return "Richiesta da " + sponsor + " per lo spettacolo " + tipo + " - Stato: " + status;
     }
 
-    public void setArtista(String artista) {
-        this.artista = artista;
-    }
+
 
     public String getSponsor() {
         return sponsor;
@@ -30,13 +30,6 @@ public class Request {
         this.sponsor = sponsor;
     }
 
-    public String getShow() {
-        return show;
-    }
-
-    public void setShow(String show) {
-        this.show = show;
-    }
 
     public String getStatus() {
         return status;
@@ -46,9 +39,19 @@ public class Request {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "Richiesta da " + sponsor + " per l'artista " + artista + " per lo spettacolo " + show + " - Stato: " + status;
+    public String getNome() {
+        return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 }

@@ -1,41 +1,76 @@
 package com.example.progettomola;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
-public class Artist {
+import java.util.ArrayList;
+import java.util.List;
 
-    private String nome;
+public class Artist implements Observer{
+
+    private int id;
+    private String username;
     private String password;
     private String email;
     private String telefono;
     private String tipo;
+    private List<Request> recRequests;
 
 
-
-    public Artist (String nome, String password, String email, String telefono, String tipo) {
-        this.nome = nome;
+    public Artist (int id, String username, String password, String email, String telefono, String tipo) {
+        this.username = username;
         this.password = password;
         this.email = email;
         this.telefono = telefono;
         this.tipo = tipo;
+        this.id = id;
+
 
     }
 
-    public Artist (String nome, String Password){
-        this.nome = nome;
+    public Artist (int id, String username, String Password){
+        this.id = id;
+        this.username = username;
         this.password = Password;
 
     }
 
 
-    public String getNome() {
-        return nome;
+    //metodo accetta o rifiuta richiesta
+    public void acceptRequest () {
+
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void declineRequest() {
+
+    }
+
+
+    @Override
+    public void updateRequest(Request request) {
+        if(request.getTipo().equalsIgnoreCase(this.tipo)){
+            recRequests.add(request);
+            System.out.println(this.username + "hai ricevuto una richiesta da " + request.getSponsor());
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public String getUsername () {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -66,33 +101,12 @@ public class Artist {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+
+    public int getId() {
+        return id;
     }
 
-
-    public Artist cercaArtista(String nome){
-
-        try {
-
-            String line;
-            BufferedReader reader = new BufferedReader(new FileReader("artist.csv"));
-
-            while ((line = reader.readLine())!= null){
-                String[] values = line.split(",");
-                if(values[0].equalsIgnoreCase(nome)){
-                    return new Artist(values[0],values[1]);
-                }
-
-            }
-
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
-
-
+    public void setId(int id) {
+        this.id = id;
     }
-
 }

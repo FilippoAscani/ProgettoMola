@@ -90,7 +90,7 @@ public class LoginCSV {
                 while((linetwo = reader.readLine()) != null) {
 
                     String[] colonnetwo = linetwo.split(",");
-                    if (Objects.equals(colonnetwo[0], artist.getNome())
+                    if (Objects.equals(colonnetwo[0], artist.getUsername())
                             && Objects.equals(colonnetwo[1], artist.getTipo())
                             && Objects.equals(colonnetwo[2], artist.getPassword())) {
                         isFind = true;
@@ -187,7 +187,7 @@ public class LoginCSV {
     }
 
     public void doEnterArtist(Artist artist){
-        System.out.println("Benvenuto " + artist.getNome());
+        System.out.println("Benvenuto " + artist.getUsername());
         ArtistHomepage artistHomepage = new ArtistHomepage();
         artistHomepage.welcome(artist);
 

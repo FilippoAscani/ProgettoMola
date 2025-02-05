@@ -6,6 +6,7 @@ import java.io.IOException;
 
 public class User {
 
+    private int id;
     private String nome;
     private String cognome;
     private String password;
@@ -17,7 +18,8 @@ public class User {
         this.password = password;
     }
 
-    User(String nome, String cognome, String password, String username) {
+    User(String nome, String cognome, String password, String username, int id) {
+        this.id = id;
         this.nome = nome;
         this.cognome = cognome;
         this.password = password;
@@ -71,8 +73,8 @@ public class User {
 
             while ((line = reader.readLine())!= null){
                 String[] values = line.split(",");
-                if(values[0].equalsIgnoreCase(string)){
-                    return new Artist(values[0],values[1]);
+                if(values[1].equalsIgnoreCase(string)){
+                    return new Artist(Integer.parseInt(values[0]),values[1],values[2]);
                 }
 
             }
@@ -85,5 +87,15 @@ public class User {
 
 
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    //a prestooo
 
 }

@@ -28,7 +28,7 @@ public class ArtistHomepage {
                 case "1":
                     System.out.println("ecco il tuo profilo");
 
-                    System.out.println("Nome " + artist.getNome());
+                    System.out.println("Nome " + artist.getUsername());
                     System.out.println("Cognome " + artist.getTipo());
                     System.out.println("Password " + artist.getPassword());
                     //System.out.println("Username\n" + user.getUsername());
