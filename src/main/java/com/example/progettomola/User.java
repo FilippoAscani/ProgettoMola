@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 public class User {
 
@@ -54,17 +55,34 @@ public class User {
 
     }
 
-
-
-
-
-    public void addReview(Review review){
-        this.reviews.add(review);
+    private int generateId(){
+        Random random = new Random();
+        return random.nextInt();
     }
+
+    public void writeReview(String content, Show show){
+        Review review = new Review(generateId(), this, content, show);
+    }
+
 
     public List<Review> getReviews(){
         return this.reviews;
     }
+
+
+
+
+    public void acceptRequest(Request request){
+        System.out.println("richiesta accetata");
+        //rendi disponibile show a tutti gli utenti
+    }
+
+    public void declineRequest(Request request){
+        System.out.println("richiesta rifiutata");
+        //non fare nulla
+    }
+
+
 
 
 

@@ -4,16 +4,17 @@ public class Show {
 
     private int id;
     private String titolo;
-    private String descrizione;
+    private String tipo;
     private int capienza;
     private int partecipanti;
 
 
-    public Show(int id, String titolo, String descrizione, int capienza) {
+
+    public Show(int id, String titolo, int capienza, String tipo) {
         this.id = id;
         this.titolo = titolo;
-        this.descrizione = descrizione;
         this.capienza = capienza;
+        this.tipo = tipo;
         this.partecipanti = 0;
     }
 
@@ -41,12 +42,12 @@ public class Show {
         this.titolo = titolo;
     }
 
-    public String getDescrizione() {
-        return descrizione;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public int getCapienza() {

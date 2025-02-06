@@ -13,7 +13,7 @@ public class Artist implements Observer{
     private String telefono;
     private String tipo;
     private List<Show> shows;
-    private List<Request> sosRequests;
+
 
 
     public Artist (int id, String username, String password, String email, String telefono, String tipo) {
@@ -25,7 +25,6 @@ public class Artist implements Observer{
         this.tipo = tipo;
         this.id = id;
         shows = new ArrayList<>();
-        sosRequests = new ArrayList<>();
 
 
     }
@@ -40,29 +39,36 @@ public class Artist implements Observer{
 
     //metodo accetta o rifiuta richiesta
     public void acceptRequest (Request request) {
-        if(sosRequests.contains(request)){
-            shows.add(request.getShow());
-            sosRequests.remove(request);
-            System.out.println(this.username + " accepted");
-        }
+        request.setStatus("accepted");
+        Show show = new Show(request.getId(),request.getNome(), request.getCapienza(), request.getTipo());
+        shows.add(show);
+        saveShow(show);
     }
 
     public void declineRequest(Request request) {
-        if(sosRequests.contains(request)){
-            sosRequests.remove(request);
-            System.out.println(this.username + " declined");
-        }
+        request.setStatus("declined");
     }
+
+
 
 
     @Override
     public void updateRequest(Request request) {
+        if (this.tipo.equals(request.getTipo())){
+            acceptRequest(request);
+        }
+        else{
+            declineRequest(request);
+
+        }
         System.out.println("nuova richiesta per " + this.username + ": " + request);
     }
 
 
 
-
+    public void saveShow(Show show) {
+        shows.add(show);
+    }
 
 
 

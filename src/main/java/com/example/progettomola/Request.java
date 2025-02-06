@@ -3,34 +3,26 @@ package com.example.progettomola;
 public class Request {
 
     private int id;
-    private Sponsor sponsor;
-    private Artist artist;
-    private Show show;
+    private String nome;
+    private int capienza;
+    private String tipo;
     private String status;
 
-    public Request(int id, Sponsor sponsor, Artist artist, Show show){
+    public Request(int id, String nome, int capienza, String tipo){
 
         this.id = id;
-        this.sponsor = sponsor;
-        this.artist = artist;
-        this.show = show;
+        this.nome = nome;
+        this.capienza = capienza;
+        this.tipo = tipo;
         this.status = "pending";
 
     }
 
     @Override
     public String toString() {
-        return "Richiesta da " + sponsor + " Stato: " + status;
+        return "Richiesta da " + nome + " Stato: " + status;
     }
 
-
-    public Show getShow() {
-        return show;
-    }
-
-    public void setShow(Show show) {
-        this.show = show;
-    }
 
     public int getId() {
         return id;
@@ -40,20 +32,29 @@ public class Request {
         this.id = id;
     }
 
-    public Artist getArtist() {
-        return artist;
+
+    public String getNome() {
+        return nome;
     }
 
-    public void setArtist(Artist artist) {
-        this.artist = artist;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public Sponsor getSponsor() {
-        return sponsor;
+    public int getCapienza() {
+        return capienza;
     }
 
-    public void setSponsor(Sponsor sponsor) {
-        this.sponsor = sponsor;
+    public void setCapienza(int capienza) {
+        this.capienza = capienza;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getStatus() {
@@ -63,6 +64,5 @@ public class Request {
     public void setStatus(String status) {
         this.status = status;
     }
-
 
 }

@@ -45,8 +45,6 @@ public class Main {
     titolo spettacolo, tipo spettacolo,
 
 
-buon pranzooo
-
      */
 
 

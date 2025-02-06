@@ -8,7 +8,7 @@ public class Sponsor implements Subject {
     private int id;
     private String username;
     private String password;
-    private List<Observer> observers;
+    private List<Observer> artisti;
     private List<Request> requests;
 
 
@@ -16,34 +16,43 @@ public class Sponsor implements Subject {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.observers = new ArrayList<>();
+        this.artisti = new ArrayList<>();
         this.requests = new ArrayList<>();
     }
 
 
     @Override
     public void addObserver(Observer o) {
-        this.observers.add(o);
+        this.artisti.add(o);
     }
 
     @Override
     public void removeObserver(Observer o) {
-        this.observers.remove(o);
+        this.artisti.remove(o);
     }
 
     @Override
-    public void notifyObservers(Request request) {
-        for(Observer o : observers) {
-            o.updateRequest(request);
+    public void notifyObservers() {
+        for(Request request : requests) {
+            for(Observer artist : artisti) {
+                artist.updateRequest(request);
+            }
+
         }
     }
 
 
-    public void addRequest(Request request) {
-        request.setStatus("pending");
-        this.requests.add(request);
-        notifyObservers(request);
+    public void addRequest(int id, String nome, int capienza, String tipo) {
+        Request request = new Request(id, nome, capienza, tipo);
+        requests.add(request);
+        notifyObservers();
     }
+
+
+
+
+
+
 
 
 
@@ -76,16 +85,5 @@ public class Sponsor implements Subject {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
-
-    public List<Observer> getObservers() {
-        return observers;
-    }
-
-    public void setObservers(List<Observer> observers) {
-        this.observers = observers;
-    }
-
 
 }
