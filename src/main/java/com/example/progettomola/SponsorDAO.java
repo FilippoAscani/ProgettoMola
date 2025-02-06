@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface SponsorDAO {
 
-    void AddSponsor(Sponsor sponsor);
-    void UpdateSponsor(Sponsor sponsor);
-    void DeleteSponsor(Sponsor sponsor);
-    List<Sponsor> GetAllSponsors();
-    Sponsor GetSponsor(int id);
+    void addSponsor(Sponsor sponsor);
+    void updateSponsor(Sponsor sponsor);
+    void deleteSponsor(Sponsor sponsor);
+    List<Sponsor> getSponsors();
+    Sponsor getSponsor(int id);
 
 
 }

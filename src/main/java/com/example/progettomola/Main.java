@@ -26,23 +26,26 @@ public class Main {
     }
 
     /*
-    user
-    cerca spettacolo
-    scrive recensione
-    visualizza proprio profilo
-    vede recensioni che ha scritto
 
 
-    artista
-    visualizza profilo
-    risponde a richieste di sponsor
-    vede le recensioni degli spettacoli dove presente
 
-    sponsor
-    crea eventi con spettacoli
-    invia richieste a artisti
-    altra funzione oppure no
+    user partecipa a show se capienza lo permette
+    user scrive recensione se ha partecipato
+    user vede profilo
+    user cerca spettacolo
 
+    sponsor crea show
+    sponsore contatta artisti
+
+    artisti accettano o rifiutano richieste da sponsor
+    artisti vedono recensioni che li riguardano
+    artisti vedono profilo
+
+    una richiesta dovrebbe apparire cosi
+    titolo spettacolo, tipo spettacolo,
+
+
+buon pranzooo
 
      */
 

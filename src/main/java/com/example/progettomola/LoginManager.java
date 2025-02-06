@@ -30,17 +30,18 @@ public class LoginManager {
 
                     System.out.println("inizializzo la password jdbc");
 
-                    System.out.println("nome");
-                    String nomeUser = scanner.nextLine();
+                    System.out.println("id");
+                    int idUser = scanner.nextInt();
+                    scanner.nextLine();
 
-                    System.out.println("cognome");
+                    System.out.println("username");
                     String cognomeUser = scanner.nextLine();
 
                     System.out.println("password");
                     String passwordUser = scanner .nextLine();
 
 
-                    User newU = new User(nomeUser, cognomeUser, passwordUser);
+                    User newU = new User(idUser, cognomeUser, passwordUser);
                     LoginCSV userLogin = new LoginCSV();
                     userLogin.loginUser(newU);
                 }
@@ -49,16 +50,17 @@ public class LoginManager {
                 if(typeLayer == TypesOfLayers.CSV ){
                     System.out.println("inizializzo la password csv");
 
-                    System.out.println("nome");
-                    String nomeUser = scanner.nextLine();
+                    System.out.println("id");
+                    int idUser = scanner.nextInt();
+                    scanner.nextLine();
 
-                    System.out.println("cognome");
+                    System.out.println("username");
                     String cognomeUser = scanner.nextLine();
 
                     System.out.println("password");
-                    String passwordUser = scanner.nextLine();
+                    String passwordUser = scanner .nextLine();
 
-                    User newU = new User(nomeUser, cognomeUser, passwordUser);
+                    User newU = new User(idUser, cognomeUser, passwordUser);
                     LoginCSV userLogin = new LoginCSV();
                     userLogin.loginUser(newU);
 
@@ -124,10 +126,10 @@ public class LoginManager {
                     int idSponsor = scanner.nextInt();
                     scanner.nextLine();
 
-                    System.out.println("cognome");
+                    System.out.println("username");
                     String username = scanner.nextLine();
 
-                    System.out.println("cognome");
+                    System.out.println("password");
                     String password = scanner.nextLine();
 
 
@@ -144,10 +146,10 @@ public class LoginManager {
                     int idSponsor = scanner.nextInt();
                     scanner.nextLine();
 
-                    System.out.println("cognome");
+                    System.out.println("username");
                     String username = scanner.nextLine();
 
-                    System.out.println("cognome");
+                    System.out.println("password");
                     String password = scanner.nextLine();
 
 

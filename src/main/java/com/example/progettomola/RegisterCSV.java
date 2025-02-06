@@ -1,14 +1,14 @@
 package com.example.progettomola;
 
 
-public class UserRegisterCSV {
+public class RegisterCSV {
 
 
-    public UserRegisterCSV() {
+    public RegisterCSV() {
 
     }
 
-    public void registrati(User user) {
+    public void registraUser(User user) {
 
         UserDAOImplCSV userCSV = new UserDAOImplCSV();
         userCSV.addUser(user);
@@ -28,23 +28,27 @@ public class UserRegisterCSV {
 
     public void registraSponsor(Sponsor sponsor) {
         //registra sponsor sul file csv
+        SponsorDAOImplCSV artistCSV = new SponsorDAOImplCSV();
+        artistCSV.addSponsor(sponsor);
     }
 
     public void registraSponsorDB(Sponsor sponsor) {
         //registra sponsor ma sul db
+        SponsorDAOImplDB artistCSV = new SponsorDAOImplDB();
+        artistCSV.addSponsor(sponsor);
     }
 
     public void registraArtist(Artist artist) {
 
         ArtistDAOImplCSV artistCSV = new ArtistDAOImplCSV();
-        artistCSV.AddArtist(artist);
+        artistCSV.addArtist(artist);
         //registra artist su csv
     }
 
     public void registraArtistDB(Artist artist) {
         //registra artist su db
         ArtistDAOImplDB artistDB = new ArtistDAOImplDB();
-        artistDB.AddArtist(artist);
+        artistDB.addArtist(artist);
     }
 
 }

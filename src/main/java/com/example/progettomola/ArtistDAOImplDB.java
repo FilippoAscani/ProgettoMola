@@ -4,27 +4,27 @@ import java.util.List;
 
 public class ArtistDAOImplDB implements ArtistDAO {
     @Override
-    public void AddArtist(Artist artist) {
+    public void addArtist(Artist artist) {
 
     }
 
     @Override
-    public void UpdateArtist(Artist artist) {
+    public void updateArtist(Artist artist) {
 
     }
 
     @Override
-    public void DeleteArtist(Artist artist) {
+    public void deleteArtist(Artist artist) {
 
     }
 
     @Override
-    public List<Artist> GetAllArtists() {
+    public List<Artist> getArtists() {
         return List.of();
     }
 
     @Override
-    public Artist GetArtist(int id) {
+    public Artist getArtist(int id) {
         return null;
     }
 }

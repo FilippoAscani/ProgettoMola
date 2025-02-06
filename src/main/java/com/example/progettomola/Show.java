@@ -2,26 +2,43 @@ package com.example.progettomola;
 
 public class Show {
 
-    private String nome;
+    private int id;
+    private String titolo;
     private String descrizione;
     private int capienza;
     private int partecipanti;
 
 
-    public Show(String nome, String descrizione, int capienza) {
-        this.nome = nome;
+    public Show(int id, String titolo, String descrizione, int capienza) {
+        this.id = id;
+        this.titolo = titolo;
         this.descrizione = descrizione;
         this.capienza = capienza;
         this.partecipanti = 0;
     }
 
 
-    public String getNome() {
-        return nome;
+
+    public boolean aggiungiPartecipante() {
+        if (partecipanti > capienza) {
+            partecipanti++;
+            return true;
+        }
+        return false;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+
+
+
+
+
+
+    public String getTitolo() {
+        return titolo;
+    }
+
+    public void setNome(String titolo) {
+        this.titolo = titolo;
     }
 
     public String getDescrizione() {
@@ -48,11 +65,12 @@ public class Show {
         this.partecipanti = partecipanti;
     }
 
-    public boolean aggiungiPartecipante() {
-        if (partecipanti > capienza) {
-            partecipanti++;
-            return true;
-        }
-        return false;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

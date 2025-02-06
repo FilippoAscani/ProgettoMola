@@ -19,8 +19,8 @@ public class SponsorHomepage {
         while(true) {
 
             System.out.println("digita 1 per Profilo");
-            System.out.println("digita 2 per Cerca");
-            System.out.println("digita 3 per Recensioni");
+            System.out.println("digita 2 per Contatta artista");
+            System.out.println("digita 3 per crea evento");
             System.out.println("digita 4 per uscire");
 
             String choice = scanner.nextLine();
@@ -30,10 +30,10 @@ public class SponsorHomepage {
                 case "1":
                     System.out.println("ecco il tuo profilo");
 
-                    System.out.println("Nome " + sponsor.getUsername());
-                    System.out.println("Cognome " + sponsor.getId());
-                    System.out.println("Password " + sponsor.getId());
-                    //System.out.println("Username\n" + user.getUsername());
+                    System.out.println("ID " + sponsor.getId());
+                    System.out.println("Username " + sponsor.getUsername());
+                    System.out.println("Password " + sponsor.getPassword());
+
 
                     System.out.println("attendi...");
                     try {

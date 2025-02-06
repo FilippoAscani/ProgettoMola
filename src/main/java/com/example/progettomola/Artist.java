@@ -12,16 +12,20 @@ public class Artist implements Observer{
     private String email;
     private String telefono;
     private String tipo;
-    private List<Request> recRequests;
+    private List<Show> shows;
+    private List<Request> sosRequests;
 
 
     public Artist (int id, String username, String password, String email, String telefono, String tipo) {
+
         this.username = username;
         this.password = password;
         this.email = email;
         this.telefono = telefono;
         this.tipo = tipo;
         this.id = id;
+        shows = new ArrayList<>();
+        sosRequests = new ArrayList<>();
 
 
     }
@@ -35,21 +39,25 @@ public class Artist implements Observer{
 
 
     //metodo accetta o rifiuta richiesta
-    public void acceptRequest () {
-
+    public void acceptRequest (Request request) {
+        if(sosRequests.contains(request)){
+            shows.add(request.getShow());
+            sosRequests.remove(request);
+            System.out.println(this.username + " accepted");
+        }
     }
 
-    public void declineRequest() {
-
+    public void declineRequest(Request request) {
+        if(sosRequests.contains(request)){
+            sosRequests.remove(request);
+            System.out.println(this.username + " declined");
+        }
     }
 
 
     @Override
     public void updateRequest(Request request) {
-        if(request.getTipo().equalsIgnoreCase(this.tipo)){
-            recRequests.add(request);
-            System.out.println(this.username + "hai ricevuto una richiesta da " + request.getSponsor());
-        }
+        System.out.println("nuova richiesta per " + this.username + ": " + request);
     }
 
 
@@ -99,6 +107,10 @@ public class Artist implements Observer{
 
     public String getTipo() {
         return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
 

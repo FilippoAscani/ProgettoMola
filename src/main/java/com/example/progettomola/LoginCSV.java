@@ -27,8 +27,8 @@ public class LoginCSV {
 
             //inizialmente file vuoto aggiungi
             if (!file.exists() || file.length() == 0) {
-                UserRegisterCSV UserCSV = new UserRegisterCSV();
-                UserCSV.registrati(user);
+                RegisterCSV UserCSV = new RegisterCSV();
+                UserCSV.registraUser(user);
                 doEnterUser(user);
             }
 
@@ -48,8 +48,8 @@ public class LoginCSV {
                 }
 
                 if(!isFind) {
-                    UserRegisterCSV UserCSV = new UserRegisterCSV();
-                    UserCSV.registrati(user);
+                    RegisterCSV UserCSV = new RegisterCSV();
+                    UserCSV.registraUser(user);
                     doEnterUser(user);
                 }
 
@@ -78,7 +78,7 @@ public class LoginCSV {
 
             //inizialmente file vuoto aggiungi
             if (!file.exists() || file.length() == 0) {
-                UserRegisterCSV UserCSV = new UserRegisterCSV();
+                RegisterCSV UserCSV = new RegisterCSV();
                 UserCSV.registraArtist(artist);
                 doEnterArtist(artist);
             }
@@ -99,7 +99,7 @@ public class LoginCSV {
                 }
 
                 if(!isFind) {
-                    UserRegisterCSV UserCSV = new UserRegisterCSV();
+                    RegisterCSV UserCSV = new RegisterCSV();
                     UserCSV.registraArtist(artist);
                     doEnterArtist(artist);
                 }
@@ -131,7 +131,7 @@ public class LoginCSV {
 
             //inizialmente file vuoto aggiungi
             if (!file.exists() || file.length() == 0) {
-                UserRegisterCSV UserCSV = new UserRegisterCSV();
+                RegisterCSV UserCSV = new RegisterCSV();
                 UserCSV.registraSponsor(sponsor);
                 doEnterSponsor(sponsor);
             }
@@ -152,7 +152,7 @@ public class LoginCSV {
                 }
 
                 if(!isFind) {
-                    UserRegisterCSV UserCSV = new UserRegisterCSV();
+                    RegisterCSV UserCSV = new RegisterCSV();
                     UserCSV.registraSponsor(sponsor);
                     doEnterSponsor(sponsor);
                 }

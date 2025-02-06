@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SponsorDAOImplCSV implements SponsorDAO {
+
     @Override
-    public void AddSponsor(Sponsor sponsor) {
+    public void addSponsor(Sponsor sponsor) {
 
         try {
 
@@ -24,7 +25,7 @@ public class SponsorDAOImplCSV implements SponsorDAO {
     }
 
     @Override
-    public Sponsor GetSponsor(int id) {
+    public Sponsor getSponsor(int id) {
         try {
             BufferedReader br = new BufferedReader(new FileReader("sponsor.csv"));
             String line;
@@ -45,7 +46,7 @@ public class SponsorDAOImplCSV implements SponsorDAO {
     }
 
     @Override
-    public List<Sponsor> GetAllSponsors() {
+    public List<Sponsor> getSponsors() {
 
         List<Sponsor> sponsors = new ArrayList<>();
         try {
@@ -64,8 +65,8 @@ public class SponsorDAOImplCSV implements SponsorDAO {
     }
 
     @Override
-    public void DeleteSponsor(Sponsor sponsor) {
-        List<Sponsor> sponsors = GetAllSponsors();
+    public void deleteSponsor(Sponsor sponsor) {
+        List<Sponsor> sponsors = getSponsors();
         try {
 
             BufferedWriter bw = new BufferedWriter(new FileWriter("sponsor.csv", true));
@@ -82,8 +83,8 @@ public class SponsorDAOImplCSV implements SponsorDAO {
     }
 
     @Override
-    public void UpdateSponsor(Sponsor sponsor) {
-        List<Sponsor> sponsors = GetAllSponsors();
+    public void updateSponsor(Sponsor sponsor) {
+        List<Sponsor> sponsors = getSponsors();
         try {
             BufferedWriter br = new BufferedWriter(new FileWriter("sponsor.csv", true));
             for (Sponsor s : sponsors) {

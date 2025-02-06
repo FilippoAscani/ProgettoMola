@@ -17,9 +17,9 @@ public class ArtistHomepage {
         while(true) {
 
             System.out.println("digita 1 per Profilo");
-            System.out.println("digita 2 per Cerca");
+            System.out.println("digita 2 per Richieste ricevute");
             System.out.println("digita 3 per Recensioni");
-            System.out.println("digita 4 per uscire");
+            System.out.println("digita 4 per Uscire");
 
             String choice = scanner.nextLine();
 
@@ -28,10 +28,10 @@ public class ArtistHomepage {
                 case "1":
                     System.out.println("ecco il tuo profilo");
 
-                    System.out.println("Nome " + artist.getUsername());
-                    System.out.println("Cognome " + artist.getTipo());
+                    System.out.println("ID " + artist.getId());
+                    System.out.println("Username " + artist.getUsername());
                     System.out.println("Password " + artist.getPassword());
-                    //System.out.println("Username\n" + user.getUsername());
+
 
                     System.out.println("attendi...");
                     try {
@@ -43,7 +43,7 @@ public class ArtistHomepage {
 
 
                 case "2":
-                    System.out.println("cerca un artista");
+                    System.out.println("controlla richieste");
                     //cerca anche spettacolo()
                     //visualizza csv dell'artistacsv
                     //recensisci artista

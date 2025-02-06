@@ -9,6 +9,7 @@ public class Sponsor implements Subject {
     private String username;
     private String password;
     private List<Observer> observers;
+    private List<Request> requests;
 
 
     public Sponsor(int id, String username, String password) {
@@ -16,17 +17,18 @@ public class Sponsor implements Subject {
         this.username = username;
         this.password = password;
         this.observers = new ArrayList<>();
+        this.requests = new ArrayList<>();
     }
 
 
     @Override
     public void addObserver(Observer o) {
-        observers.add(o);
+        this.observers.add(o);
     }
 
     @Override
     public void removeObserver(Observer o) {
-        observers.remove(o);
+        this.observers.remove(o);
     }
 
     @Override
@@ -37,10 +39,17 @@ public class Sponsor implements Subject {
     }
 
 
-    public void createRequest(Show show, String tipo) {
-        Request request = new Request(show.getNome(), this.username, tipo);
+    public void addRequest(Request request) {
+        request.setStatus("pending");
+        this.requests.add(request);
         notifyObservers(request);
     }
+
+
+
+
+
+
 
 
     public String getUsername() {

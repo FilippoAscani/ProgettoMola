@@ -5,27 +5,27 @@ import java.util.List;
 public class SponsorDAOImplDB implements  SponsorDAO{
 
     @Override
-    public void AddSponsor(Sponsor sponsor) {
+    public void addSponsor(Sponsor sponsor) {
 
     }
 
     @Override
-    public void UpdateSponsor(Sponsor sponsor) {
+    public void updateSponsor(Sponsor sponsor) {
 
     }
 
     @Override
-    public void DeleteSponsor(Sponsor sponsor) {
+    public void deleteSponsor(Sponsor sponsor) {
 
     }
 
     @Override
-    public List<Sponsor> GetAllSponsors() {
+    public List<Sponsor> getSponsors() {
         return List.of();
     }
 
     @Override
-    public Sponsor GetSponsor(int id) {
+    public Sponsor getSponsor(int id) {
         return null;
     }
 }

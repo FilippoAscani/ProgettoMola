@@ -22,9 +22,9 @@ public class UserHomepage {
         while(true) {
 
             System.out.println("digita 1 per Profilo");
-            System.out.println("digita 2 per Cerca");
+            System.out.println("digita 2 per Cerca Spettacolo");
             System.out.println("digita 3 per Recensioni");
-            System.out.println("digita 4 per uscire");
+            System.out.println("digita 4 per Uscire");
 
             String choice = scanner.nextLine();
 
@@ -33,10 +33,12 @@ public class UserHomepage {
                 case "1":
                     System.out.println("ecco il tuo profilo");
 
+                    System.out.println("ID " + user.getId());
                     System.out.println("Nome " + user.getNome());
                     System.out.println("Cognome " + user.getCognome());
                     System.out.println("Password " + user.getPassword());
-                    //System.out.println("Username\n" + user.getUsername());
+                    System.out.println("Username " + user.getUsername());
+                    System.out.println("\n");
 
                     System.out.println("attendi...");
                     try {
@@ -48,7 +50,7 @@ public class UserHomepage {
 
 
                 case "2":
-                    System.out.println("cerca un artista o spettacolo");
+                    System.out.println("cerca un Artista");
                     //cerca anche spettacolo()
                     //visualizza csv dell'artistacsv
                     //recensisci artista o spettacolo

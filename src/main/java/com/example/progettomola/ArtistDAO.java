@@ -4,10 +4,10 @@ import java.util.List;
 
 public interface ArtistDAO {
 
-    void AddArtist(Artist artist); //lo sviluppatore si iscrive(?)
-    void UpdateArtist(Artist artist); //lo sviluppatore aggiorna le sua info
-    void DeleteArtist(Artist artist); // si disinscrive(?)
-    List<Artist> GetAllArtists(); // forse non serve sapere tutti gli sviluppatori
-    Artist GetArtist(int id); //forse non serve cercare uno sviluppatore
+    void addArtist(Artist artist); //lo sviluppatore si iscrive(?)
+    void updateArtist(Artist artist); //lo sviluppatore aggiorna le sua info
+    void deleteArtist(Artist artist); // si disinscrive(?)
+    List<Artist> getArtists(); // forse non serve sapere tutti gli sviluppatori
+    Artist getArtist(int id); //forse non serve cercare uno sviluppatore
 
 }

@@ -3,6 +3,7 @@ package com.example.progettomola;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 public class User {
 
@@ -11,10 +12,11 @@ public class User {
     private String cognome;
     private String password;
     private String username;
+    private List<Review> reviews;
 
-    User(String nome, String cognome, String password) {
-        this.nome = nome;
-        this.cognome = cognome;
+    User(int id, String username, String password) {
+        this.id = id;
+        this.username = username;
         this.password = password;
     }
 
@@ -26,6 +28,61 @@ public class User {
         this.username = username;
 
     }
+
+
+    public Artist cercaArtista(String string){
+
+        try {
+
+            String line;
+            BufferedReader reader = new BufferedReader(new FileReader("artist.csv"));
+
+            while ((line = reader.readLine())!= null){
+                String[] values = line.split(",");
+                if(values[1].equalsIgnoreCase(string)){
+                    return new Artist(Integer.parseInt(values[0]),values[1],values[2]);
+                }
+
+            }
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+
+
+    }
+
+
+
+
+
+    public void addReview(Review review){
+        this.reviews.add(review);
+    }
+
+    public List<Review> getReviews(){
+        return this.reviews;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public String getUsername() {
         return username;
@@ -64,29 +121,7 @@ public class User {
         return (nome + " " + cognome + " " + password + " ");
     }
 
-    public Artist cercaArtista(String string){
 
-        try {
-
-            String line;
-            BufferedReader reader = new BufferedReader(new FileReader("artist.csv"));
-
-            while ((line = reader.readLine())!= null){
-                String[] values = line.split(",");
-                if(values[1].equalsIgnoreCase(string)){
-                    return new Artist(Integer.parseInt(values[0]),values[1],values[2]);
-                }
-
-            }
-
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
-
-
-    }
 
     public int getId() {
         return id;

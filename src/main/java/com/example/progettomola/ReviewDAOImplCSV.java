@@ -4,24 +4,24 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArtistDAOImplCSV implements ArtistDAO {
+public class ReviewDAOImplCSV implements ReviewDAO {
 
 
-    public ArtistDAOImplCSV() {
+    public ReviewDAOImplCSV() {
 
     }
 
 
 
     @Override
-    public void addArtist(Artist artist) {
+    public void addReview(Review review) {
 
 
         //concetto di BufferedReader per la lettura e scrittura su un file
         try {
 
-            BufferedWriter bw = new BufferedWriter(new FileWriter( "artist.csv", true));
-            bw.write(artist.getUsername() + "," + artist.getPassword());
+            BufferedWriter bw = new BufferedWriter(new FileWriter( "review.csv", true));
+            bw.write(review.getId() + "," + review.getContent());
             bw.newLine();
             bw.close();
 
@@ -35,16 +35,16 @@ public class ArtistDAOImplCSV implements ArtistDAO {
     }
 
     @Override
-    public void updateArtist(Artist artist) {
-        List<Artist> artists = getArtists();
+    public void updateReview(Review review) {
+        List<Review> reviews = getReviews();
         try {
-            BufferedWriter br = new BufferedWriter(new FileWriter("artist.csv", true));
-            for (Artist s : artists) {
-                if(s.getId() == artist.getId()){
-                    br.write(artist.getId() + "," +artist.getUsername() + "," + artist.getPassword());
+            BufferedWriter br = new BufferedWriter(new FileWriter("review.csv", true));
+            for (Review r : reviews) {
+                if(r.getId() == review.getId()){
+                    br.write(review.getId() + "," +review.getContent());
                 }
                 else{
-                    br.write(s.getId() + "," +s.getUsername() + "," + s.getPassword());
+                    br.write(r.getId() + "," +r.getContent());
                 }
                 br.newLine();
             }
@@ -55,14 +55,14 @@ public class ArtistDAOImplCSV implements ArtistDAO {
     }
 
     @Override
-    public void deleteArtist(Artist artist) {
-        List<Artist> artists = getArtists();
+    public void deleteReview(Review review) {
+        List<Review> reviews = getReviews();
         try {
 
             BufferedWriter bw = new BufferedWriter(new FileWriter("artist.csv", true));
-            for (Artist a : artists) {
-                if(a.getId() != artist.getId()){
-                    bw.write(a.getId() + "," +a.getUsername() + "," + a.getPassword());
+            for (Review r : reviews) {
+                if(r.getId() != review.getId()){
+                    bw.write(r.getId() + "," +r.getContent());
                     bw.newLine();
                 }
             }
@@ -73,33 +73,33 @@ public class ArtistDAOImplCSV implements ArtistDAO {
     }
 
     @Override
-    public List<Artist> getArtists() {
+    public List<Review> getReviews() {
 
-        List<Artist> artists = new ArrayList<>();
+        List<Review> reviews = new ArrayList<>();
         try {
-            BufferedReader br = new BufferedReader(new FileReader("artist.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("review.csv"));
             String line;
             while ((line = br.readLine()) != null){
                 String[] colonne = line.split(",");
-                artists.add(new Artist(Integer.parseInt(colonne[0]), colonne[1], colonne[2]));
+                reviews.add(new Review(Integer.parseInt(colonne[0]), colonne[1]));
 
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return artists;
+        return reviews;
 
     }
 
     @Override
-    public Artist getArtist(int id) {
+    public Review getReview(int id) {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("artist.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("review.csv"));
             String line;
             while((line = br.readLine()) != null){
                 String[] colonne = line.split(",");
                 if(Integer.parseInt(colonne[0]) == id){
-                    return new Artist(id, colonne[1], colonne[2]);
+                    return new Review(id, colonne[1]);
                 }
 
             }

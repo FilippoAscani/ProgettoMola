@@ -15,7 +15,7 @@ public class UserDAOImplDB implements UserDAO {
     }
 
     @Override
-    public void deleteUser(int id) {
+    public void deleteUser(User user) {
         System.out.println("cancello user da db");
     }
 
