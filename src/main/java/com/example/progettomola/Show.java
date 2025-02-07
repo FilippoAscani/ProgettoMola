@@ -11,6 +11,7 @@ public class Show {
 
 
     public Show(int id, String titolo, int capienza, String tipo) {
+
         this.id = id;
         this.titolo = titolo;
         this.capienza = capienza;

@@ -27,22 +27,11 @@ public class Main {
 
     /*
 
-
-
-    user partecipa a show se capienza lo permette
-    user scrive recensione se ha partecipato
-    user vede profilo
-    user cerca spettacolo
-
-    sponsor crea show
-    sponsore contatta artisti
-
-    artisti accettano o rifiutano richieste da sponsor
-    artisti vedono recensioni che li riguardano
-    artisti vedono profilo
-
-    una richiesta dovrebbe apparire cosi
-    titolo spettacolo, tipo spettacolo,
+    sponsor fa richiesta di uno spettacolo
+    artista se soddisfa richiesta crea spettacolo
+    user cerca spettacolo scrive recensione
+    recensione appare in artista se ha partecipato
+    recensione appare in sponsor se ha organizzato (richiesta == nome show)
 
 
      */

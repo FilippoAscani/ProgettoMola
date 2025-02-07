@@ -87,7 +87,10 @@ public class LoginManager {
                     System.out.println("password artista");
                     String passwordArtist = scanner.nextLine();
 
-                    Artist newA = new Artist(id, nomeArtist, passwordArtist);
+                    System.out.println("tipo artista");
+                    String tipoArtist = scanner.nextLine();
+
+                    Artist newA = new Artist(id, nomeArtist, passwordArtist, tipoArtist);
                     LoginCSV artistLogin = new LoginCSV();
                     artistLogin.loginArtist(newA);
                 }
@@ -107,7 +110,10 @@ public class LoginManager {
                     System.out.println("password artista");
                     String passwordArtist = scanner.nextLine();
 
-                    Artist newA = new Artist(id, nomeArtist, passwordArtist);
+                    System.out.println("tipo artista");
+                    String tipoArtist = scanner.nextLine();
+
+                    Artist newA = new Artist(id, nomeArtist, passwordArtist, tipoArtist);
                     LoginCSV artistLogin = new LoginCSV();
                     artistLogin.loginArtist(newA);
 

@@ -28,7 +28,7 @@ public class ViewManager {
                 System.out.println("inserisci JDBC oppure CSV");
                 String layer = scanner.nextLine();
 
-                layerManager.gestore(TypesOfLayers.valueOf(layer),null);
+                layerManager.gestore(TypesOfLayers.valueOf(layer));
 
                 break;
 

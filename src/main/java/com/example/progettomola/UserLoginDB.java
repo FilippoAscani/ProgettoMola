@@ -33,8 +33,8 @@ public class UserLoginDB {
                 }
                 else {
                     System.out.println("Login failed");
-                    UserRegisterCSV userRegisterCSV = new UserRegisterCSV();
-                    userRegisterCSV.registratiDB(user);
+                    RegisterCSV registerCSV = new RegisterCSV();
+                    registerCSV.registraUserCSV(user);
                 }
 
                 reader.close();
@@ -45,8 +45,8 @@ public class UserLoginDB {
                 doEnter();
 
             } else {
-                UserRegisterCSV userRegisterCLI = new UserRegisterCSV();
-                userRegisterCLI.registrati(user);
+                RegisterCSV registerCLI = new RegisterCSV();
+                registerCLI.registraUserCSV(user);
             }
 
 

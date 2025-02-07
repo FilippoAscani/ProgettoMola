@@ -13,6 +13,7 @@ public class Artist implements Observer{
     private String telefono;
     private String tipo;
     private List<Show> shows;
+    private List<Request> recRequests;
 
 
 
@@ -25,19 +26,24 @@ public class Artist implements Observer{
         this.tipo = tipo;
         this.id = id;
         shows = new ArrayList<>();
+        recRequests = new ArrayList<>();
+
 
 
     }
 
-    public Artist (int id, String username, String Password){
+    public Artist (int id, String username, String Password, String tipo){
         this.id = id;
         this.username = username;
         this.password = Password;
+        this.tipo = tipo;
+        shows = new ArrayList<>();
+        recRequests = new ArrayList<>();
 
     }
 
 
-    //metodo accetta o rifiuta richiesta
+    //metodo accetta e crea show aggiunge show all'elenco?
     public void acceptRequest (Request request) {
         request.setStatus("accepted");
         Show show = new Show(request.getId(),request.getNome(), request.getCapienza(), request.getTipo());
@@ -54,14 +60,9 @@ public class Artist implements Observer{
 
     @Override
     public void updateRequest(Request request) {
-        if (this.tipo.equals(request.getTipo())){
-            acceptRequest(request);
+        if(this.tipo.equals(request.getTipo())){
+            recRequests.add(request);
         }
-        else{
-            declineRequest(request);
-
-        }
-        System.out.println("nuova richiesta per " + this.username + ": " + request);
     }
 
 
@@ -72,7 +73,18 @@ public class Artist implements Observer{
 
 
 
+    public void setShows(ArrayList<Show> shows) {
+        this.shows = shows;
+    }
 
+
+    public void setRequests(ArrayList<Request> requests) {
+        this.recRequests = requests;
+    }
+
+    public List<Request> getRequests() {
+        return recRequests;
+    }
 
 
 
@@ -127,4 +139,6 @@ public class Artist implements Observer{
     public void setId(int id) {
         this.id = id;
     }
+
+
 }

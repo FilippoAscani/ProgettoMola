@@ -1,23 +1,18 @@
 package com.example.progettomola;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class SponsorHomepage {
+public class SponsorHomepageDue {
 
     //private String user;
 
-    public SponsorHomepage() {
+    public SponsorHomepageDue() {
         //this.user = user;
 
     }
 
-    public void welcome(Sponsor sponsor){
+    public void welcome(Sponsor sponsor, Artist artist){
 
         Scanner scanner = new Scanner(System.in);
 
@@ -66,11 +61,14 @@ public class SponsorHomepage {
                     System.out.println("inserire tipo di artista richiesto");
                     String tipoA = scanner.nextLine();
 
+                    sponsor.addObserver(artist);
+
                     Request request = new Request(id, nomeReq, cap, tipoA);
-
-                    addObserversFromCSV(sponsor,tipoA);
-
                     sponsor.createRequest(request);
+
+                    //un metodo che ha come input
+
+
 
                     try {
                         TimeUnit.SECONDS.sleep(30);
@@ -104,20 +102,7 @@ public class SponsorHomepage {
     }
 
 
-    public void addObserversFromCSV(Sponsor sponsor, String tipo) {
-        // Carica gli artisti dal file CSV
-        ArtistDAOImplCSV artistDAOImplCSV = new ArtistDAOImplCSV();
-        List<Artist> artists = artistDAOImplCSV.getArtists();//loadArtistsFromCSV();
-
-        // Aggiungi gli artisti con tipo corrispondente come osservatori
-        for (Artist artist : artists) {
-            if (artist.getTipo().equals(tipo)) {
-                sponsor.addObserver(artist); // Aggiungi l'artista come osservatore
-                System.out.println("Artista " + artist.getUsername() + " aggiunto come osservatore");
-
-            }
-        }
-    }
 
 
 }
+

@@ -8,7 +8,7 @@ public class RegisterCSV {
 
     }
 
-    public void registraUser(User user) {
+    public void registraUserCSV(User user) {
 
         UserDAOImplCSV userCSV = new UserDAOImplCSV();
         userCSV.addUser(user);
@@ -17,7 +17,7 @@ public class RegisterCSV {
 
     }
 
-    public void registratiDB(User user) {
+    public void registraUserDB(User user) {
 
         UserDAOImplDB userDB = new UserDAOImplDB();
         userDB.addUser(user);
@@ -49,6 +49,24 @@ public class RegisterCSV {
         //registra artist su db
         ArtistDAOImplDB artistDB = new ArtistDAOImplDB();
         artistDB.addArtist(artist);
+    }
+
+    public void registraShowCSV(Show show) {
+        ShowDAOImplCSV showCSV = new ShowDAOImplCSV();
+        showCSV.addShow(show);
+    }
+
+    public void registraShowDB(Show show) {
+        //db
+    }
+
+    public void registraReviewCSV(Review review) {
+        ReviewDAOImplCSV reviewCSV = new ReviewDAOImplCSV();
+        reviewCSV.addReview(review);
+    }
+
+    public void registraReviewDB(Review review) {
+        //db
     }
 
 }

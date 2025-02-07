@@ -8,45 +8,47 @@ public class Sponsor implements Subject {
     private int id;
     private String username;
     private String password;
-    private List<Observer> artisti;
-    private List<Request> requests;
+    private List<Observer> observers;
+    private List<Request> sendRequests;
 
 
     public Sponsor(int id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.artisti = new ArrayList<>();
-        this.requests = new ArrayList<>();
+        this.observers = new ArrayList<>();
+        this.sendRequests = new ArrayList<>();
     }
 
 
     @Override
     public void addObserver(Observer o) {
-        this.artisti.add(o);
+        observers.add(o);
     }
 
     @Override
     public void removeObserver(Observer o) {
-        this.artisti.remove(o);
+        observers.remove(o);
     }
 
     @Override
-    public void notifyObservers() {
-        for(Request request : requests) {
-            for(Observer artist : artisti) {
-                artist.updateRequest(request);
-            }
+    public void notifyObservers(Request request) {
+        for(Observer o : observers) {
+            o.updateRequest(request);
 
         }
     }
 
-
-    public void addRequest(int id, String nome, int capienza, String tipo) {
-        Request request = new Request(id, nome, capienza, tipo);
-        requests.add(request);
-        notifyObservers();
+    public void createRequest(Request request) {
+        sendRequests.add(request);
+        saveRequestCSV(request);
+        notifyObservers(request);
     }
+
+    private void saveRequestCSV(Request request) {
+        //salva nel csv relativo alle richieste
+    }
+
 
 
 
@@ -85,5 +87,22 @@ public class Sponsor implements Subject {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void setRequests (List<Request> requests) {
+        this.sendRequests = requests;
+    }
+
+    public List<Request> getRequests() {
+        return sendRequests;
+    }
+
+    public void setArtisti (List<Observer> artisti) {
+        this.observers = artisti;
+    }
+
+    public List<Observer> getArtisti() {
+        return observers;
+    }
+
 
 }

@@ -16,8 +16,6 @@ public class ArtistDAOImplCSV implements ArtistDAO {
     @Override
     public void addArtist(Artist artist) {
 
-
-        //concetto di BufferedReader per la lettura e scrittura su un file
         try {
 
             BufferedWriter bw = new BufferedWriter(new FileWriter( "artist.csv", true));
@@ -81,7 +79,7 @@ public class ArtistDAOImplCSV implements ArtistDAO {
             String line;
             while ((line = br.readLine()) != null){
                 String[] colonne = line.split(",");
-                artists.add(new Artist(Integer.parseInt(colonne[0]), colonne[1], colonne[2]));
+                artists.add(new Artist(Integer.parseInt(colonne[0]), colonne[1], colonne[2],colonne[3]));
 
             }
         } catch (IOException e) {
@@ -99,7 +97,7 @@ public class ArtistDAOImplCSV implements ArtistDAO {
             while((line = br.readLine()) != null){
                 String[] colonne = line.split(",");
                 if(Integer.parseInt(colonne[0]) == id){
-                    return new Artist(id, colonne[1], colonne[2]);
+                    return new Artist(id, colonne[1], colonne[2],colonne[3]);
                 }
 
             }

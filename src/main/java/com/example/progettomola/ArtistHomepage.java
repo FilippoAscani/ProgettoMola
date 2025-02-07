@@ -1,12 +1,15 @@
 package com.example.progettomola;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class ArtistHomepage {
 
+
+
     public ArtistHomepage() {
-        //this.user = user;
+
 
     }
 
@@ -44,22 +47,43 @@ public class ArtistHomepage {
 
                 case "2":
                     System.out.println("controlla richieste");
-                    //cerca anche spettacolo()
-                    //visualizza csv dell'artistacsv
-                    //recensisci artista
 
+                    List<Request> requests = artist.getRequests();
 
-
-                    try {
-                        TimeUnit.SECONDS.sleep(30);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+                    if(requests.isEmpty()){
+                        System.out.println("non hai richieste ricevute\n");
                     }
+                    else {
+                        //for in un altra parte (?)
+                        for (Request request : requests) {
+                            System.out.println("richiesta " + request.getId() + ":");
+                            System.out.println("nome: " + request.getNome());
+                            System.out.println("capienza " + request.getCapienza());
+                            System.out.println("tipo " + request.getTipo());
+                            System.out.println();
+
+                            System.out.println("accetti la richiesta? (y/n)");
+
+                            String risposta = scanner.nextLine().toLowerCase();
+
+                            if (risposta.equals("y")) {
+                                artist.acceptRequest(request);
+                            } else {
+                                artist.declineRequest(request);
+                            }
+                        }
+
+                    }
+
                     break;
 
 
                 case "3":
                     System.out.println("visualizza recensioni");
+                    //user scrive recensione su spettacolo qualsiasi
+                    //se artista è in quello spettacolo visualizza recensione
+
+
                     try {
                         TimeUnit.SECONDS.sleep(20);
                     } catch (InterruptedException e) {

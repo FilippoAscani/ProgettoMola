@@ -27,8 +27,8 @@ public class LoginCSV {
 
             //inizialmente file vuoto aggiungi
             if (!file.exists() || file.length() == 0) {
-                RegisterCSV UserCSV = new RegisterCSV();
-                UserCSV.registraUser(user);
+                RegisterCSV userCSV = new RegisterCSV();
+                userCSV.registraUserCSV(user);
                 doEnterUser(user);
             }
 
@@ -48,8 +48,8 @@ public class LoginCSV {
                 }
 
                 if(!isFind) {
-                    RegisterCSV UserCSV = new RegisterCSV();
-                    UserCSV.registraUser(user);
+                    RegisterCSV userCSV = new RegisterCSV();
+                    userCSV.registraUserCSV(user);
                     doEnterUser(user);
                 }
 
@@ -147,6 +147,8 @@ public class LoginCSV {
                             && Objects.equals(colonnetwo[1], String.valueOf(sponsor.getId()))
                             && Objects.equals(colonnetwo[2], String.valueOf(sponsor.getId()))) {
                         isFind = true;
+                        //probabile caricamento o apertura delle richieste
+                        //probabile recensioni
                         doEnterSponsor(sponsor);
                     }
                 }
@@ -198,6 +200,20 @@ public class LoginCSV {
         SponsorHomepage sponsorHomepage = new SponsorHomepage();
         sponsorHomepage.welcome(sponsor);
 
+    }
+
+    public void doUserThings(User user, Review review){
+        System.out.println("user = " + user + ", review = " + review);
+    }
+
+    public void doArtistThings(Artist artist, Review review, Request request, Show show){
+
+    }
+
+    public void doSponsorThings(Sponsor sponsor, Artist artist){
+        System.out.println("Benvenuto " + sponsor.getUsername());
+        SponsorHomepageDue sponsorHomepageDue = new SponsorHomepageDue();
+        sponsorHomepageDue.welcome(sponsor,artist);
     }
 
 

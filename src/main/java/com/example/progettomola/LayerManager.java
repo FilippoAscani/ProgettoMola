@@ -8,7 +8,7 @@ public class LayerManager {
 
     }
 
-    public void gestore(TypesOfLayers typeLayer, TypesOfRoles typeRole){
+    public void gestore(TypesOfLayers typeLayer){
 
         LoginManager loginManager = new LoginManager();
         Scanner scanner = new Scanner(System.in);

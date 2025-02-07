@@ -41,7 +41,7 @@ public class User {
             while ((line = reader.readLine())!= null){
                 String[] values = line.split(",");
                 if(values[1].equalsIgnoreCase(string)){
-                    return new Artist(Integer.parseInt(values[0]),values[1],values[2]);
+                    return new Artist(Integer.parseInt(values[0]),values[1],values[2],values[3]);
                 }
 
             }
@@ -69,18 +69,6 @@ public class User {
         return this.reviews;
     }
 
-
-
-
-    public void acceptRequest(Request request){
-        System.out.println("richiesta accetata");
-        //rendi disponibile show a tutti gli utenti
-    }
-
-    public void declineRequest(Request request){
-        System.out.println("richiesta rifiutata");
-        //non fare nulla
-    }
 
 
 
@@ -148,7 +136,5 @@ public class User {
     public void setId(int id) {
         this.id = id;
     }
-
-    //a prestooo
 
 }
