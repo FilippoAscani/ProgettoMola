@@ -12,8 +12,6 @@ public class Artist implements Observer{
     private String email;
     private String telefono;
     private String tipo;
-    private List<Show> shows;
-    private List<Request> recRequests;
 
 
 
@@ -25,10 +23,6 @@ public class Artist implements Observer{
         this.telefono = telefono;
         this.tipo = tipo;
         this.id = id;
-        shows = new ArrayList<>();
-        recRequests = new ArrayList<>();
-
-
 
     }
 
@@ -37,57 +31,18 @@ public class Artist implements Observer{
         this.username = username;
         this.password = Password;
         this.tipo = tipo;
-        shows = new ArrayList<>();
-        recRequests = new ArrayList<>();
+
 
     }
-
-
-    //metodo accetta e crea show aggiunge show all'elenco?
-    public void acceptRequest (Request request) {
-        request.setStatus("accepted");
-        Show show = new Show(request.getId(),request.getNome(), request.getCapienza(), request.getTipo());
-        shows.add(show);
-        saveShow(show);
-    }
-
-    public void declineRequest(Request request) {
-        request.setStatus("declined");
-    }
-
 
 
 
     @Override
     public void updateRequest(Request request) {
         if(this.tipo.equals(request.getTipo())){
-            recRequests.add(request);
+            System.out.println("concordi");
         }
     }
-
-
-
-    public void saveShow(Show show) {
-        shows.add(show);
-    }
-
-
-
-    public void setShows(ArrayList<Show> shows) {
-        this.shows = shows;
-    }
-
-
-    public void setRequests(ArrayList<Request> requests) {
-        this.recRequests = requests;
-    }
-
-    public List<Request> getRequests() {
-        return recRequests;
-    }
-
-
-
 
 
 

@@ -3,6 +3,7 @@ package com.example.progettomola;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -19,6 +20,7 @@ public class User {
         this.id = id;
         this.username = username;
         this.password = password;
+        reviews = new ArrayList<Review>();
     }
 
     User(String nome, String cognome, String password, String username, int id) {
@@ -55,6 +57,47 @@ public class User {
 
     }
 
+
+
+
+
+    public Show cercaSpettacolo(String string){
+
+        try {
+
+            String line;
+            BufferedReader reader = new BufferedReader(new FileReader("show.csv"));
+
+            while ((line = reader.readLine())!= null){
+                String[] values = line.split(",");
+                if(values[1].equalsIgnoreCase(string)){
+                    return new Show(Integer.parseInt(values[0]),values[1],Integer.parseInt(values[2]),values[3]);
+                }
+
+            }
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private int generateId(){
         Random random = new Random();
         return random.nextInt();
@@ -62,31 +105,9 @@ public class User {
 
     public void writeReview(String content, Show show){
         Review review = new Review(generateId(), this, content, show);
+        ReviewDAOImplCSV dao = new ReviewDAOImplCSV();
+        dao.addReview(review);
     }
-
-
-    public List<Review> getReviews(){
-        return this.reviews;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

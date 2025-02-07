@@ -1,9 +1,6 @@
 package com.example.progettomola;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -82,6 +79,10 @@ public class SponsorHomepage {
 
                 case "3":
                     System.out.println("visualizza recensioni");
+                    //quelle di spettacoli che hanno le caratteristiche della mia richiesta
+
+
+
                     try {
                         TimeUnit.SECONDS.sleep(20);
                     } catch (InterruptedException e) {
@@ -118,6 +119,8 @@ public class SponsorHomepage {
             }
         }
     }
+
+
 
 
 }

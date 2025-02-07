@@ -8,6 +8,7 @@ public class ArtistHomepage {
 
 
 
+
     public ArtistHomepage() {
 
 
@@ -48,7 +49,7 @@ public class ArtistHomepage {
                 case "2":
                     System.out.println("controlla richieste");
 
-                    List<Request> requests = artist.getRequests();
+                    List<Request> requests = addRequestsFromCSV(artist.getTipo());
 
                     if(requests.isEmpty()){
                         System.out.println("non hai richieste ricevute\n");
@@ -67,9 +68,16 @@ public class ArtistHomepage {
                             String risposta = scanner.nextLine().toLowerCase();
 
                             if (risposta.equals("y")) {
-                                artist.acceptRequest(request);
+                                Show show = new Show(request.getId(),request.getNome(), request.getCapienza(), request.getTipo());
+
+                                ShowDAOImplCSV showDAO = new ShowDAOImplCSV();
+                                showDAO.addShow(show);
+                                request.setStatus("accepted");
+
+
                             } else {
-                                artist.declineRequest(request);
+
+                                request.setStatus("denied");
                             }
                         }
 
@@ -82,6 +90,7 @@ public class ArtistHomepage {
                     System.out.println("visualizza recensioni");
                     //user scrive recensione su spettacolo qualsiasi
                     //se artista è in quello spettacolo visualizza recensione
+                    getShowsReviewed(artist.getTipo());
 
 
                     try {
@@ -104,5 +113,29 @@ public class ArtistHomepage {
 
 
     }
+
+    public List<Request> addRequestsFromCSV(String tipo) {
+        RequestDAOImplCSV requestDAO = new RequestDAOImplCSV();
+        List<Request> requests = requestDAO.getRequests();
+
+        for(Request request : requests){
+            if(request.getTipo().equals(tipo)){
+                requests.add(request);
+            }
+        }
+        return requests;
+    }
+
+    public List<Show> getShowsReviewed(String tipo){
+        ShowDAOImplCSV reviewDAO = new ShowDAOImplCSV();
+        List<Show> shows = reviewDAO.getShows();
+        for(Show s : shows){
+            if(s.getTipo().equals(tipo)){
+                shows.add(s);
+            }
+        }
+        return shows;
+    }
+
 
 }

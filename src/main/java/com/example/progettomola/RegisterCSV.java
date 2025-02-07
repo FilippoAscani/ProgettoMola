@@ -69,4 +69,13 @@ public class RegisterCSV {
         //db
     }
 
+    public void registraRequestCSV(Request request) {
+        RequestDAOImplCSV requestCSV = new RequestDAOImplCSV();
+        requestCSV.addRequest(request);
+    }
+
+    public void registraRequestDB(Request request) {
+        //db
+    }
+
 }

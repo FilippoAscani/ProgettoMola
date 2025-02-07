@@ -1,8 +1,5 @@
 package com.example.progettomola;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -50,10 +47,28 @@ public class UserHomepage {
 
 
                 case "2":
-                    System.out.println("cerca un Artista");
+                    System.out.println("ecco gli spettacoli");
                     //cerca anche spettacolo()
                     //visualizza csv dell'artistacsv
                     //recensisci artista o spettacolo
+
+                    //mostra tutti gli spettacoli
+                    ShowDAOImplCSV showDAO = new ShowDAOImplCSV();
+                    showDAO.getShows();
+
+                    //cerca spettacolo
+                    System.out.println("cerca spettacolo");
+                    String tipo = scanner.nextLine();
+                    Show trovatoShow = user.cercaSpettacolo(tipo);
+
+                    System.out.println("scrivi recensione");
+                    String content = scanner.nextLine();
+                    user.writeReview(content, trovatoShow);
+
+                    //scrivi recensione
+
+
+
 
                     String nome = scanner.nextLine();
                     Artist trovatoA = user.cercaArtista(nome);
@@ -79,7 +94,8 @@ public class UserHomepage {
                     System.out.println("visualizza recensioni");
                     //titoli delle recensioni + descrizione recensione
 
-
+                    ReviewDAOImplCSV reviewDAO = new ReviewDAOImplCSV();
+                    reviewDAO.getReviews();
 
 
                     try {
@@ -104,22 +120,6 @@ public class UserHomepage {
     }
 
 
-
-    /*
-    due cose possibili o cerco nel file artist.csv
-    oppure quando registro artist lo inserisco anche in un array dinamico
-    senza cercarlo nel file
-
-    dal momento che il file e' piccolo sti cazzi
-    dubbio se inserire cercaArtista direttamente nella classe User
-    oppure se inserirlo qua sotto
-
-
-
-
-
-
-     */
 
 
 
