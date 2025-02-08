@@ -1,6 +1,9 @@
 package com.example.progettomola;
 
 
+import com.example.progettomola.ControllerCLI.ViewManager;
+import com.example.progettomola.Enum.TypesOfViews;
+
 import java.util.Scanner;
 
 public class Main {
@@ -24,20 +27,6 @@ public class Main {
 
 
     }
-
-    /*
-
-    sponsor fa richiesta di uno spettacolo
-    artista se soddisfa richiesta crea spettacolo
-    user cerca spettacolo scrive recensione
-    recensione appare in artista se ha partecipato
-    recensione appare in sponsor se ha organizzato (richiesta == nome show)
-
-
-     */
-
-
-
 
 }
 
