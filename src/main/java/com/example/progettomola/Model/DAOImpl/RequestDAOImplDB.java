@@ -1,9 +1,8 @@
 package com.example.progettomola.Model.DAOImpl;
 
 import com.example.progettomola.DatabaseConnection;
-import com.example.progettomola.Model.DAO.SponsorDAO;
-import com.example.progettomola.Model.Entity.Sponsor;
-
+import com.example.progettomola.Model.DAO.RequestDAO;
+import com.example.progettomola.Model.Entity.Request;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,18 +11,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SponsorDAOImplDB implements SponsorDAO {
-
+public class RequestDAOImplDB implements RequestDAO {
     @Override
-    public void addSponsor(Sponsor sponsor) {
-        String sql = "INSERT INTO sponsors(id,username,password ) VALUES (?,?,?)";
+    public void addRequest(Request request) {
+        String sql = "INSERT INTO requests(id,nome,capienza,tipo) VALUES (?,?,?,?)";
 
         try {
             Connection connection = DatabaseConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, sponsor.getId());
-            ps.setString(2, sponsor.getUsername());
-            ps.setString(3, sponsor.getPassword());
+            ps.setInt(1, request.getId());
+            ps.setString(2, request.getNome());
+            ps.setInt(3, request.getCapienza());
+            ps.setString(4, request.getTipo());
             ps.executeUpdate();
 
 
@@ -34,12 +33,14 @@ public class SponsorDAOImplDB implements SponsorDAO {
     }
 
     @Override
-    public void updateSponsor(Sponsor sponsor) {
-        String sql = "UPDATE sponsors SET username = ?, WHERE username = ?";
+    public void updateRequest(Request request) {
+        String sql = "UPDATE requests SET name = ?, capienza = ? WHERE tipo = ?";
         try {
             Connection connection = DatabaseConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, sponsor.getUsername());
+            ps.setString(1, request.getNome());
+            ps.setInt(2, request.getCapienza());
+            ps.setString(3, request.getTipo());
             ps.executeUpdate();
 
         }
@@ -49,13 +50,13 @@ public class SponsorDAOImplDB implements SponsorDAO {
     }
 
     @Override
-    public void deleteSponsor(Sponsor sponsor) {
-        String sql = "DELETE FROM sponsors WHERE nome = ?";
+    public void deleteRequest(Request request) {
+        String sql = "DELETE FROM requests WHERE nome = ?";
         try {
             Connection connection = DatabaseConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
-            ps.setString(1, sponsor.getUsername());
+            ps.setString(1, request.getNome());
             ps.executeUpdate();
         }
         catch(SQLException e){
@@ -64,9 +65,9 @@ public class SponsorDAOImplDB implements SponsorDAO {
     }
 
     @Override
-    public List<Sponsor> getSponsors() {
-        List<Sponsor> sponsors = new ArrayList<>();
-        String sql = "SELECT * FROM sponsors";
+    public List<Request> getRequests() {
+        List<Request> requests = new ArrayList<>();
+        String sql = "SELECT * FROM requests";
         try{
             Connection connection = DatabaseConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -74,12 +75,13 @@ public class SponsorDAOImplDB implements SponsorDAO {
 
             while(rs.next()) {
 
-                Sponsor sponsor = new Sponsor(
+                Request request = new Request(
                         rs.getInt("id"),
-                        rs.getString("username"),
-                        rs.getString("password"));
+                        rs.getString("nome"),
+                        rs.getInt("capienza"),
+                        rs.getString("tipo"));
 
-                sponsors.add(sponsor);
+                requests.add(request);
             }
 
         }
@@ -87,12 +89,12 @@ public class SponsorDAOImplDB implements SponsorDAO {
             e.printStackTrace();
         }
 
-        return sponsors;
+        return requests;
     }
 
     @Override
-    public Sponsor getSponsor(int id) {
-        String sql = "SELECT * FROM sponsors WHERE id = ?";
+    public Request getRequest(int id) {
+        String sql = "SELECT * FROM requests WHERE id = ?";
 
 
         try{
@@ -102,10 +104,11 @@ public class SponsorDAOImplDB implements SponsorDAO {
             ResultSet rs = ps.executeQuery();
 
             if(rs.next()) {
-                return new Sponsor
+                return new Request
                                 (rs.getInt("id"),
-                                rs.getString("username"),
-                                rs.getString("password"));
+                                rs.getString("nome"),
+                                rs.getInt("capienza"),
+                                rs.getString("tipo"));
             }
 
 

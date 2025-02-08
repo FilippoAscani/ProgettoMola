@@ -1,8 +1,8 @@
 package com.example.progettomola.Model.DAOImpl;
 
 import com.example.progettomola.DatabaseConnection;
-import com.example.progettomola.Model.DAO.SponsorDAO;
-import com.example.progettomola.Model.Entity.Sponsor;
+import com.example.progettomola.Model.DAO.ReviewDAO;
+import com.example.progettomola.Model.Entity.Review;
 
 
 import java.sql.Connection;
@@ -12,18 +12,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SponsorDAOImplDB implements SponsorDAO {
-
+public class ReviewDAOImplDB implements ReviewDAO {
     @Override
-    public void addSponsor(Sponsor sponsor) {
-        String sql = "INSERT INTO sponsors(id,username,password ) VALUES (?,?,?)";
+    public void addReview(Review review) {
+        String sql = "INSERT INTO reviews(id,content) VALUES (?,?)";
 
         try {
             Connection connection = DatabaseConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, sponsor.getId());
-            ps.setString(2, sponsor.getUsername());
-            ps.setString(3, sponsor.getPassword());
+            ps.setInt(1, review.getId());
+            ps.setString(2, review.getContent());
             ps.executeUpdate();
 
 
@@ -34,12 +32,12 @@ public class SponsorDAOImplDB implements SponsorDAO {
     }
 
     @Override
-    public void updateSponsor(Sponsor sponsor) {
-        String sql = "UPDATE sponsors SET username = ?, WHERE username = ?";
+    public void updateReview(Review review) {
+        String sql = "UPDATE reviews SET  content = ?";
         try {
             Connection connection = DatabaseConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, sponsor.getUsername());
+            ps.setString(1, review.getContent());
             ps.executeUpdate();
 
         }
@@ -49,13 +47,13 @@ public class SponsorDAOImplDB implements SponsorDAO {
     }
 
     @Override
-    public void deleteSponsor(Sponsor sponsor) {
-        String sql = "DELETE FROM sponsors WHERE nome = ?";
+    public void deleteReview(Review review) {
+        String sql = "DELETE FROM reviews WHERE id = ?";
         try {
             Connection connection = DatabaseConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
-            ps.setString(1, sponsor.getUsername());
+            ps.setInt(1, review.getId());
             ps.executeUpdate();
         }
         catch(SQLException e){
@@ -64,9 +62,9 @@ public class SponsorDAOImplDB implements SponsorDAO {
     }
 
     @Override
-    public List<Sponsor> getSponsors() {
-        List<Sponsor> sponsors = new ArrayList<>();
-        String sql = "SELECT * FROM sponsors";
+    public List<Review> getReviews() {
+        List<Review> reviews = new ArrayList<>();
+        String sql = "SELECT * FROM reviews";
         try{
             Connection connection = DatabaseConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -74,12 +72,11 @@ public class SponsorDAOImplDB implements SponsorDAO {
 
             while(rs.next()) {
 
-                Sponsor sponsor = new Sponsor(
+                Review review = new Review(
                         rs.getInt("id"),
-                        rs.getString("username"),
-                        rs.getString("password"));
+                        rs.getString("content"));
 
-                sponsors.add(sponsor);
+                reviews.add(review);
             }
 
         }
@@ -87,12 +84,12 @@ public class SponsorDAOImplDB implements SponsorDAO {
             e.printStackTrace();
         }
 
-        return sponsors;
+        return reviews;
     }
 
     @Override
-    public Sponsor getSponsor(int id) {
-        String sql = "SELECT * FROM sponsors WHERE id = ?";
+    public Review getReview(int id) {
+        String sql = "SELECT * FROM reviews WHERE id = ?";
 
 
         try{
@@ -102,13 +99,10 @@ public class SponsorDAOImplDB implements SponsorDAO {
             ResultSet rs = ps.executeQuery();
 
             if(rs.next()) {
-                return new Sponsor
+                return new Review
                                 (rs.getInt("id"),
-                                rs.getString("username"),
-                                rs.getString("password"));
+                                rs.getString("content"));
             }
-
-
         }
         catch (SQLException e) {
             e.printStackTrace();
