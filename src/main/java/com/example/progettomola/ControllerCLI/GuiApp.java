@@ -1,4 +1,4 @@
-package com.example.progettomola;
+package com.example.progettomola.ControllerCLI;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +14,7 @@ public class GuiApp extends Application {
 
         @Override
         public void start(Stage primaryStage) throws IOException {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-homepage-view.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/progettomola/ControllerGUI/main-homepage-view.fxml")));
             primaryStage.setTitle("Azzipizzi");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();

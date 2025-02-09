@@ -15,8 +15,6 @@ public class RegisterCSV {
 
         UserDAOImplCSV userCSV = new UserDAOImplCSV();
         userCSV.addUser(user);
-        //controllo hasmap();
-        //anche metododb  che cazzo
 
     }
 

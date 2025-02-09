@@ -1,4 +1,4 @@
-package com.example.progettomola;
+package com.example.progettomola.ControllerGUI;
 
 
 import javafx.event.ActionEvent;

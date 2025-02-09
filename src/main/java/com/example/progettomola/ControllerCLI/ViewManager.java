@@ -2,14 +2,7 @@ package com.example.progettomola.ControllerCLI;
 
 import com.example.progettomola.Enum.TypesOfLayers;
 import com.example.progettomola.Enum.TypesOfViews;
-import com.example.progettomola.GuiApp;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class ViewManager {

@@ -15,8 +15,9 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
-public class RegisterController {
+public class UserRegisterController {
 
+        public Button btnRegistra;
         @FXML
         private Button btnIndietro;
 
@@ -47,6 +48,21 @@ public class RegisterController {
         @FXML
         private TextField usernameField;
 
+
+        private final UserRegister userRegister = new UserRegister();
+
+
+        public UserRegisterController() {
+
+        }
+
+        public int generateId(){
+                Random random = new Random();
+                return random.nextInt(101);
+        }
+
+
+
         @FXML
         public void handleIndietro(ActionEvent actionEvent) throws IOException {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-login-view.fxml")));
@@ -55,26 +71,17 @@ public class RegisterController {
         }
 
         @FXML
-        public void handleRegister(ActionEvent actionEvent) {
+        public void handleRegisterDB(ActionEvent actionEvent) {
 
                 String nome = nomeField.getText();
                 String cognome = cognomeField.getText();
                 String password = passwordField.getText();
                 String username = usernameField.getText();
 
-                userRegister.register(generateId(), nome, cognome, username, password);
+                userRegister.registerUdb(generateId(), nome, cognome, username, password);
         }
 
-        private UserRegister userRegister;
 
-        public RegisterController() {
-                userRegister = new UserRegister();
-        }
-
-        public int generateId(){
-                Random random = new Random();
-                return random.nextInt(101);
-        }
 
 
 }

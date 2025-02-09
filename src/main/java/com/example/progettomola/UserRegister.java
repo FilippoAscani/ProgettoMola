@@ -6,30 +6,62 @@ import com.example.progettomola.Model.DAOImpl.UserDAOImplDB;
 import com.example.progettomola.Model.Entity.User;
 
 
-import java.util.List;
-
 public class UserRegister {
 
-    private final UserDAO userDAO;
+    private final UserDAO userDAOdb;
     private final UserDAO userDAOcli;
 
     public UserRegister() {
-        userDAO = new UserDAOImplDB();
+        userDAOdb = new UserDAOImplDB();
         userDAOcli = new UserDAOImplCSV();
     }
 
-    public void register(int id, String nome, String cognome, String password, String username) {
+    public void registerUdb(int id, String nome, String cognome, String password, String username) {
         User newUser = new User(id, nome, cognome, password, username);
 
-        userDAO.addUser(newUser);
+        userDAOdb.addUser(newUser);
         System.out.println("User registered successfully in DB");
 
+
+    }
+
+    public void registerUcli(int id,String nome, String cognome, String password, String username) {
+        User newUser = new User(id, nome, cognome, password, username);
         userDAOcli.addUser(newUser);
         System.out.println("User registered successfully in CSV");
+    }
+
+    public void registerAdb(int id, String nome, String cognome, String password, String username) {
+        User newUser = new User(id, nome, cognome, password, username);
+
+        userDAOdb.addUser(newUser);
+        System.out.println("User registered successfully in DB");
+
 
     }
 
-    public List<User> getAllRegisteredUsers() {
-        return userDAO.getUsers();
+    public void registerAcli(int id,String nome, String cognome, String password, String username) {
+        User newUser = new User(id, nome, cognome, password, username);
+        userDAOcli.addUser(newUser);
+        System.out.println("User registered successfully in CSV");
     }
+
+    public void registerSdb(int id, String nome, String cognome, String password, String username) {
+        User newUser = new User(id, nome, cognome, password, username);
+
+        userDAOdb.addUser(newUser);
+        System.out.println("User registered successfully in DB");
+
+
+    }
+
+    public void registerScli(int id,String nome, String cognome, String password, String username) {
+        User newUser = new User(id, nome, cognome, password, username);
+        userDAOcli.addUser(newUser);
+        System.out.println("User registered successfully in CSV");
+    }
+
+
+
+
 }
