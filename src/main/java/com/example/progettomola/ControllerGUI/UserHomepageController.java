@@ -1,9 +1,9 @@
-package com.example.progettomola;
+package com.example.progettomola.ControllerGUI;
 
+import com.example.progettomola.DatabaseConnection;
 import com.example.progettomola.Model.Entity.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -49,7 +49,7 @@ public class UserHomepageController implements Initializable {
 
 
 
-        public void handleCerca(ActionEvent event) {
+        public void handleCerca() {
                 btnCerca.setOnAction(ActionEvent -> {
                         
                         String search = searchField.getText();
@@ -66,7 +66,7 @@ public class UserHomepageController implements Initializable {
         }
 
         public void handleIndietroLogin() throws IOException {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login-view.fxml")));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-login-view.fxml")));
                 Stage stage = (Stage) btnIndietroHome.getScene().getWindow();
                 stage.setScene(new Scene(root));
         }

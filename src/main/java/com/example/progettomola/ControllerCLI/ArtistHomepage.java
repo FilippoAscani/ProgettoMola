@@ -6,13 +6,15 @@ import com.example.progettomola.Model.Entity.Show;
 import com.example.progettomola.Model.DAOImpl.RequestDAOImplCSV;
 import com.example.progettomola.Model.DAOImpl.ShowDAOImplCSV;
 
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 public class ArtistHomepage {
 
-
+    Logger logger = Logger.getLogger("ArtistHomepage");
 
 
     public ArtistHomepage() {
@@ -26,7 +28,7 @@ public class ArtistHomepage {
 
         while(true) {
 
-            System.out.println("digita 1 per Profilo");
+            logger.info("digita 1 per Profilo");
             System.out.println("digita 2 per Richieste ricevute");
             System.out.println("digita 3 per Recensioni");
             System.out.println("digita 4 per Uscire");

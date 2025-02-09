@@ -18,4 +18,6 @@ module com.example.ironmaiden {
     opens com.example.progettomola.Model.DAOImpl to javafx.fxml;
     exports com.example.progettomola.Other;
     opens com.example.progettomola.Other to javafx.fxml;
+    exports com.example.progettomola.ControllerGUI;
+    opens com.example.progettomola.ControllerGUI to javafx.fxml;
 }

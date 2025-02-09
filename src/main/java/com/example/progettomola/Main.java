@@ -5,6 +5,7 @@ import com.example.progettomola.ControllerCLI.ViewManager;
 import com.example.progettomola.Enum.TypesOfViews;
 
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class Main {
 
@@ -14,6 +15,8 @@ public class Main {
 
 
     public static void main(String[] args) {
+
+
 
 
         Scanner scanner = new Scanner(System.in);

@@ -1,4 +1,4 @@
-package com.example.progettomola;
+package com.example.progettomola.ControllerGUI;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class LoginController {
+public class UserLoginController {
 
     @FXML
     private Button btnLogin;
@@ -24,9 +24,6 @@ public class LoginController {
 
     @FXML
     private Label lblLogin;
-
-    @FXML
-    private Label lblduce;
 
     @FXML
     private Label lblpassword;

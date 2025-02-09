@@ -49,7 +49,7 @@ public class RegisterController {
 
         @FXML
         public void handleIndietro(ActionEvent actionEvent) throws IOException {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login-view.fxml")));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-login-view.fxml")));
                 Stage stage = (Stage) btnIndietro.getScene().getWindow();
                 stage.setScene(new Scene(root));
         }

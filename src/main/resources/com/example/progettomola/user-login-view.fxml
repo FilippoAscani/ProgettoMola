@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.progettomola.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.progettomola.ControllerGUI.UserLoginController">
    <children>
       <Label fx:id="lblusername" layoutX="211.0" layoutY="100.0" text="Username" />
       <Button fx:id="btnLogin" layoutX="314.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
@@ -15,9 +15,9 @@
       <PasswordField fx:id="passwordField" layoutX="211.0" layoutY="200.0" />
       <Label fx:id="lblpassword" layoutX="211.0" layoutY="169.0" text="Password" />
       <Button fx:id="btnRegister" layoutX="213.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleRegister" text="Register" />
-      <Label fx:id="lblLogin" layoutX="247.0" layoutY="32.0" text="Login">
+      <Label fx:id="lblLogin" layoutX="241.0" layoutY="33.0" text="Login">
          <font>
-            <Font size="31.0" />
+            <Font size="36.0" />
          </font>
       </Label>
    </children>
