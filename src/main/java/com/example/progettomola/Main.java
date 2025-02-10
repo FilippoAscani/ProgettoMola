@@ -1,11 +1,10 @@
 package com.example.progettomola;
 
 
-import com.example.progettomola.ControllerCLI.ViewManager;
-import com.example.progettomola.Enum.TypesOfViews;
+import com.example.progettomola.controllercli.ViewManager;
+import com.example.progettomola.enumerations.TypesOfViews;
 
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 public class Main {
 

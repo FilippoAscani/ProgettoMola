@@ -6,18 +6,18 @@ module com.example.ironmaiden {
 
     opens com.example.progettomola to javafx.fxml;
     exports com.example.progettomola;
-    exports com.example.progettomola.Enum;
-    opens com.example.progettomola.Enum to javafx.fxml;
-    exports com.example.progettomola.Model.DAO;
-    opens com.example.progettomola.Model.DAO to javafx.fxml;
-    exports com.example.progettomola.Model.Entity;
-    opens com.example.progettomola.Model.Entity to javafx.fxml;
-    exports com.example.progettomola.ControllerCLI;
-    opens com.example.progettomola.ControllerCLI to javafx.fxml;
-    exports com.example.progettomola.Model.DAOImpl;
-    opens com.example.progettomola.Model.DAOImpl to javafx.fxml;
-    exports com.example.progettomola.Other;
-    opens com.example.progettomola.Other to javafx.fxml;
-    exports com.example.progettomola.ControllerGUI;
-    opens com.example.progettomola.ControllerGUI to javafx.fxml;
+    exports com.example.progettomola.enumerations;
+    opens com.example.progettomola.enumerations to javafx.fxml;
+    exports com.example.progettomola.model.dao;
+    opens com.example.progettomola.model.dao to javafx.fxml;
+    exports com.example.progettomola.model.entity;
+    opens com.example.progettomola.model.entity to javafx.fxml;
+    exports com.example.progettomola.controllercli;
+    opens com.example.progettomola.controllercli to javafx.fxml;
+    exports com.example.progettomola.model.daoimpl;
+    opens com.example.progettomola.model.daoimpl to javafx.fxml;
+    exports com.example.progettomola.other;
+    opens com.example.progettomola.other to javafx.fxml;
+    exports com.example.progettomola.controllergui;
+    opens com.example.progettomola.controllergui to javafx.fxml;
 }
