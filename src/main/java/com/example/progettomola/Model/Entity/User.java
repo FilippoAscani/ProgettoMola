@@ -24,7 +24,7 @@ public class User {
         this.password = password;
     }
 
-    public User(int id, String nome, String cognome, String password, String username) {
+    public User(int id, String nome, String cognome, String username, String password) {
         this.id = id;
         this.nome = nome;
         this.cognome = cognome;

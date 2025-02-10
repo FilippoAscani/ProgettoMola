@@ -14,17 +14,6 @@ public class Artist implements Observer {
 
 
 
-    public Artist (int id, String username, String password, String email, String telefono, String tipo) {
-
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.telefono = telefono;
-        this.tipo = tipo;
-        this.id = id;
-
-    }
-
     public Artist (int id, String username, String Password, String tipo){
         this.id = id;
         this.username = username;

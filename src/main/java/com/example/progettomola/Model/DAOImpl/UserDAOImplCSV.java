@@ -23,7 +23,11 @@ public class UserDAOImplCSV implements UserDAO {
         try {
 
             BufferedWriter bw = new BufferedWriter(new FileWriter( "user.csv", true));
-            bw.write(user.getId() + "," +user.getUsername() + "," + user.getPassword());
+            bw.write(user.getId() +
+                    "," +user.getUsername() +
+                    "," + user.getPassword() +
+                    ","+ user.getNome() +
+                    "," + user.getCognome());
             bw.newLine();
             bw.close();
 
@@ -43,10 +47,18 @@ public class UserDAOImplCSV implements UserDAO {
             BufferedWriter br = new BufferedWriter(new FileWriter("user.csv", true));
             for (User u : users) {
                 if(u.getId() == user.getId()){
-                    br.write(user.getId() + "," +user.getUsername() + "," + user.getPassword());
+                    br.write(user.getId() +
+                            "," +user.getUsername() +
+                            "," + user.getPassword() +
+                            "," + user.getNome() +
+                            "," + user.getCognome());
                 }
                 else{
-                    br.write(u.getId() + "," +u.getUsername() + "," + u.getPassword());
+                    br.write(u.getId() +
+                            "," +u.getUsername() +
+                            "," + u.getPassword() +
+                            "," + u.getNome() +
+                            "," + u.getCognome());
                 }
                 br.newLine();
             }
@@ -64,7 +76,11 @@ public class UserDAOImplCSV implements UserDAO {
             BufferedWriter bw = new BufferedWriter(new FileWriter("user.csv", true));
             for (User u : users) {
                 if(u.getId() != user.getId()){
-                    bw.write(u.getId() + "," +u.getUsername() + "," + u.getPassword());
+                    bw.write(u.getId() +
+                            "," + u.getUsername() +
+                            "," + u.getPassword() +
+                            "," + u.getNome() +
+                            "," + u.getCognome());
                     bw.newLine();
                 }
             }
@@ -83,7 +99,7 @@ public class UserDAOImplCSV implements UserDAO {
             String line;
             while ((line = br.readLine()) != null){
                 String[] colonne = line.split(",");
-                users.add(new User(Integer.parseInt(colonne[0]), colonne[1], colonne[2]));
+                users.add(new User(Integer.parseInt(colonne[0]), colonne[1], colonne[2], colonne[3], colonne[4]));
 
             }
         } catch (IOException e) {
@@ -101,7 +117,7 @@ public class UserDAOImplCSV implements UserDAO {
             while((line = br.readLine()) != null){
                 String[] colonne = line.split(",");
                 if(Integer.parseInt(colonne[0]) == id){
-                    return new User(id, colonne[1], colonne[2]);
+                    return new User(id, colonne[1], colonne[2],colonne[3], colonne[4]);
                 }
 
             }

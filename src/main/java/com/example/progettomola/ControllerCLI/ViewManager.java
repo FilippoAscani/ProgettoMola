@@ -1,5 +1,6 @@
 package com.example.progettomola.ControllerCLI;
 
+import com.example.progettomola.GuiApp;
 import com.example.progettomola.Enum.TypesOfLayers;
 import com.example.progettomola.Enum.TypesOfViews;
 

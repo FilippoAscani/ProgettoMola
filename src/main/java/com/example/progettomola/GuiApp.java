@@ -1,4 +1,4 @@
-package com.example.progettomola.ControllerCLI;
+package com.example.progettomola;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

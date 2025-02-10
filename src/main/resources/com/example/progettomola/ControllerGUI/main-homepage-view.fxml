@@ -7,7 +7,7 @@
 
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.progettomola.ControllerGUI.MainController">
    <Label layoutX="223.0" layoutY="71.0" prefHeight="35.0" prefWidth="154.0" text="Accedi come...">
       <font>

@@ -11,14 +11,14 @@ public class RegisterCSV {
 
     }
 
-    public void registraUserCSV(User user) {
+    public static void registraUserCSV(User user) {
 
         UserDAOImplCSV userCSV = new UserDAOImplCSV();
         userCSV.addUser(user);
 
     }
 
-    public void registraUserDB(User user) {
+    public static void registraUserDB(User user) {
 
         UserDAOImplDB userDB = new UserDAOImplDB();
         userDB.addUser(user);
