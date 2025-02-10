@@ -1,5 +1,6 @@
 package com.example.progettomola.ControllerGUI;
 
+import com.example.progettomola.ControllerCLI.LoginCSV;
 import com.example.progettomola.ControllerCLI.RegisterCSV;
 import com.example.progettomola.Model.Entity.User;
 import javafx.event.ActionEvent;
@@ -14,11 +15,14 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.*;
 import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 public class UserRegisterController {
 
@@ -59,7 +63,7 @@ public class UserRegisterController {
     private TextField usernameField;
 
 
-
+    Logger logger = Logger.getLogger(UserRegisterController.class.getName());
 
     @FXML
     void handleIndietro(ActionEvent event) {
@@ -74,23 +78,27 @@ public class UserRegisterController {
 
     @FXML
     void handleRegisterCSV() {
-
-        //cerca utente se esiste stampa che esiste
-
-
-        //altrimenti crea un utente
-        User user = createUser();
-        //aggiungilo
-        RegisterCSV.registraUserCSV(user);
+        //cerca utente
+        if(cercaCSV()){
+            logger.info("utente trovato");
+        }
+        else{
+            User user = createUser();
+            RegisterCSV.registraUserCSV(user);
+        }
 
     }
 
     @FXML
     void handleRegisterDB() {
-
-        User user = createUser();
-        //se non c'e'
-        RegisterCSV.registraUserDB(user);
+        //cerca utente
+        if(cercaDB()){
+            logger.info("utente trovato");
+        }
+        else{
+            User user = createUser();
+            RegisterCSV.registraUserDB(user);
+        }
 
     }
 
@@ -106,6 +114,66 @@ public class UserRegisterController {
         return new User(id, nome, cognome, username, password);
     }
 
+
+    private boolean cercaCSV() {
+        String nome = nomeField.getText();
+        String cognome = cognomeField.getText();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        boolean trovato = false;
+
+        try (BufferedReader br = new BufferedReader(new FileReader("user.csv"))) {
+            String linea;
+            // Leggi il file CSV riga per riga
+            while ((linea = br.readLine()) != null) {
+                String[] dati = linea.split(",");
+
+                // Se il nome e cognome corrispondono, impostiamo il risultato
+                if (dati[0].equals(nome) &&
+                        dati[1].equals(cognome)
+                        && dati[2].equals(username)
+                        && dati[3].equals(password)) {
+                    trovato = true;
+                    return trovato;
+
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return trovato;
+    }
+
+
+
+    private boolean cercaDB() {
+
+        final String URL = "jdbc:mysql://127.0.0.1:3306/register_schema?useUnicode=true&characterEncoding=utf8";
+        final String USERNAME = "root";
+        final String PASSWORD = "Filippo98";
+
+
+
+        String query = "SELECT * FROM users WHERE nome = ? AND cognome = ? AND  username = ? AND password = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setString(1, nomeField.getText());
+            ps.setString(2, cognomeField.getText());
+            ps.setString(3, usernameField.getText());
+            ps.setString(4, passwordField.getText());
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            System.err.println("Error during database operation: " + e.getMessage());
+
+            return false;
+        }
+
+    }
 
 
 

@@ -18,7 +18,7 @@ public class LoginCSV {
 
 
 
-    public void loginUser(User user) {
+    public static void loginUser(User user) {
 
 
         try {
@@ -67,7 +67,7 @@ public class LoginCSV {
 
 
 
-    public  void loginArtist(Artist artist) {
+    public static  void loginArtist(Artist artist) {
 
 
         try {
@@ -116,7 +116,7 @@ public class LoginCSV {
 
 
 
-    public void loginSponsor(Sponsor sponsor) {
+    public static void loginSponsor(Sponsor sponsor) {
 
 
         try {
@@ -179,21 +179,21 @@ public class LoginCSV {
 
 
 
-    public void doEnterUser(User user){
+    public static void doEnterUser(User user){
         System.out.println("Benvenuto " + user.getNome());
         UserHomepage userHomepage = new UserHomepage();
         userHomepage.welcome(user);
 
     }
 
-    public void doEnterArtist(Artist artist){
+    public static void doEnterArtist(Artist artist){
         System.out.println("Benvenuto " + artist.getUsername());
         ArtistHomepage artistHomepage = new ArtistHomepage();
         artistHomepage.welcome(artist);
 
     }
 
-    public void doEnterSponsor(Sponsor sponsor){
+    public static void doEnterSponsor(Sponsor sponsor){
         System.out.println("Benvenuto " + sponsor.getUsername());
         SponsorHomepage sponsorHomepage = new SponsorHomepage();
         sponsorHomepage.welcome(sponsor);

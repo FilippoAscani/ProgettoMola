@@ -97,7 +97,7 @@ public class UserLoginController implements Initializable {
                 break;
 
             case "CSV":
-                if(checkDatacsv(username,password)){
+                if(cercaCSV()){
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-homepage-view.fxml")));
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
                     stage.setScene(new Scene(root));
@@ -157,22 +157,28 @@ public class UserLoginController implements Initializable {
 
 
 
-    private boolean checkDatacsv(String username, String password) {
+    private boolean cercaCSV() {
+        String nome = usernameField.getText();
+        String cognome = passwordField.getText();
+        boolean trovato = false;
 
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("user.csv"));
-            String line;
-            while ((line = br.readLine()) != null){
-                String[] data = line.split(",");
-                if(data[0].equals(username) && data[1].equals(password)){
-                    return true;
+        try (BufferedReader br = new BufferedReader(new FileReader("user.csv"))) {
+            String linea;
+            // Leggi il file CSV riga per riga
+            while ((linea = br.readLine()) != null) {
+                String[] dati = linea.split(",");
+
+                // Se il nome e cognome corrispondono, impostiamo il risultato
+                if (dati[0].equals(nome) && dati[1].equals(cognome)) {
+                    trovato = true;
+                    return trovato;
+
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-
-        return false;
+        return trovato;
     }
 }
 
