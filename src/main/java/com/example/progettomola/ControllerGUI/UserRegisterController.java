@@ -13,8 +13,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Random;
 import java.util.UUID;
 
 public class UserRegisterController {
@@ -58,12 +61,6 @@ public class UserRegisterController {
 
 
 
-    String nome = nomeField.getText();
-    String cognome = cognomeField.getText();
-    String username = usernameField.getText();
-    String password = passwordField.getText();
-    int id = Integer.parseInt(UUID.randomUUID().toString());
-
     @FXML
     void handleIndietro(ActionEvent event) {
         try {
@@ -78,17 +75,45 @@ public class UserRegisterController {
     @FXML
     void handleRegisterCSV() {
 
-        User newUser = new User(id,nome, cognome, username, password);
-        RegisterCSV.registraUserCSV(newUser);
+        //cerca utente se esiste stampa che esiste
+
+
+        //altrimenti crea un utente
+        User user = createUser();
+        //aggiungilo
+        RegisterCSV.registraUserCSV(user);
 
     }
 
     @FXML
     void handleRegisterDB() {
 
-        User newUserDB = new User(id,nome, cognome, username, password);
-        RegisterCSV.registraUserDB(newUserDB);
+        User user = createUser();
+        //se non c'e'
+        RegisterCSV.registraUserDB(user);
+
     }
+
+    private User createUser() {
+        String nome = nomeField.getText();
+        String cognome = cognomeField.getText();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+        Random random = new Random();
+        int id = random.nextInt(10000);
+
+        return new User(id, nome, cognome, username, password);
+    }
+
+
+
+
+
+
+
+
+
 
 }
 

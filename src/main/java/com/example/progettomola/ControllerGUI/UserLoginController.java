@@ -47,6 +47,7 @@ public class UserLoginController implements Initializable {
     private ComboBox<String>  combo1;
 
 
+
     public void select(ActionEvent actionEvent) {
         combo1.getSelectionModel().getSelectedItem();
     }
@@ -65,7 +66,7 @@ public class UserLoginController implements Initializable {
         //cambia schermata e porta alla registrazione
 
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/progettomola/ControllerGUI/user-register-view.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-register-view.fxml")));
             Stage stage = (Stage) btnRegister.getScene().getWindow();
             stage.setScene(new Scene(root));
 

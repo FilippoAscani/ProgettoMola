@@ -29,8 +29,7 @@ public class LoginCSV {
 
             //inizialmente file vuoto aggiungi
             if (!file.exists() || file.length() == 0) {
-                RegisterCSV userCSV = new RegisterCSV();
-                userCSV.registraUserCSV(user);
+                RegisterCSV.registraUserCSV(user);
                 doEnterUser(user);
             }
 
@@ -50,8 +49,7 @@ public class LoginCSV {
                 }
 
                 if(!isFind) {
-                    RegisterCSV userCSV = new RegisterCSV();
-                    userCSV.registraUserCSV(user);
+                    RegisterCSV.registraUserCSV(user);
                     doEnterUser(user);
                 }
 
@@ -69,7 +67,7 @@ public class LoginCSV {
 
 
 
-    public void loginArtist(Artist artist) {
+    public  void loginArtist(Artist artist) {
 
 
         try {
@@ -80,8 +78,7 @@ public class LoginCSV {
 
             //inizialmente file vuoto aggiungi
             if (!file.exists() || file.length() == 0) {
-                RegisterCSV UserCSV = new RegisterCSV();
-                UserCSV.registraArtist(artist);
+                RegisterCSV.registraArtist(artist);
                 doEnterArtist(artist);
             }
 
@@ -101,8 +98,7 @@ public class LoginCSV {
                 }
 
                 if(!isFind) {
-                    RegisterCSV UserCSV = new RegisterCSV();
-                    UserCSV.registraArtist(artist);
+                    RegisterCSV.registraArtist(artist);
                     doEnterArtist(artist);
                 }
 

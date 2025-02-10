@@ -33,20 +33,20 @@ public class RegisterCSV {
         artistCSV.addSponsor(sponsor);
     }
 
-    public void registraSponsorDB(Sponsor sponsor) {
+    public static void registraSponsorDB(Sponsor sponsor) {
         //registra sponsor ma sul db
         SponsorDAOImplDB artistCSV = new SponsorDAOImplDB();
         artistCSV.addSponsor(sponsor);
     }
 
-    public void registraArtist(Artist artist) {
+    public static void registraArtist(Artist artist) {
 
         ArtistDAOImplCSV artistCSV = new ArtistDAOImplCSV();
         artistCSV.addArtist(artist);
         //registra artist su csv
     }
 
-    public void registraArtistDB(Artist artist) {
+    public static void registraArtistDB(Artist artist) {
         //registra artist su db
         ArtistDAOImplDB artistDB = new ArtistDAOImplDB();
         artistDB.addArtist(artist);
