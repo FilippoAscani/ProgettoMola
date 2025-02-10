@@ -78,7 +78,7 @@ public class LoginCSV {
 
             //inizialmente file vuoto aggiungi
             if (!file.exists() || file.length() == 0) {
-                RegisterCSV.registraArtist(artist);
+                RegisterCSV.registraArtistCSV(artist);
                 doEnterArtist(artist);
             }
 
@@ -98,7 +98,7 @@ public class LoginCSV {
                 }
 
                 if(!isFind) {
-                    RegisterCSV.registraArtist(artist);
+                    RegisterCSV.registraArtistCSV(artist);
                     doEnterArtist(artist);
                 }
 
@@ -129,8 +129,7 @@ public class LoginCSV {
 
             //inizialmente file vuoto aggiungi
             if (!file.exists() || file.length() == 0) {
-                RegisterCSV UserCSV = new RegisterCSV();
-                UserCSV.registraSponsor(sponsor);
+                RegisterCSV.registraSponsorCSV(sponsor);
                 doEnterSponsor(sponsor);
             }
 
@@ -152,8 +151,7 @@ public class LoginCSV {
                 }
 
                 if(!isFind) {
-                    RegisterCSV UserCSV = new RegisterCSV();
-                    UserCSV.registraSponsor(sponsor);
+                    RegisterCSV.registraSponsorCSV(sponsor);
                     doEnterSponsor(sponsor);
                 }
 

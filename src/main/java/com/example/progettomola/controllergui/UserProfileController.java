@@ -49,7 +49,13 @@ public class UserProfileController {
 
     @FXML
     void handleShow(ActionEvent event) {
-
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-search-view.fxml")));
+            Stage stage = (Stage) btnShow.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

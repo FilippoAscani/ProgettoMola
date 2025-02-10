@@ -22,12 +22,11 @@ public class RegisterCSV {
 
         UserDAOImplDB userDB = new UserDAOImplDB();
         userDB.addUser(user);
-        //controllo hasmap();
-        //anche metododb  che cazzo
+
 
     }
 
-    public void registraSponsor(Sponsor sponsor) {
+    public static void registraSponsorCSV(Sponsor sponsor) {
         //registra sponsor sul file csv
         SponsorDAOImplCSV artistCSV = new SponsorDAOImplCSV();
         artistCSV.addSponsor(sponsor);
@@ -39,7 +38,7 @@ public class RegisterCSV {
         artistCSV.addSponsor(sponsor);
     }
 
-    public static void registraArtist(Artist artist) {
+    public static void registraArtistCSV(Artist artist) {
 
         ArtistDAOImplCSV artistCSV = new ArtistDAOImplCSV();
         artistCSV.addArtist(artist);
@@ -52,30 +51,30 @@ public class RegisterCSV {
         artistDB.addArtist(artist);
     }
 
-    public void registraShowCSV(Show show) {
+    public static void registraShowCSV(Show show) {
         ShowDAOImplCSV showCSV = new ShowDAOImplCSV();
         showCSV.addShow(show);
     }
 
-    public void registraShowDB(Show show) {
+    public static void registraShowDB(Show show) {
         //db
     }
 
-    public void registraReviewCSV(Review review) {
+    public static void registraReviewCSV(Review review) {
         ReviewDAOImplCSV reviewCSV = new ReviewDAOImplCSV();
         reviewCSV.addReview(review);
     }
 
-    public void registraReviewDB(Review review) {
+    public static void registraReviewDB(Review review) {
         //db
     }
 
-    public void registraRequestCSV(Request request) {
+    public static void registraRequestCSV(Request request) {
         RequestDAOImplCSV requestCSV = new RequestDAOImplCSV();
         requestCSV.addRequest(request);
     }
 
-    public void registraRequestDB(Request request) {
+    public static void registraRequestDB(Request request) {
         //db
     }
 

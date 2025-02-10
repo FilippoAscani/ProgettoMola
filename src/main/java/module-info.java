@@ -1,4 +1,4 @@
-module com.example.ironmaiden {
+module com.example.progettomola {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;

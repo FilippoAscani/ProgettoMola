@@ -87,7 +87,7 @@ public class UserLoginController implements Initializable {
         switch (s) {
             case "JDBC":
                 if(cercaDB(username, password)){
-                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-homepage-view.fxml")));
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-profile-view.fxml")));
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
                     stage.setScene(new Scene(root));
                 }
@@ -98,7 +98,7 @@ public class UserLoginController implements Initializable {
 
             case "CSV":
                 if(cercaCSV()){
-                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-homepage-view.fxml")));
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-profile-view.fxml")));
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
                     stage.setScene(new Scene(root));
                 }

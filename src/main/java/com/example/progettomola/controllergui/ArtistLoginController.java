@@ -141,10 +141,10 @@ public class ArtistLoginController implements Initializable {
         boolean trovato = false;
 
         try (BufferedReader br = new BufferedReader(new FileReader("artist.csv"))) {
-            String linea;
+            String line;
             // Leggi il file CSV riga per riga
-            while ((linea = br.readLine()) != null) {
-                String[] dati = linea.split(",");
+            while ((line = br.readLine()) != null) {
+                String[] dati = line.split(",");
 
                 // Se il nome e cognome corrispondono, impostiamo il risultato
                 if (dati[1].equals(username) && dati[2].equals(password)) {
