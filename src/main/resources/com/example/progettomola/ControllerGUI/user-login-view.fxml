@@ -15,7 +15,7 @@
    <PasswordField fx:id="passwordField" layoutX="211.0" layoutY="200.0" />
    <Label fx:id="lblpassword" layoutX="211.0" layoutY="169.0" text="Password" />
    <Button fx:id="btnRegister" layoutX="213.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleRegister" text="Register" />
-   <Label fx:id="lblLogin" layoutX="241.0" layoutY="33.0" text="Login">
+   <Label fx:id="lblLogin" layoutX="250.0" layoutY="33.0" text="User">
       <font>
          <Font size="36.0" />
       </font>

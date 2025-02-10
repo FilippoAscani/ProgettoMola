@@ -40,12 +40,12 @@ public class ArtistDAOImplCSV implements ArtistDAO {
         List<Artist> artists = getArtists();
         try {
             BufferedWriter br = new BufferedWriter(new FileWriter("artist.csv", true));
-            for (Artist s : artists) {
-                if(s.getId() == artist.getId()){
-                    br.write(artist.getId() + "," +artist.getUsername() + "," + artist.getPassword());
+            for (Artist a : artists) {
+                if(a.getId() == artist.getId()){
+                    br.write(artist.getId() + "," +artist.getUsername() + "," + artist.getPassword() + "," + artist.getTipo());
                 }
                 else{
-                    br.write(s.getId() + "," +s.getUsername() + "," + s.getPassword());
+                    br.write(a.getId() + "," +a.getUsername() + "," + a.getPassword() + "," + a.getTipo());
                 }
                 br.newLine();
             }
@@ -63,7 +63,7 @@ public class ArtistDAOImplCSV implements ArtistDAO {
             BufferedWriter bw = new BufferedWriter(new FileWriter("artist.csv", true));
             for (Artist a : artists) {
                 if(a.getId() != artist.getId()){
-                    bw.write(a.getId() + "," +a.getUsername() + "," + a.getPassword());
+                    bw.write(a.getId() + "," +a.getUsername() + "," + a.getPassword() + "," + a.getTipo());
                     bw.newLine();
                 }
             }

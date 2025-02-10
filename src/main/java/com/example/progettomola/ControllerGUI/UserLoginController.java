@@ -86,7 +86,7 @@ public class UserLoginController implements Initializable {
 
         switch (s) {
             case "JDBC":
-                if(checkDatadb(username, password)){
+                if(cercaDB(username, password)){
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-homepage-view.fxml")));
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
                     stage.setScene(new Scene(root));
@@ -103,16 +103,11 @@ public class UserLoginController implements Initializable {
                     stage.setScene(new Scene(root));
                 }
                 else{
-                    System.out.println("nonono");
+                    System.out.println("nonono da csv");
                 }
                 break;
 
-
         }
-
-
-
-
 
     }
 
@@ -128,7 +123,7 @@ public class UserLoginController implements Initializable {
         }
     }
 
-    private boolean checkDatadb(String username, String password) {
+    private boolean cercaDB(String username, String password) {
 
          final String URL = "jdbc:mysql://127.0.0.1:3306/register_schema?useUnicode=true&characterEncoding=utf8";
          final String USERNAME = "root";
@@ -158,8 +153,8 @@ public class UserLoginController implements Initializable {
 
 
     private boolean cercaCSV() {
-        String nome = usernameField.getText();
-        String cognome = passwordField.getText();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
         boolean trovato = false;
 
         try (BufferedReader br = new BufferedReader(new FileReader("user.csv"))) {
@@ -169,7 +164,7 @@ public class UserLoginController implements Initializable {
                 String[] dati = linea.split(",");
 
                 // Se il nome e cognome corrispondono, impostiamo il risultato
-                if (dati[0].equals(nome) && dati[1].equals(cognome)) {
+                if (dati[3].equals(username) && dati[4].equals(password)) {
                     trovato = true;
                     return trovato;
 

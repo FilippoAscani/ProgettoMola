@@ -24,10 +24,10 @@ public class UserDAOImplCSV implements UserDAO {
 
             BufferedWriter bw = new BufferedWriter(new FileWriter( "user.csv", true));
             bw.write(user.getId() +
-                    "," +user.getUsername() +
-                    "," + user.getPassword() +
-                    ","+ user.getNome() +
-                    "," + user.getCognome());
+                    "," +user.getNome() +
+                    "," + user.getCognome() +
+                    ","+ user.getUsername() +
+                    "," + user.getPassword());
             bw.newLine();
             bw.close();
 
@@ -48,17 +48,17 @@ public class UserDAOImplCSV implements UserDAO {
             for (User u : users) {
                 if(u.getId() == user.getId()){
                     br.write(user.getId() +
-                            "," +user.getUsername() +
-                            "," + user.getPassword() +
-                            "," + user.getNome() +
-                            "," + user.getCognome());
+                            "," +user.getNome() +
+                            "," + user.getCognome() +
+                            "," + user.getUsername() +
+                            "," + user.getPassword());
                 }
                 else{
                     br.write(u.getId() +
-                            "," +u.getUsername() +
-                            "," + u.getPassword() +
-                            "," + u.getNome() +
-                            "," + u.getCognome());
+                            "," +u.getNome() +
+                            "," + u.getCognome() +
+                            "," + u.getUsername() +
+                            "," + u.getPassword());
                 }
                 br.newLine();
             }
@@ -77,10 +77,10 @@ public class UserDAOImplCSV implements UserDAO {
             for (User u : users) {
                 if(u.getId() != user.getId()){
                     bw.write(u.getId() +
-                            "," + u.getUsername() +
-                            "," + u.getPassword() +
                             "," + u.getNome() +
-                            "," + u.getCognome());
+                            "," + u.getCognome() +
+                            "," + u.getUsername() +
+                            "," + u.getPassword());
                     bw.newLine();
                 }
             }

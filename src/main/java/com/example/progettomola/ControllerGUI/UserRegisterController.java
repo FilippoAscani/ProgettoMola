@@ -129,10 +129,10 @@ public class UserRegisterController {
                 String[] dati = linea.split(",");
 
                 // Se il nome e cognome corrispondono, impostiamo il risultato
-                if (dati[0].equals(nome) &&
-                        dati[1].equals(cognome)
-                        && dati[2].equals(username)
-                        && dati[3].equals(password)) {
+                if (dati[1].equals(nome) &&
+                        dati[2].equals(cognome)
+                        && dati[3].equals(username)
+                        && dati[4].equals(password)) {
                     trovato = true;
                     return trovato;
 
