@@ -4,10 +4,10 @@ package com.example.progettomola.controllercli;
 import com.example.progettomola.model.daoimpl.*;
 import com.example.progettomola.model.entity.*;
 
-public class RegisterCSV {
+public class Register {
 
 
-    public RegisterCSV() {
+    public Register() {
 
     }
 
@@ -57,7 +57,8 @@ public class RegisterCSV {
     }
 
     public static void registraShowDB(Show show) {
-        //db
+        ShowDAOImplDB showDB = new ShowDAOImplDB();
+        showDB.addShow(show);
     }
 
     public static void registraReviewCSV(Review review) {
@@ -66,7 +67,8 @@ public class RegisterCSV {
     }
 
     public static void registraReviewDB(Review review) {
-        //db
+        ReviewDAOImplDB reviewDB = new ReviewDAOImplDB();
+        reviewDB.addReview(review);
     }
 
     public static void registraRequestCSV(Request request) {
@@ -75,7 +77,8 @@ public class RegisterCSV {
     }
 
     public static void registraRequestDB(Request request) {
-        //db
+        RequestDAOImplDB requestDB = new RequestDAOImplDB();
+        requestDB.addRequest(request);
     }
 
 }

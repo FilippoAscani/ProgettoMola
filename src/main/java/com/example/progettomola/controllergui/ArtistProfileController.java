@@ -61,7 +61,7 @@ public class ArtistProfileController {
     @FXML
     void handleSeeRequests(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-requests-view.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-request-view.fxml")));
             Stage stage = (Stage) btnSeeRequests.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -72,7 +72,7 @@ public class ArtistProfileController {
     @FXML
     void handleSeeReviews(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-reviews-view.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-review-view.fxml")));
             Stage stage = (Stage) btnSeeRequests.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {

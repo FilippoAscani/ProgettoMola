@@ -32,6 +32,11 @@ public class Artist implements Observer {
         }
     }
 
+    public void receiveRequest(Request request) {
+        System.out.println("Request received: " + request.getNome());
+        // Implementa la logica per mostrare i bottoni "accetta" e "rifiuta"
+    }
+
 
 
     public String getUsername () {

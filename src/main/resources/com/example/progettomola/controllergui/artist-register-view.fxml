@@ -9,9 +9,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.progettomola.controllergui.ArtistRegisterController">
    <children>
-      <TextField fx:id="nomeField" layoutX="226.0" layoutY="94.0" />
+      <TextField fx:id="usernameField" layoutX="226.0" layoutY="94.0" />
       <PasswordField fx:id="passwordField" layoutX="226.0" layoutY="153.0" />
-      <TextField fx:id="usernameField" layoutX="226.0" layoutY="206.0" />
+      <TextField fx:id="tipoField" layoutX="226.0" layoutY="206.0" />
       <Label fx:id="lblUsername" layoutX="226.0" layoutY="77.0" text="Username" />
       <Label fx:id="lblTipo" layoutX="225.0" layoutY="188.0" text="Tipo" />
       <Label fx:id="lblPassword" layoutX="227.0" layoutY="135.0" text="Password" />

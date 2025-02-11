@@ -1,6 +1,6 @@
 package com.example.progettomola.controllergui;
 
-import com.example.progettomola.controllercli.RegisterCSV;
+import com.example.progettomola.controllercli.Register;
 import com.example.progettomola.model.entity.Artist;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -73,7 +73,7 @@ public class ArtistRegisterController {
         }
         else{
             Artist artist = createArtist();
-            RegisterCSV.registraArtistCSV(artist);
+            Register.registraArtistCSV(artist);
         }
     }
 
@@ -87,7 +87,7 @@ public class ArtistRegisterController {
         }
         else{
             Artist artist = createArtist();
-            RegisterCSV.registraArtistDB(artist);
+            Register.registraArtistDB(artist);
         }
     }
 

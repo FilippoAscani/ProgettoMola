@@ -1,6 +1,6 @@
 package com.example.progettomola.controllergui;
 
-import com.example.progettomola.controllercli.RegisterCSV;
+import com.example.progettomola.controllercli.Register;
 import com.example.progettomola.model.entity.Sponsor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,7 +67,7 @@ public class SponsorRegisterController {
         }
         else{
             Sponsor sponsor = createSponsor();
-            RegisterCSV.registraSponsorCSV(sponsor);
+            Register.registraSponsorCSV(sponsor);
         }
     }
 
@@ -82,7 +82,7 @@ public class SponsorRegisterController {
         }
         else{
             Sponsor sponsor = createSponsor();
-            RegisterCSV.registraSponsorDB(sponsor);
+            Register.registraSponsorDB(sponsor);
         }
     }
 
