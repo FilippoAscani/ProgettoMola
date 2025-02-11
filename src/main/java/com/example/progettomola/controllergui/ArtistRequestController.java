@@ -120,9 +120,11 @@ public class ArtistRequestController  implements Initializable {
     }
 
     private void declineShow(Request request) {
+
     }
 
     private void acceptShow(Request request) {
+
     }
 
 
