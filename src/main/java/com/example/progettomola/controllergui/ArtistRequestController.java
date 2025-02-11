@@ -1,7 +1,9 @@
 package com.example.progettomola.controllergui;
 
 import com.example.progettomola.DatabaseConnection;
+import com.example.progettomola.controllercli.Register;
 import com.example.progettomola.model.entity.Request;
+import com.example.progettomola.model.entity.Show;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -60,11 +62,11 @@ public class ArtistRequestController  implements Initializable {
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                String titolo = resultSet.getString("nome");
+                String nome = resultSet.getString("nome");
                 int capienza = resultSet.getInt("capienza");
                 String tipo = resultSet.getString("tipo");
 
-                richieste.add(new Request(id, titolo, capienza, tipo));
+                richieste.add(new Request(id, nome, capienza, tipo));
             }
 
             // Imposta il valore di cella per la colonna nome
@@ -74,10 +76,10 @@ public class ArtistRequestController  implements Initializable {
             // Aggiungi una colonna per i pulsanti (Accetta e Rifiuta)
             TableColumn<Request, Void> colActions = new TableColumn<>("Azioni");
 
-            colActions.setCellFactory(new Callback<TableColumn<Request, Void>, TableCell<Request, Void>>() {
+            colActions.setCellFactory(new Callback<>() {
                 @Override
                 public TableCell<Request, Void> call(TableColumn<Request, Void> param) {
-                    return new TableCell<Request, Void>() {
+                    return new TableCell<>() {
 
                         private final Button btnAccept = new Button("Accetta");
                         private final Button btnDecline = new Button("Rifiuta");
@@ -121,16 +123,36 @@ public class ArtistRequestController  implements Initializable {
 
     private void declineShow(Request request) {
 
+        request.setStatus("accettata");
+
+        int index = richieste.indexOf(request);
+        if (index != -1) {
+            richieste.remove(index);  // Rimuovi la richiesta alla posizione trovata
+
+
+        }
+
+
     }
 
     private void acceptShow(Request request) {
+        Show show = new Show(request.getId(), request.getNome(), request.getCapienza(), request.getTipo());
+        Register.registraShowDB(show);
+        Register.registraShowCSV(show);
+        request.setStatus("accettata");
+
+        int index = richieste.indexOf(request);
+        if (index != -1) {
+            richieste.remove(index);
+
+        }
 
     }
 
 
     @FXML
     void handleCerca(ActionEvent event) {
-
+        tabView.setItems(FXCollections.observableArrayList());
     }
 
     @FXML

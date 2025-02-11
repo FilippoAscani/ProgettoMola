@@ -41,21 +41,24 @@ public class SponsorRequestController {
 
     @FXML
     void handleCrea(ActionEvent event) {
+
         int id = Integer.parseInt(txtId.getText());
         String tipo = txtTipo.getText();
         String titolo = txtTitolo.getText();
         int cap = Integer.parseInt(txtCapienza.getText());
         Request request = new Request(id, titolo, cap, tipo);
 
+        Register.registraRequestDB(request);
+        Register.registraRequestCSV(request);
         //inviare la richiesta agli artisti che hanno il tipo della richiesta uguale al loro
 
         try {
             for (Artist artist : loadArtistsFromCSV()) {
                 if (artist.getTipo().equals(tipo)) {
                     sendRequestToArtist(request, artist);
-                    saveRequestToCSV(request);
 
-                    Register.registraRequestDB(request);
+
+
                 }
             }
         } catch (IOException e) {
@@ -64,11 +67,6 @@ public class SponsorRequestController {
 
     }
 
-    private void saveRequestToCSV(Request request) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("request.csv", true))) {
-            writer.write(request.getId() + "," + request.getNome() + "," + request.getCapienza() + "," + request.getTipo() + "\n");
-        }
-    }
 
     private void sendRequestToArtist(Request request, Artist artist) {
         artist.receiveRequest(request);

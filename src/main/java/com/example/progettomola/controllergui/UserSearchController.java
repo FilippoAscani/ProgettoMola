@@ -81,7 +81,7 @@ public class UserSearchController implements Initializable {
             Connection conn = DatabaseConnection.getConnection();
             statement = conn.createStatement();
 
-            String sqlQuery = "select,id,titolo,capienza,tipo from shows";
+            String sqlQuery = "select id,titolo,capienza,tipo from shows";
             resultSet = statement.executeQuery(sqlQuery);
 
             while (resultSet.next()) {
