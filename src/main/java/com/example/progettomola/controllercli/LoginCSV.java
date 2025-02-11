@@ -169,14 +169,6 @@ public class LoginCSV {
 
 
 
-
-
-
-
-
-
-
-
     public static void doEnterUser(User user){
         System.out.println("Benvenuto " + user.getNome());
         UserHomepage userHomepage = new UserHomepage();
@@ -200,47 +192,4 @@ public class LoginCSV {
 
 
 }
-
-
-
-
-
-
-
-
-
-/*
-file vuoto -> inserisce utente ed esci
-file non vuoto -> cerca -> trova -> esci
-                        -> non trova -> inserisci -> esci
-
-
-
-
-String line = reader.readLine();
-            String[] colonne = line.split(",");
-            if (Objects.equals(colonne[0], user.getNome())
-                    && Objects.equals(colonne[1], user.getCognome())
-                    && Objects.equals(colonne[2], user.getPassword())) {
-                System.out.println(colonne[0] + " " + colonne[1] + " " + colonne[2]);
-
-            }
-
- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

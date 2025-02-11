@@ -19,6 +19,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -85,23 +86,23 @@ public class SponsorLoginController implements Initializable {
         switch (s) {
             case "JDBC":
                 if(cercaBD(username, password)){
-                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sponsor-homepage-view.fxml")));
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sponsor-profile-view.fxml")));
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
                     stage.setScene(new Scene(root));
                 }
                 else{
-                    System.out.println("nonono");
+                    System.err.println("non sei iscritto al database, vai su register");
                 }
                 break;
 
             case "CSV":
                 if(cercaCSV()){
-                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sponsor-homepage-view.fxml")));
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sponsor-profile-view.fxml")));
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
                     stage.setScene(new Scene(root));
                 }
                 else{
-                    System.out.println("nonono da csv");
+                    System.out.println("non sei iscritto sul file system vai su register");
                 }
                 break;
 
@@ -110,7 +111,28 @@ public class SponsorLoginController implements Initializable {
     }
 
     private boolean cercaBD(String username, String password) {
-        return false;
+        final String URL = "jdbc:mysql://127.0.0.1:3306/register_schema?useUnicode=true&characterEncoding=utf8";
+        final String USERNAME = "root";
+        final String PASSWORD = "Filippo98";
+
+
+
+        String query = "SELECT * FROM sponsors WHERE username = ? AND password = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setString(1, username);
+            ps.setString(2, password);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            System.err.println("Error during database operation: " + e.getMessage());
+
+            return false;
+        }
     }
 
 
@@ -143,7 +165,7 @@ public class SponsorLoginController implements Initializable {
                 String[] dati = linea.split(",");
 
                 // Se il nome e cognome corrispondono, impostiamo il risultato
-                if (dati[3].equals(username) && dati[4].equals(password)) {
+                if (dati[1].equals(username) && dati[2].equals(password)) {
                     trovato = true;
                     return trovato;
 

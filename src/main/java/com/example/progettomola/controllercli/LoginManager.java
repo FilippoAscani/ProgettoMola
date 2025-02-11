@@ -48,8 +48,7 @@ public class LoginManager {
 
 
                     User newU = new User(idUser, cognomeUser, passwordUser);
-                    LoginCSV userLogin = new LoginCSV();
-                    userLogin.loginUser(newU);
+                    LoginCSV.loginUser(newU);
                 }
 
 
@@ -67,8 +66,7 @@ public class LoginManager {
                     String passwordUser = scanner .nextLine();
 
                     User newU = new User(idUser, cognomeUser, passwordUser);
-                    LoginCSV userLogin = new LoginCSV();
-                    userLogin.loginUser(newU);
+                    LoginCSV.loginUser(newU);
 
                 }
 
@@ -97,8 +95,7 @@ public class LoginManager {
                     String tipoArtist = scanner.nextLine();
 
                     Artist newA = new Artist(id, nomeArtist, passwordArtist, tipoArtist);
-                    LoginCSV artistLogin = new LoginCSV();
-                    artistLogin.loginArtist(newA);
+                    LoginCSV.loginArtist(newA);
                 }
 
 
@@ -120,8 +117,7 @@ public class LoginManager {
                     String tipoArtist = scanner.nextLine();
 
                     Artist newA = new Artist(id, nomeArtist, passwordArtist, tipoArtist);
-                    LoginCSV artistLogin = new LoginCSV();
-                    artistLogin.loginArtist(newA);
+                    LoginCSV.loginArtist(newA);
 
                 }
 
@@ -146,8 +142,7 @@ public class LoginManager {
 
 
                     Sponsor newS = new Sponsor(idSponsor, username, password);
-                    LoginCSV sponsorLogin = new LoginCSV();
-                    sponsorLogin.loginSponsor(newS);
+                    LoginCSV.loginSponsor(newS);
                 }
 
 
@@ -166,8 +161,7 @@ public class LoginManager {
 
 
                     Sponsor newS = new Sponsor(idSponsor, username, password);
-                    LoginCSV sponsorLogin = new LoginCSV();
-                    sponsorLogin.loginSponsor(newS);
+                    LoginCSV.loginSponsor(newS);
 
                 }
 

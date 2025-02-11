@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.*;
 import java.util.Objects;
 import java.util.Random;
 import java.util.logging.Logger;
@@ -102,31 +103,52 @@ public class SponsorRegisterController {
 
         String username = usernameField.getText();
         String password = passwordField.getText();
-        boolean trovato = false;
+        boolean find = false;
 
            try (BufferedReader br = new BufferedReader(new FileReader("sponsor.csv"))) {
                String line;
                 // Leggi il file CSV riga per riga
                while ((line = br.readLine()) != null) {
-                   String[] dati = line.split(",");
+                   String[] data = line.split(",");
 
                     // Se il nome e cognome corrispondono, impostiamo il risultato
-                   if (dati[1].equals(username) && dati[2].equals(password)) {
+                   if (data[1].equals(username) && data[2].equals(password)) {
 
-                       trovato = true;
-                       return trovato;
+                       find = true;
+                       return find;
 
                    }
                }
            } catch (IOException e) {
                 e.printStackTrace();
            }
-           return trovato;
+           return find;
     }
 
 
     private boolean cercaDB() {
-        return false;
+        final String URL = "jdbc:mysql://127.0.0.1:3306/register_schema?useUnicode=true&characterEncoding=utf8";
+        final String USERNAME = "root";
+        final String PASSWORD = "Filippo98";
+
+
+
+        String query = "SELECT * FROM sponsors WHERE username = ? AND password = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setString(1, usernameField.getText());
+            ps.setString(2, passwordField.getText());
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            System.err.println("Error during database operation: " + e.getMessage());
+
+            return false;
+        }
     }
 
 }

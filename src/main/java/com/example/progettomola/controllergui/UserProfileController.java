@@ -2,10 +2,11 @@ package com.example.progettomola.controllergui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -26,11 +27,22 @@ public class UserProfileController {
     private Button btnShow;
 
     @FXML
-    void handleElimina(ActionEvent event) {
-
-    }
+    private Text txtCognome;
 
     @FXML
+    private Text txtId;
+
+    @FXML
+    private Text txtNome;
+
+    @FXML
+    private Text txtPassword;
+
+    @FXML
+    private Text txtUsername;
+
+
+@FXML
     void handleIndietro(ActionEvent event) {
             try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-login-view.fxml")));
@@ -44,7 +56,13 @@ public class UserProfileController {
 
     @FXML
     void handleReviews(ActionEvent event) {
-
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-reviews-view.fxml")));
+            Stage stage = (Stage) btnReviews.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -58,4 +76,7 @@ public class UserProfileController {
         }
     }
 
+    public void deleteProfile(ActionEvent actionEvent) {
+
+    }
 }

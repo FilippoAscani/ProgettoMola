@@ -19,6 +19,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -84,23 +85,23 @@ public class ArtistLoginController implements Initializable {
         switch (s) {
             case "JDBC":
                 if(cercaDB(username, password)){
-                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-homepage-view.fxml")));
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-profile-view.fxml")));
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
                     stage.setScene(new Scene(root));
                 }
                 else{
-                    System.out.println("nonono");
+                    System.err.println("nonono");
                 }
                 break;
 
             case "CSV":
                 if(cercaCSV()){
-                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-homepage-view.fxml")));
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-profile-view.fxml")));
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
                     stage.setScene(new Scene(root));
                 }
                 else{
-                    System.out.println("nonono da csv");
+                    System.err.println("nonono da csv");
                 }
                 break;
 
@@ -129,8 +130,28 @@ public class ArtistLoginController implements Initializable {
 
     private boolean cercaDB(String username, String password) {
 
-        System.out.println(username + " " + password);
-        return false;
+        final String URL = "jdbc:mysql://127.0.0.1:3306/register_schema?useUnicode=true&characterEncoding=utf8";
+        final String USERNAME = "root";
+        final String PASSWORD = "Filippo98";
+
+
+
+        String query = "SELECT * FROM artists WHERE username = ? AND password = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setString(1, username);
+            ps.setString(2, password);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            System.err.println("Error during database operation: " + e.getMessage());
+
+            return false;
+        }
 
     }
 
