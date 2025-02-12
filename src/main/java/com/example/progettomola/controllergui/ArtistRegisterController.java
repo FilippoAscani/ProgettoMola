@@ -12,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -19,7 +21,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Objects;
 import java.util.Random;
-import java.util.logging.Logger;
+
 
 public class ArtistRegisterController {
 
@@ -53,7 +55,7 @@ public class ArtistRegisterController {
     @FXML
     private TextField usernameField;
 
-    Logger logger = Logger.getLogger(UserRegisterController.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(ArtistRegisterController.class);
 
     @FXML
     void handleIndietro(ActionEvent event) {
@@ -122,7 +124,7 @@ public class ArtistRegisterController {
                 if (dati[1].equals(username) && dati[2].equals(password) && dati[3].equals(tipo)) {
 
                     trovato = true;
-                    return trovato;
+                    break;
 
                 }
             }
@@ -156,7 +158,7 @@ public class ArtistRegisterController {
                 return rs.next();
             }
         } catch (SQLException e) {
-            System.err.println("Error during database operation: " + e.getMessage());
+            logger.info("Error during database operation: {}" , e.getMessage());
 
             return false;
         }

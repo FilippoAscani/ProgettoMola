@@ -2,6 +2,8 @@ package com.example.progettomola.controllercli;
 
 import com.example.progettomola.enumerations.TypesOfLayers;
 import com.example.progettomola.enumerations.TypesOfRoles;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Scanner;
 
@@ -10,6 +12,8 @@ public class LayerManager {
     LayerManager(){
 
     }
+
+    private static final Logger logger = LoggerFactory.getLogger(LayerManager.class);
 
     public void gestore(TypesOfLayers typeLayer){
 
@@ -21,7 +25,7 @@ public class LayerManager {
             //se qui utente ha scelto cli come vista
             case JDBC:
 
-                System.out.println("scegli tra USER, ARTIST, SPONSOR");
+                logger.info("scegli tra USER, ARTIST, SPONSOR");
                 String roleJDBC = scanner.nextLine();
                 loginManager.gestore(TypesOfLayers.valueOf(String.valueOf(typeLayer)), TypesOfRoles.valueOf(roleJDBC));
 
@@ -29,7 +33,7 @@ public class LayerManager {
 
             case CSV:
 
-                System.out.println("scegli tra USER, ARTIST, SPONSOR");
+                logger.info("scegli tra USER, ARTIST, SPONSOR");
                 String roleCSV = scanner.nextLine();
                 loginManager.gestore(TypesOfLayers.valueOf(String.valueOf(typeLayer)), TypesOfRoles.valueOf(roleCSV));
 
@@ -37,7 +41,7 @@ public class LayerManager {
 
             default:
 
-                System.out.println("errore");
+                logger.info("errore");
                 break;
 
 

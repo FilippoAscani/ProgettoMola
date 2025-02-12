@@ -14,6 +14,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.fxml.Initializable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -51,6 +53,8 @@ public class ArtistLoginController implements Initializable {
 
     @FXML
     private TextField usernameField;
+
+    private static final Logger logger = LoggerFactory.getLogger(ArtistLoginController.class);
 
     @FXML
     public void select(ActionEvent actionEvent) {
@@ -90,7 +94,7 @@ public class ArtistLoginController implements Initializable {
                     stage.setScene(new Scene(root));
                 }
                 else{
-                    System.err.println("nonono");
+                    logger.info("non è possibile loggare l'artista");
                 }
                 break;
 
@@ -101,7 +105,7 @@ public class ArtistLoginController implements Initializable {
                     stage.setScene(new Scene(root));
                 }
                 else{
-                    System.err.println("nonono da csv");
+                    logger.info("nonono da csv");
                 }
                 break;
 
@@ -148,7 +152,7 @@ public class ArtistLoginController implements Initializable {
                 return rs.next();
             }
         } catch (SQLException e) {
-            System.err.println("Error during database operation: " + e.getMessage());
+            logger.info("Error during database operation: {}" , e.getMessage());
 
             return false;
         }
@@ -170,7 +174,7 @@ public class ArtistLoginController implements Initializable {
                 // Se il nome e cognome corrispondono, impostiamo il risultato
                 if (dati[1].equals(username) && dati[2].equals(password)) {
                     trovato = true;
-                    return trovato;
+                    break;
 
                 }
             }

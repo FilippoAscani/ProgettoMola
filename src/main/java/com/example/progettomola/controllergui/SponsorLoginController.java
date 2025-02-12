@@ -14,6 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -52,6 +54,7 @@ public class SponsorLoginController implements Initializable {
     @FXML
     private TextField usernameField;
 
+    private static final Logger logger = LoggerFactory.getLogger(SponsorLoginController.class);
 
     @FXML
     public void select(ActionEvent actionEvent) {
@@ -91,7 +94,7 @@ public class SponsorLoginController implements Initializable {
                     stage.setScene(new Scene(root));
                 }
                 else{
-                    System.err.println("non sei iscritto al database, vai su register");
+                    logger.info("non sei iscritto al database, vai su register");
                 }
                 break;
 
@@ -102,7 +105,7 @@ public class SponsorLoginController implements Initializable {
                     stage.setScene(new Scene(root));
                 }
                 else{
-                    System.out.println("non sei iscritto sul file system vai su register");
+                    logger.info("non sei iscritto sul file system vai su register");
                 }
                 break;
 
@@ -129,7 +132,7 @@ public class SponsorLoginController implements Initializable {
                 return rs.next();
             }
         } catch (SQLException e) {
-            System.err.println("Error during database operation: " + e.getMessage());
+            logger.info("Error during database operation: {}" , e.getMessage());
 
             return false;
         }
@@ -167,7 +170,7 @@ public class SponsorLoginController implements Initializable {
                 // Se il nome e cognome corrispondono, impostiamo il risultato
                 if (dati[1].equals(username) && dati[2].equals(password)) {
                     trovato = true;
-                    return trovato;
+                    break;
 
                 }
             }

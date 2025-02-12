@@ -1,6 +1,8 @@
 package com.example.progettomola.controllercli;
 
 import com.example.progettomola.model.entity.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.Objects;
@@ -14,8 +16,12 @@ public class LoginCSV {
 
     public LoginCSV(){
 
+        //questo un costruttore nullo
+
     }
 
+
+    private static final Logger logger = LoggerFactory.getLogger(LoginCSV.class);
 
 
     public static void loginUser(User user) {
@@ -170,21 +176,21 @@ public class LoginCSV {
 
 
     public static void doEnterUser(User user){
-        System.out.println("Benvenuto " + user.getNome());
+        logger.info("Benvenuto user {}" , user.getNome());
         UserHomepage userHomepage = new UserHomepage();
         userHomepage.welcome(user);
 
     }
 
     public static void doEnterArtist(Artist artist){
-        System.out.println("Benvenuto " + artist.getUsername());
+        logger.info("Benvenuto artist {}" , artist.getUsername());
         ArtistHomepage artistHomepage = new ArtistHomepage();
         artistHomepage.welcome(artist);
 
     }
 
     public static void doEnterSponsor(Sponsor sponsor){
-        System.out.println("Benvenuto " + sponsor.getUsername());
+        logger.info("Benvenuto sponsor {}" , sponsor.getUsername());
         SponsorHomepage sponsorHomepage = new SponsorHomepage();
         sponsorHomepage.welcome(sponsor);
 

@@ -3,15 +3,15 @@ package com.example.progettomola;
 
 import com.example.progettomola.controllercli.ViewManager;
 import com.example.progettomola.enumerations.TypesOfViews;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Scanner;
 
 public class Main {
 
 
-    //login diversi per tipi di user diversi USER e ARTIST
-    //oppure stesso login con due comandi per tipo di User?
-
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
 
@@ -21,7 +21,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         ViewManager viewManager = new ViewManager();
 
-        System.out.println("inserisci CLI oppure GUI");
+        logger.info("inserisci CLI oppure GUI");
         String view = scanner.nextLine();
 
         viewManager.gestore(TypesOfViews.valueOf(view));

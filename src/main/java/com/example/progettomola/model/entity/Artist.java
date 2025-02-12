@@ -2,6 +2,8 @@ package com.example.progettomola.model.entity;
 
 
 import com.example.progettomola.other.Observer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Artist implements Observer {
 
@@ -14,26 +16,28 @@ public class Artist implements Observer {
 
 
 
-    public Artist (int id, String username, String Password, String tipo){
+    public Artist (int id, String username, String password, String tipo){
         this.id = id;
         this.username = username;
-        this.password = Password;
+        this.password = password;
         this.tipo = tipo;
 
 
     }
+
+    private static final Logger logger = LoggerFactory.getLogger(Artist.class);
 
 
 
     @Override
     public void updateRequest(Request request) {
         if(this.tipo.equals(request.getTipo())){
-            System.out.println("concordi");
+            logger.info("concordi");
         }
     }
 
     public void receiveRequest(Request request) {
-        System.out.println("Request received: " + request.getNome());
+        logger.info("Request received: {}" , request.getNome());
         // Implementa la logica per mostrare i bottoni "accetta" e "rifiuta"
     }
 

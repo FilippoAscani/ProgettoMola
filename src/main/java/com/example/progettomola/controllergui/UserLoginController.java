@@ -10,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -46,6 +48,8 @@ public class UserLoginController implements Initializable {
     @FXML
     private ComboBox<String>  combo1;
 
+
+    private static final Logger logger = LoggerFactory.getLogger(UserLoginController.class);
 
 
     public void select(ActionEvent actionEvent) {
@@ -92,7 +96,7 @@ public class UserLoginController implements Initializable {
                     stage.setScene(new Scene(root));
                 }
                 else{
-                    System.out.println("nonono");
+                    logger.info("errore user login db, registrati");
                 }
                 break;
 
@@ -103,7 +107,7 @@ public class UserLoginController implements Initializable {
                     stage.setScene(new Scene(root));
                 }
                 else{
-                    System.out.println("nonono da csv");
+                    logger.info("errore user login csv, registrati");
                 }
                 break;
 
@@ -143,7 +147,7 @@ public class UserLoginController implements Initializable {
                     return rs.next();
                 }
         } catch (SQLException e) {
-                System.err.println("Error during database operation: " + e.getMessage());
+            logger.info("Error during database operation: {}" , e.getMessage());
 
                 return false;
         }
@@ -166,7 +170,7 @@ public class UserLoginController implements Initializable {
                 // Se il nome e cognome corrispondono, impostiamo il risultato
                 if (dati[3].equals(username) && dati[4].equals(password)) {
                     trovato = true;
-                    return trovato;
+                    break;
 
                 }
             }
