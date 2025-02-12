@@ -57,14 +57,14 @@ public class SponsorRegisterController {
             Stage stage = (Stage) btnIndietro.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare la schermata sponsor login", e);
         }
     }
 
     @FXML
     void handleRegisterCSV(ActionEvent event) {
         if(cercaCSV()){
-            logger.info("utente trovato");
+            logger.info("utente csv trovato");
         }
         else{
             Sponsor sponsor = createSponsor();
@@ -79,7 +79,7 @@ public class SponsorRegisterController {
     @FXML
     void handleRegisterDB(ActionEvent event) {
         if(cercaDB()){
-            logger.info("utente trovato");
+            logger.info("utente db trovato");
         }
         else{
             Sponsor sponsor = createSponsor();

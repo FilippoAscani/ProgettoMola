@@ -70,14 +70,14 @@ public class UserRegisterController {
             Stage stage = (Stage) btnIndietro.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare la schermata user login", e);
         }
     }
 
     @FXML
     void handleRegisterCSV() {
         if(cercaCSV()){
-            logger.info("utente trovato");
+            logger.info("utente csv trovato");
         }
         else{
             User user = createUser();
@@ -90,7 +90,7 @@ public class UserRegisterController {
     void handleRegisterDB() {
         //cerca utente
         if(cercaDB()){
-            logger.info("utente trovato");
+            logger.info("utente db trovato");
         }
         else{
             User user = createUser();

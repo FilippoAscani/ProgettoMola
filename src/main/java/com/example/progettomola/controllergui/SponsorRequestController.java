@@ -93,7 +93,7 @@ public class SponsorRequestController {
             Stage stage = (Stage) btnIndietro.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare la schermata sponsor profile", e);
         }
     }
 

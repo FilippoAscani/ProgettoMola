@@ -67,7 +67,7 @@ public class ArtistReviewController {
             Stage stage = (Stage) btnIndietro.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare la schermata artist profile.", e);
         }
     }
 

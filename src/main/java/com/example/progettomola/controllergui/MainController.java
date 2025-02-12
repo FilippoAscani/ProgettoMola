@@ -1,7 +1,6 @@
 package com.example.progettomola.controllergui;
 
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,7 +23,7 @@ public class MainController {
     private Button btnUser;
 
 
-    public void handleUser(ActionEvent actionEvent) {
+    public void handleUser() {
 
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-login-view.fxml")));
@@ -33,12 +32,12 @@ public class MainController {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare la schermata user login", e);
         }
 
     }
 
-    public void handleArtist(ActionEvent actionEvent) {
+    public void handleArtist() {
 
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-login-view.fxml")));
@@ -47,12 +46,12 @@ public class MainController {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare la schermata artist login", e);
         }
 
     }
 
-    public void handleSponsor(ActionEvent actionEvent) {
+    public void handleSponsor() {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sponsor-login-view.fxml")));
             Stage stage = (Stage) btnSponsor.getScene().getWindow();
@@ -60,7 +59,7 @@ public class MainController {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare la schermata sponsor login", e);
         }
 
     }

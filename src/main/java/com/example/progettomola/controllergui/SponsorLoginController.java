@@ -57,7 +57,7 @@ public class SponsorLoginController implements Initializable {
     private static final Logger logger = LoggerFactory.getLogger(SponsorLoginController.class);
 
     @FXML
-    public void select(ActionEvent actionEvent) {
+    public void select() {
         combo1.getSelectionModel().getSelectedItem();
     }
 
@@ -75,7 +75,7 @@ public class SponsorLoginController implements Initializable {
             Stage stage = (Stage) btnIndietro.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare la schermata main homepage", e);
         }
     }
 
@@ -143,7 +143,7 @@ public class SponsorLoginController implements Initializable {
 
 
     @FXML
-    public void handleRegister(ActionEvent actionEvent){
+    public void handleRegister(){
         //cambia schermata e porta alla registrazione
 
         try {
@@ -152,7 +152,7 @@ public class SponsorLoginController implements Initializable {
             stage.setScene(new Scene(root));
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare la schermata sponsor register", e);
         }
 
 

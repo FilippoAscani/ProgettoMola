@@ -76,7 +76,7 @@ public class UserLoginController implements Initializable {
             stage.setScene(new Scene(root));
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare la schermata user register", e);
         }
 
 
@@ -128,7 +128,7 @@ public class UserLoginController implements Initializable {
             Stage stage = (Stage) btnIndietro.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare la schermata main homepage", e);
         }
     }
 

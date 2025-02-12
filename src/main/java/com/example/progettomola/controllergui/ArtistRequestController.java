@@ -117,7 +117,7 @@ public class ArtistRequestController  implements Initializable {
             tabView.getColumns().add(colActions);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new IllegalStateException("Impossibile caricare le richieste", e);
         }
     }
 
@@ -163,7 +163,7 @@ public class ArtistRequestController  implements Initializable {
             stage.setScene(new Scene(root));
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare la schermata artist profile", e);
         }
 
     }

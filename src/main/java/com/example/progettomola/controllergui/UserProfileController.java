@@ -49,7 +49,7 @@ public class UserProfileController {
                 Stage stage = (Stage) btnIndietro.getScene().getWindow();
                 stage.setScene(new Scene(root));
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                throw new IllegalStateException("Impossibile caricare la schermata user login", e);
             }
 
     }
@@ -61,7 +61,7 @@ public class UserProfileController {
             Stage stage = (Stage) btnReviews.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare la schermata user reviews", e);
         }
     }
 
@@ -72,7 +72,7 @@ public class UserProfileController {
             Stage stage = (Stage) btnShow.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare la schermata user search.", e);
         }
     }
 

@@ -67,10 +67,16 @@ public class UserSearchController implements Initializable {
 
     }
 
-    public void handleIndietro() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-profile-view.fxml")));
-        Stage stage = (Stage) btnIndietro.getScene().getWindow();
-        stage.setScene(new Scene(root));
+    public void handleIndietro() {
+
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-profile-view.fxml")));
+            Stage stage = (Stage) btnIndietro.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            throw new IllegalStateException("Impossibile caricare la schermata user profile", e);
+        }
+
     }
 
 

@@ -75,7 +75,7 @@ public class ArtistLoginController implements Initializable {
             Stage stage = (Stage) btnIndietro.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare la schermata di registrazione.", e);
         }
     }
 
@@ -129,7 +129,7 @@ public class ArtistLoginController implements Initializable {
             stage.setScene(new Scene(root));
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare la schermata di registrazione.", e);
         }
 
 

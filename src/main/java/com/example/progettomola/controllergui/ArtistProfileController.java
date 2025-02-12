@@ -54,7 +54,7 @@ public class ArtistProfileController {
             Stage stage = (Stage) btnIndietro.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare artist login.", e);
         }
     }
 
@@ -65,7 +65,7 @@ public class ArtistProfileController {
             Stage stage = (Stage) btnSeeRequests.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare artist request.", e);
         }
     }
 
@@ -76,7 +76,7 @@ public class ArtistProfileController {
             Stage stage = (Stage) btnSeeRequests.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare artist review.", e);
         }
     }
 

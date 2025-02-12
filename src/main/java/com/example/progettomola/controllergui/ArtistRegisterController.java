@@ -64,14 +64,14 @@ public class ArtistRegisterController {
             Stage stage = (Stage) btnIndietro.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile caricare artist login.", e);
         }
     }
 
     @FXML
     void handleRegisterCSV(ActionEvent event) {
         if(cercaCSV()){
-            logger.info("utente trovato");
+            logger.info("utente csv trovato");
         }
         else{
             Artist artist = createArtist();
@@ -85,7 +85,7 @@ public class ArtistRegisterController {
     @FXML
     void handleRegisterDB(ActionEvent event) {
         if(cercaDB()){
-            logger.info("utente trovato");
+            logger.info("utente db trovato");
         }
         else{
             Artist artist = createArtist();
@@ -129,7 +129,7 @@ public class ArtistRegisterController {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IllegalStateException("Impossibile cercare artista", e);
         }
         return trovato;
     }
