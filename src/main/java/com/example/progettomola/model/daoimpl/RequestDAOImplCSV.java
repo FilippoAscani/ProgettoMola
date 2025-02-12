@@ -22,7 +22,7 @@ public class RequestDAOImplCSV implements RequestDAO {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile aggiungere richiesta", e);
         }
     }
 
@@ -41,7 +41,7 @@ public class RequestDAOImplCSV implements RequestDAO {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile aggiornare richiesta", e);
         }
     }
 
@@ -60,7 +60,7 @@ public class RequestDAOImplCSV implements RequestDAO {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile eliminare richiesta", e);
         }
     }
 
@@ -77,7 +77,7 @@ public class RequestDAOImplCSV implements RequestDAO {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile visualizzare richieste", e);
         }
         return requests;
     }
@@ -98,7 +98,7 @@ public class RequestDAOImplCSV implements RequestDAO {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile visualizzare richiesta", e);
         }
         return null;
     }

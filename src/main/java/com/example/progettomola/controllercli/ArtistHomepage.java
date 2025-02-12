@@ -52,9 +52,12 @@ public class ArtistHomepage {
 
                     try {
                         TimeUnit.SECONDS.sleep(10);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+                    } catch (Exception e) {
+                        logger.info("Interrupted!", e);
+                        Thread.currentThread().interrupt();
                     }
+
+
                     break ;
 
 

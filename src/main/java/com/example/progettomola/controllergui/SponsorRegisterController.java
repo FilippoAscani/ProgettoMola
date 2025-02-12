@@ -50,6 +50,8 @@ public class SponsorRegisterController {
 
     private static final Logger logger = LoggerFactory.getLogger(SponsorRegisterController.class);
 
+    private final Random rand = new Random();
+
     @FXML
     void handleIndietro(ActionEvent event) {
         try {
@@ -91,8 +93,8 @@ public class SponsorRegisterController {
     private Sponsor createSponsor() {
         String usename = usernameField.getText();
         String password = passwordField.getText();
-        Random random = new Random();
-        int id = random.nextInt(10000);
+
+        int id = this.rand.nextInt(10000);
 
         return new Sponsor(id, usename, password);
 

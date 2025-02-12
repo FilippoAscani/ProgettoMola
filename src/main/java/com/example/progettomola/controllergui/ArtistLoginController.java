@@ -105,7 +105,7 @@ public class ArtistLoginController implements Initializable {
                     stage.setScene(new Scene(root));
                 }
                 else{
-                    logger.info("nonono da csv");
+                    logger.info("non è possibile  loggare l'artista csv");
                 }
                 break;
 

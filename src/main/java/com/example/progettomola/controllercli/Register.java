@@ -7,7 +7,7 @@ import com.example.progettomola.model.entity.*;
 public class Register {
 
 
-    public Register() {
+    private Register() {
 
     }
 

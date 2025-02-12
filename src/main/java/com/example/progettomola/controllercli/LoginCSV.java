@@ -14,9 +14,9 @@ public class LoginCSV {
 
 
 
-    public LoginCSV(){
+    private LoginCSV(){
 
-        //questo un costruttore nullo
+        /**/
 
     }
 
@@ -65,7 +65,7 @@ public class LoginCSV {
         }
 
         catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile fare il loginuser", e);
         }
 
 
@@ -114,7 +114,7 @@ public class LoginCSV {
         }
 
         catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile fare il login artist", e);
         }
 
 
@@ -167,7 +167,7 @@ public class LoginCSV {
         }
 
         catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile fare il login sponsor", e);
         }
 
 

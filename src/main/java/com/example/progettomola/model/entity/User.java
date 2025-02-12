@@ -31,25 +31,28 @@ public class User {
 
     }
 
+    private final Random rand = new Random();
+
 
     public Artist cercaArtista(String string){
 
         try {
 
             String line;
-            BufferedReader reader = new BufferedReader(new FileReader("artist.csv"));
+            try (BufferedReader reader = new BufferedReader(new FileReader("artist.csv"))) {
 
-            while ((line = reader.readLine())!= null){
-                String[] values = line.split(",");
-                if(values[1].equalsIgnoreCase(string)){
-                    return new Artist(Integer.parseInt(values[0]),values[1],values[2],values[3]);
+                while ((line = reader.readLine()) != null) {
+                    String[] values = line.split(",");
+                    if (values[1].equalsIgnoreCase(string)) {
+                        return new Artist(Integer.parseInt(values[0]), values[1], values[2], values[3]);
+                    }
+
                 }
-
             }
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile cercare artista", e);
         }
         return null;
 
@@ -65,19 +68,20 @@ public class User {
         try {
 
             String line;
-            BufferedReader reader = new BufferedReader(new FileReader("show.csv"));
+            try (BufferedReader reader = new BufferedReader(new FileReader("show.csv"))) {
 
-            while ((line = reader.readLine())!= null){
-                String[] values = line.split(",");
-                if(values[1].equalsIgnoreCase(string)){
-                    return new Show(Integer.parseInt(values[0]),values[1],Integer.parseInt(values[2]),values[3]);
+                while ((line = reader.readLine()) != null) {
+                    String[] values = line.split(",");
+                    if (values[1].equalsIgnoreCase(string)) {
+                        return new Show(Integer.parseInt(values[0]), values[1], Integer.parseInt(values[2]), values[3]);
+                    }
+
                 }
-
             }
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile cercare show", e);
         }
         return null;
 
@@ -86,20 +90,8 @@ public class User {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     private int generateId(){
-        Random random = new Random();
-        return random.nextInt(101);
+        return this.rand.nextInt();
     }
 
     public void writeReview(String content, Show show){

@@ -12,6 +12,8 @@ public class UserDAOImplCSV implements UserDAO {
 
     public UserDAOImplCSV() {
 
+        /**/
+
     }
 
     private static final String FILE = "user.csv";
@@ -34,7 +36,7 @@ public class UserDAOImplCSV implements UserDAO {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile aggiungere user", e);
         }
 
 
@@ -64,7 +66,7 @@ public class UserDAOImplCSV implements UserDAO {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile aggiornare user", e);
         }
 
     }
@@ -88,7 +90,7 @@ public class UserDAOImplCSV implements UserDAO {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile eliminare user", e);
         }
     }
 
@@ -106,7 +108,7 @@ public class UserDAOImplCSV implements UserDAO {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile visualizzare users", e);
         }
         return users;
 
@@ -128,7 +130,7 @@ public class UserDAOImplCSV implements UserDAO {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile visualizzare user", e);
         }
         return null;
     }

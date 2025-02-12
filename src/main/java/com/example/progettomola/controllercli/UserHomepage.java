@@ -52,7 +52,8 @@ public class UserHomepage {
                     try {
                         TimeUnit.SECONDS.sleep(10);
                     } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+                        logger.info("Interrupted! ", e);
+                        Thread.currentThread().interrupt();
                     }
                     break ;
 
@@ -87,7 +88,8 @@ public class UserHomepage {
                     try {
                         TimeUnit.SECONDS.sleep(30);
                     } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+                        logger.info("Interrupted!", e);
+                        Thread.currentThread().interrupt();
                     }
 
                     break;
@@ -105,7 +107,8 @@ public class UserHomepage {
                     try {
                         TimeUnit.SECONDS.sleep(20);
                     } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+                        logger.info("Interrupted!  ", e);
+                        Thread.currentThread().interrupt();
                     }
                     break;
 

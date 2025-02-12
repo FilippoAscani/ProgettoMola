@@ -62,6 +62,7 @@ public class UserRegisterController {
 
 
     private static final Logger logger = LoggerFactory.getLogger(UserRegisterController.class);
+    private final Random rand = new Random();
 
     @FXML
     void handleIndietro(ActionEvent event) {
@@ -105,8 +106,8 @@ public class UserRegisterController {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        Random random = new Random();
-        int id = random.nextInt(10000);
+
+        int id = this.rand.nextInt(10000);
 
         return new User(id, nome, cognome, username, password);
     }

@@ -12,6 +12,8 @@ public class ArtistDAOImplCSV implements ArtistDAO {
 
     public ArtistDAOImplCSV() {
 
+        /**/
+
     }
 
     private static final String FILE = "artist.csv";
@@ -28,7 +30,7 @@ public class ArtistDAOImplCSV implements ArtistDAO {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile aggiungere artista", e);
         }
 
 
@@ -50,7 +52,7 @@ public class ArtistDAOImplCSV implements ArtistDAO {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile aggiornare artista", e);
         }
 
     }
@@ -70,7 +72,7 @@ public class ArtistDAOImplCSV implements ArtistDAO {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile eliminare artista", e);
         }
     }
 
@@ -88,7 +90,7 @@ public class ArtistDAOImplCSV implements ArtistDAO {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile visualizzare artisti", e);
         }
         return artists;
 
@@ -110,7 +112,7 @@ public class ArtistDAOImplCSV implements ArtistDAO {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile visualizzare artisti", e);
         }
         return null;
     }

@@ -12,6 +12,8 @@ public class ReviewDAOImplCSV implements ReviewDAO {
 
     public ReviewDAOImplCSV() {
 
+        /**/
+
     }
 
     private static final String FILE = "review.csv";
@@ -30,7 +32,7 @@ public class ReviewDAOImplCSV implements ReviewDAO {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile aggiungere recensione", e);
         }
 
 
@@ -52,7 +54,7 @@ public class ReviewDAOImplCSV implements ReviewDAO {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile aggiornare recensione", e);
         }
 
     }
@@ -72,7 +74,7 @@ public class ReviewDAOImplCSV implements ReviewDAO {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile eliminare recensione", e);
         }
     }
 
@@ -90,7 +92,7 @@ public class ReviewDAOImplCSV implements ReviewDAO {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile ottenere recensioni", e);
         }
         return reviews;
 
@@ -112,7 +114,7 @@ public class ReviewDAOImplCSV implements ReviewDAO {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile ottenere recensione", e);
         }
         return null;
     }

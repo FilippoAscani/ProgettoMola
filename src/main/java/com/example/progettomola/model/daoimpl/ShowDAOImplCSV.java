@@ -24,7 +24,7 @@ public class ShowDAOImplCSV implements ShowDAO {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile aggiungere show", e);
         }
 
 
@@ -45,7 +45,7 @@ public class ShowDAOImplCSV implements ShowDAO {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile aggiornare show", e);
         }
 
     }
@@ -65,7 +65,7 @@ public class ShowDAOImplCSV implements ShowDAO {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile eliminare show", e);
         }
     }
 
@@ -83,7 +83,7 @@ public class ShowDAOImplCSV implements ShowDAO {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile visualizzare shows", e);
         }
         return shows;
 
@@ -105,7 +105,7 @@ public class ShowDAOImplCSV implements ShowDAO {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile visualizzare show", e);
         }
         return null;
     }

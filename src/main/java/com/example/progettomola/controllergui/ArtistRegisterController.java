@@ -56,6 +56,7 @@ public class ArtistRegisterController {
     private TextField usernameField;
 
     private static final Logger logger = LoggerFactory.getLogger(ArtistRegisterController.class);
+    private final Random rand = new Random();
 
     @FXML
     void handleIndietro(ActionEvent event) {
@@ -99,8 +100,8 @@ public class ArtistRegisterController {
         String usename = usernameField.getText();
         String password = passwordField.getText();
         String tipo = tipoField.getText();
-        Random random = new Random();
-        int id = random.nextInt(10000);
+
+        int id = this.rand.nextInt(10000);
 
         return new Artist(id, usename, password, tipo);
     }

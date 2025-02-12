@@ -24,7 +24,7 @@ public class SponsorDAOImplCSV implements SponsorDAO {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile aggiungere sponsor", e);
         }
 
 
@@ -47,7 +47,7 @@ public class SponsorDAOImplCSV implements SponsorDAO {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile visualizzare sponsor", e);
         }
         return null;
     }
@@ -66,7 +66,7 @@ public class SponsorDAOImplCSV implements SponsorDAO {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile visualizzare sponsors", e);
         }
         return sponsors;
 
@@ -87,7 +87,7 @@ public class SponsorDAOImplCSV implements SponsorDAO {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile eliminare sponsor", e);
         }
     }
 
@@ -106,7 +106,7 @@ public class SponsorDAOImplCSV implements SponsorDAO {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("Impossibile aggiornare sponsor", e);
         }
 
     }
