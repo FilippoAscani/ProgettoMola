@@ -8,16 +8,17 @@ import com.example.progettomola.model.entity.Show;
 import com.example.progettomola.model.entity.Sponsor;
 import com.example.progettomola.model.daoimpl.ShowDAOImplCSV;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class SponsorHomepage {
 
-    //private String user;
+    // qua non so se inserire private String user
 
     public SponsorHomepage() {
-        //this.user = user;
+        // qua non so se inserire questo frammento this.user = user
 
     }
 
@@ -48,7 +49,7 @@ public class SponsorHomepage {
                     try {
                         TimeUnit.SECONDS.sleep(10);
                     } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+                        Thread.currentThread().interrupt();
                     }
                     break ;
 
@@ -79,7 +80,7 @@ public class SponsorHomepage {
                     try {
                         TimeUnit.SECONDS.sleep(30);
                     } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+                        Thread.currentThread().interrupt();
                     }
                     break;
 
@@ -99,7 +100,7 @@ public class SponsorHomepage {
                     try {
                         TimeUnit.SECONDS.sleep(20);
                     } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+                        Thread.currentThread().interrupt();
                     }
                     break;
 
@@ -121,7 +122,7 @@ public class SponsorHomepage {
     public void addObserversFromCSV(Sponsor sponsor, String tipo) {
         // Carica gli artisti dal file CSV
         ArtistDAOImplCSV artistDAOImplCSV = new ArtistDAOImplCSV();
-        List<Artist> artists = artistDAOImplCSV.getArtists();//loadArtistsFromCSV();
+        List<Artist> artists = artistDAOImplCSV.getArtists();
 
         // Aggiungi gli artisti con tipo corrispondente come osservatori
         for (Artist artist : artists) {
@@ -136,12 +137,13 @@ public class SponsorHomepage {
     public List<Show> getShowsReviewedCap(int cap){
         ShowDAOImplCSV showDAO = new ShowDAOImplCSV();
         List<Show> shows = showDAO.getShows();
+        List<Show> result = new ArrayList<>();
         for(Show s : shows){
             if(s.getCapienza() == cap){
-                shows.add(s);
+                result.add(s);
             }
         }
-        return shows;
+        return result;
     }
 
 

@@ -2,10 +2,10 @@ package com.example.progettomola.controllergui;
 
 import com.example.progettomola.DatabaseConnection;
 import com.example.progettomola.model.entity.Show;
-import com.example.progettomola.model.entity.User;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -52,17 +52,17 @@ public class UserSearchController implements Initializable {
 
 
     public void handleCerca() {
-        btnCerca.setOnAction(ActionEvent -> {
+        btnCerca.setOnAction(event -> {
 
             String search = searchField.getText();
-            ObservableList<Show> spettacoliTrovati = FXCollections.observableArrayList();
+            ObservableList<Show> spettacoli = FXCollections.observableArrayList();
 
-            for (Show show : spettacoliTrovati) {
+            for (Show show : spettacoli) {
                 if(show.getTitolo().toLowerCase().contains(search.toLowerCase())){
-                   spettacoliTrovati.add(show);
+                   spettacoli.add(show);
                 }
             }
-            tabView.setItems(spettacoliTrovati);
+            tabView.setItems(spettacoli);
         });
 
     }

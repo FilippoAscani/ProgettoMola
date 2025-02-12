@@ -19,7 +19,6 @@ public class ArtistHomepage {
 
     public ArtistHomepage() {
 
-
     }
 
     public void welcome(Artist artist){
@@ -59,37 +58,7 @@ public class ArtistHomepage {
 
                     List<Request> requests = addRequestsFromCSV(artist.getTipo());
 
-                    if(requests.isEmpty()){
-                        System.out.println("non hai richieste ricevute\n");
-                    }
-                    else {
-                        //for in un altra parte (?)
-                        for (Request request : requests) {
-                            System.out.println("richiesta " + request.getId() + ":");
-                            System.out.println("nome: " + request.getNome());
-                            System.out.println("capienza " + request.getCapienza());
-                            System.out.println("tipo " + request.getTipo());
-                            System.out.println();
-
-                            System.out.println("accetti la richiesta? (y/n)");
-
-                            String risposta = scanner.nextLine().toLowerCase();
-
-                            if (risposta.equals("y")) {
-                                Show show = new Show(request.getId(),request.getNome(), request.getCapienza(), request.getTipo());
-
-                                ShowDAOImplCSV showDAO = new ShowDAOImplCSV();
-                                showDAO.addShow(show);
-                                request.setStatus("accepted");
-
-
-                            } else {
-
-                                request.setStatus("denied");
-                            }
-                        }
-
-                    }
+                    checkRequests(requests);
 
                     break;
 
@@ -103,14 +72,6 @@ public class ArtistHomepage {
                         System.out.println("ID " + show.getTitolo());
                     }
 
-
-
-
-                    try {
-                        TimeUnit.SECONDS.sleep(20);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
                     break;
 
 
@@ -149,6 +110,44 @@ public class ArtistHomepage {
         }
         return shows;
     }
+
+    public void checkRequests(List<Request> requests){
+
+        Scanner scanner = new Scanner(System.in);
+
+        if(requests.isEmpty()){
+            System.out.println("non hai richieste ricevute\n");
+        }
+        else {
+            //for in un altra parte (?)
+            for (Request request : requests) {
+                System.out.println("richiesta " + request.getId() + ":");
+                System.out.println("nome: " + request.getNome());
+                System.out.println("capienza " + request.getCapienza());
+                System.out.println("tipo " + request.getTipo());
+                System.out.println();
+
+                System.out.println("accetti la richiesta? (y/n)");
+
+                String risposta = scanner.nextLine().toLowerCase();
+
+                if (risposta.equals("y")) {
+                    Show show = new Show(request.getId(),request.getNome(), request.getCapienza(), request.getTipo());
+
+                    ShowDAOImplCSV showDAO = new ShowDAOImplCSV();
+                    showDAO.addShow(show);
+                    request.setStatus("accepted");
+
+
+                } else {
+
+                    request.setStatus("denied");
+                }
+            }
+
+        }
+    }
+
 
 
 }
