@@ -22,13 +22,14 @@ public class UserDAOImplDB implements UserDAO {
 
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, user.getId());
-            ps.setString(2, user.getNome());
-            ps.setString(3, user.getCognome());
-            ps.setString(4, user.getUsername());
-            ps.setString(5, user.getPassword());
-            ps.executeUpdate();
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, user.getId());
+                ps.setString(2, user.getNome());
+                ps.setString(3, user.getCognome());
+                ps.setString(4, user.getUsername());
+                ps.setString(5, user.getPassword());
+                ps.executeUpdate();
+            }
 
 
         }
@@ -46,9 +47,11 @@ public class UserDAOImplDB implements UserDAO {
 
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs;
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                rs = ps.executeQuery();
+            }
 
             if(rs.next()) {
                 return new User
@@ -74,8 +77,10 @@ public class UserDAOImplDB implements UserDAO {
         String sql = "SELECT * FROM users";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs;
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                rs = ps.executeQuery();
+            }
 
             while(rs.next()) {
 
@@ -102,11 +107,12 @@ public class UserDAOImplDB implements UserDAO {
         String sql = "UPDATE users SET name = ?, cognome = ? WHERE username = ?";
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, user.getNome());
-            ps.setString(2, user.getCognome());
-            ps.setString(3, user.getUsername());
-            ps.executeUpdate();
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, user.getNome());
+                ps.setString(2, user.getCognome());
+                ps.setString(3, user.getUsername());
+                ps.executeUpdate();
+            }
 
         }
         catch(SQLException | DBConnectionException e){
@@ -120,10 +126,11 @@ public class UserDAOImplDB implements UserDAO {
         String sql = "DELETE FROM users WHERE nome = ?";
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setString(1, user.getNome());
-            ps.executeUpdate();
+                ps.setString(1, user.getNome());
+                ps.executeUpdate();
+            }
         }
         catch(SQLException | DBConnectionException e){
             e.printStackTrace();

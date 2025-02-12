@@ -109,6 +109,9 @@ public class SponsorLoginController implements Initializable {
                 }
                 break;
 
+            default:
+                    logger.info("errore default file system");
+
         }
 
     }

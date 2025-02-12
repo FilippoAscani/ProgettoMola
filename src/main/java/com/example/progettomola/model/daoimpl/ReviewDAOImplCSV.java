@@ -14,7 +14,7 @@ public class ReviewDAOImplCSV implements ReviewDAO {
 
     }
 
-
+    private static final String FILE = "review.csv";
 
     @Override
     public void addReview(Review review) {
@@ -23,7 +23,7 @@ public class ReviewDAOImplCSV implements ReviewDAO {
         //concetto di BufferedReader per la lettura e scrittura su un file
         try {
 
-            BufferedWriter bw = new BufferedWriter(new FileWriter( "review.csv", true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter( FILE, true));
             bw.write(review.getId() + "," + review.getContent());
             bw.newLine();
             bw.close();
@@ -41,15 +41,15 @@ public class ReviewDAOImplCSV implements ReviewDAO {
     public void updateReview(Review review) {
         List<Review> reviews = getReviews();
         try {
-            BufferedWriter br = new BufferedWriter(new FileWriter("review.csv", true));
-            for (Review r : reviews) {
-                if(r.getId() == review.getId()){
-                    br.write(review.getId() + "," +review.getContent());
+            try (BufferedWriter br = new BufferedWriter(new FileWriter(FILE, true))) {
+                for (Review r : reviews) {
+                    if (r.getId() == review.getId()) {
+                        br.write(review.getId() + "," + review.getContent());
+                    } else {
+                        br.write(r.getId() + "," + r.getContent());
+                    }
+                    br.newLine();
                 }
-                else{
-                    br.write(r.getId() + "," +r.getContent());
-                }
-                br.newLine();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -62,11 +62,12 @@ public class ReviewDAOImplCSV implements ReviewDAO {
         List<Review> reviews = getReviews();
         try {
 
-            BufferedWriter bw = new BufferedWriter(new FileWriter("artist.csv", true));
-            for (Review r : reviews) {
-                if(r.getId() != review.getId()){
-                    bw.write(r.getId() + "," +r.getContent());
-                    bw.newLine();
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE, true))) {
+                for (Review r : reviews) {
+                    if (r.getId() != review.getId()) {
+                        bw.write(r.getId() + "," + r.getContent());
+                        bw.newLine();
+                    }
                 }
             }
 
@@ -80,12 +81,13 @@ public class ReviewDAOImplCSV implements ReviewDAO {
 
         List<Review> reviews = new ArrayList<>();
         try {
-            BufferedReader br = new BufferedReader(new FileReader("review.csv"));
-            String line;
-            while ((line = br.readLine()) != null){
-                String[] colonne = line.split(",");
-                reviews.add(new Review(Integer.parseInt(colonne[0]), colonne[1]));
+            try (BufferedReader br = new BufferedReader(new FileReader(FILE))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] colonne = line.split(",");
+                    reviews.add(new Review(Integer.parseInt(colonne[0]), colonne[1]));
 
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -97,14 +99,15 @@ public class ReviewDAOImplCSV implements ReviewDAO {
     @Override
     public Review getReview(int id) {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("review.csv"));
-            String line;
-            while((line = br.readLine()) != null){
-                String[] colonne = line.split(",");
-                if(Integer.parseInt(colonne[0]) == id){
-                    return new Review(id, colonne[1]);
-                }
+            try (BufferedReader br = new BufferedReader(new FileReader(FILE))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] colonne = line.split(",");
+                    if (Integer.parseInt(colonne[0]) == id) {
+                        return new Review(id, colonne[1]);
+                    }
 
+                }
             }
 
 

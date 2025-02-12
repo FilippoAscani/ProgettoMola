@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 
 public class UserLoginController implements Initializable {
 
+    @FXML
     public Button btnIndietro;
     @FXML
     private Button btnLogin;
@@ -52,7 +53,7 @@ public class UserLoginController implements Initializable {
     private static final Logger logger = LoggerFactory.getLogger(UserLoginController.class);
 
 
-    public void select(ActionEvent actionEvent) {
+    public void select() {
         combo1.getSelectionModel().getSelectedItem();
     }
 
@@ -111,13 +112,17 @@ public class UserLoginController implements Initializable {
                 }
                 break;
 
+            default:
+                logger.info("errore user login, registrati");
+                break;
+
         }
 
     }
 
 
 
-    public void handleIndietro(ActionEvent actionEvent) {
+    public void handleIndietro() {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-homepage-view.fxml")));
             Stage stage = (Stage) btnIndietro.getScene().getWindow();

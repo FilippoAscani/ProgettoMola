@@ -19,12 +19,13 @@ public class ShowDAOImplDB implements ShowDAO {
 
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, show.getId());
-            ps.setString(2, show.getTitolo());
-            ps.setInt(3, show.getCapienza());
-            ps.setString(4, show.getTipo());
-            ps.executeUpdate();
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, show.getId());
+                ps.setString(2, show.getTitolo());
+                ps.setInt(3, show.getCapienza());
+                ps.setString(4, show.getTipo());
+                ps.executeUpdate();
+            }
 
 
         }
@@ -38,11 +39,12 @@ public class ShowDAOImplDB implements ShowDAO {
         String sql = "UPDATE shows SET titolo = ?, capienza = ? WHERE tipo = ?";
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, show.getTitolo());
-            ps.setInt(2, show.getCapienza());
-            ps.setString(3, show.getTipo());
-            ps.executeUpdate();
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, show.getTitolo());
+                ps.setInt(2, show.getCapienza());
+                ps.setString(3, show.getTipo());
+                ps.executeUpdate();
+            }
 
         }
         catch(SQLException | DBConnectionException e){
@@ -55,10 +57,11 @@ public class ShowDAOImplDB implements ShowDAO {
         String sql = "DELETE FROM shows WHERE titolo = ?";
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setString(1, show.getTitolo());
-            ps.executeUpdate();
+                ps.setString(1, show.getTitolo());
+                ps.executeUpdate();
+            }
         }
         catch(SQLException | DBConnectionException e){
             e.printStackTrace();
@@ -71,8 +74,10 @@ public class ShowDAOImplDB implements ShowDAO {
         String sql = "SELECT * FROM shows";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs;
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                rs = ps.executeQuery();
+            }
 
             while(rs.next()) {
 
@@ -100,9 +105,11 @@ public class ShowDAOImplDB implements ShowDAO {
 
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs;
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                rs = ps.executeQuery();
+            }
 
             if(rs.next()) {
                 return new Show

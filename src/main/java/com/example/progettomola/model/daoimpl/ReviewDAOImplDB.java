@@ -20,10 +20,11 @@ public class ReviewDAOImplDB implements ReviewDAO {
 
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, review.getId());
-            ps.setString(2, review.getContent());
-            ps.executeUpdate();
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, review.getId());
+                ps.setString(2, review.getContent());
+                ps.executeUpdate();
+            }
 
 
         }
@@ -37,9 +38,10 @@ public class ReviewDAOImplDB implements ReviewDAO {
         String sql = "UPDATE reviews SET  content = ?";
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, review.getContent());
-            ps.executeUpdate();
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, review.getContent());
+                ps.executeUpdate();
+            }
 
         }
         catch(SQLException | DBConnectionException e){
@@ -52,10 +54,11 @@ public class ReviewDAOImplDB implements ReviewDAO {
         String sql = "DELETE FROM reviews WHERE id = ?";
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setInt(1, review.getId());
-            ps.executeUpdate();
+                ps.setInt(1, review.getId());
+                ps.executeUpdate();
+            }
         }
         catch(SQLException | DBConnectionException e){
             e.printStackTrace();
@@ -68,8 +71,10 @@ public class ReviewDAOImplDB implements ReviewDAO {
         String sql = "SELECT * FROM reviews";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs;
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                rs = ps.executeQuery();
+            }
 
             while(rs.next()) {
 
@@ -95,9 +100,11 @@ public class ReviewDAOImplDB implements ReviewDAO {
 
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs;
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                rs = ps.executeQuery();
+            }
 
             if(rs.next()) {
                 return new Review

@@ -22,6 +22,8 @@ public class LoginManager {
     }
 
     private static final Logger logger = LoggerFactory.getLogger(LoginManager.class);
+    private static final String USERNAME = "username";
+    private static final String PASSWORD = "password";
 
     public void gestore(TypesOfLayers typeLayer, TypesOfRoles typeRole){
 
@@ -44,10 +46,10 @@ public class LoginManager {
                     int idUser = scanner.nextInt();
                     scanner.nextLine();
 
-                    logger.info("username");
+                    logger.info(USERNAME);
                     String cognomeUser = scanner.nextLine();
 
-                    logger.info("password");
+                    logger.info(PASSWORD);
                     String passwordUser = scanner .nextLine();
 
 
@@ -63,10 +65,10 @@ public class LoginManager {
                     int idUser = scanner.nextInt();
                     scanner.nextLine();
 
-                    logger.info("username");
+                    logger.info(USERNAME);
                     String cognomeUser = scanner.nextLine();
 
-                    logger.info("password");
+                    logger.info(PASSWORD);
                     String passwordUser = scanner .nextLine();
 
                     User newU = new User(idUser, cognomeUser, passwordUser);
@@ -89,10 +91,10 @@ public class LoginManager {
                     int id = scanner.nextInt();
                     scanner.nextLine();
 
-                    logger.info("username artista");
+                    logger.info(USERNAME);
                     String nomeArtist = scanner.nextLine();
 
-                    logger.info("password artista");
+                    logger.info(PASSWORD);
                     String passwordArtist = scanner.nextLine();
 
                     logger.info("tipo artista");
@@ -111,10 +113,10 @@ public class LoginManager {
                     int id = scanner.nextInt();
                     scanner.nextLine();
 
-                    logger.info("username artista");
+                    logger.info(USERNAME);
                     String nomeArtist = scanner.nextLine();
 
-                    logger.info("password artista");
+                    logger.info(PASSWORD);
                     String passwordArtist = scanner.nextLine();
 
                     logger.info("tipo artista");
@@ -138,10 +140,10 @@ public class LoginManager {
                     int idSponsor = scanner.nextInt();
                     scanner.nextLine();
 
-                    logger.info("username");
+                    logger.info(USERNAME);
                     String username = scanner.nextLine();
 
-                    logger.info("password");
+                    logger.info(PASSWORD);
                     String password = scanner.nextLine();
 
 
@@ -157,10 +159,10 @@ public class LoginManager {
                     int idSponsor = scanner.nextInt();
                     scanner.nextLine();
 
-                    logger.info("username");
+                    logger.info(USERNAME);
                     String username = scanner.nextLine();
 
-                    logger.info("password");
+                    logger.info(PASSWORD);
                     String password = scanner.nextLine();
 
 

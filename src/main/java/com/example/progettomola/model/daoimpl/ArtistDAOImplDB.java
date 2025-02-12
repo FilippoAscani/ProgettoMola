@@ -19,12 +19,13 @@ public class ArtistDAOImplDB implements ArtistDAO {
 
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, artist.getId());
-            ps.setString(2, artist.getUsername());
-            ps.setString(3, artist.getPassword());
-            ps.setString(4, artist.getTipo());
-            ps.executeUpdate();
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, artist.getId());
+                ps.setString(2, artist.getUsername());
+                ps.setString(3, artist.getPassword());
+                ps.setString(4, artist.getTipo());
+                ps.executeUpdate();
+            }
 
 
         }
@@ -38,11 +39,12 @@ public class ArtistDAOImplDB implements ArtistDAO {
         String sql = "UPDATE artists SET username = ?, password = ? WHERE tipo = ?";
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, artist.getUsername());
-            ps.setString(2, artist.getPassword());
-            ps.setString(3, artist.getTipo());
-            ps.executeUpdate();
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, artist.getUsername());
+                ps.setString(2, artist.getPassword());
+                ps.setString(3, artist.getTipo());
+                ps.executeUpdate();
+            }
 
         }
         catch(SQLException | DBConnectionException e){
@@ -55,10 +57,11 @@ public class ArtistDAOImplDB implements ArtistDAO {
         String sql = "DELETE FROM artists WHERE username = ?";
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setString(1, artist.getUsername());
-            ps.executeUpdate();
+                ps.setString(1, artist.getUsername());
+                ps.executeUpdate();
+            }
         }
         catch(SQLException | DBConnectionException e){
             e.printStackTrace();
@@ -71,8 +74,10 @@ public class ArtistDAOImplDB implements ArtistDAO {
         String sql = "SELECT * FROM artists";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs;
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                rs = ps.executeQuery();
+            }
 
             while(rs.next()) {
 
@@ -99,9 +104,11 @@ public class ArtistDAOImplDB implements ArtistDAO {
 
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs;
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                rs = ps.executeQuery();
+            }
 
             if(rs.next()) {
                 return new Artist

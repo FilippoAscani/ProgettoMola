@@ -8,11 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RequestDAOImplCSV implements RequestDAO {
+
+    private static final String FILE = "request.csv";
+
     @Override
     public void addRequest(Request request) {
         try {
 
-            BufferedWriter bw = new BufferedWriter(new FileWriter( "request.csv", true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter( FILE, true));
             bw.write(request.getId() + "," + request.getNome() + "," + request.getCapienza() + "," + request.getTipo());
             bw.newLine();
             bw.close();
@@ -27,15 +30,15 @@ public class RequestDAOImplCSV implements RequestDAO {
     public void updateRequest(Request request) {
         List<Request> requests = getRequests();
         try {
-            BufferedWriter br = new BufferedWriter(new FileWriter("request.csv", true));
-            for (Request r : requests) {
-                if(r.getId() == request.getId()){
-                    br.write(request.getId() + "," +request.getNome() + "," + request.getCapienza() + "," + request.getTipo());
+            try (BufferedWriter br = new BufferedWriter(new FileWriter(FILE, true))) {
+                for (Request r : requests) {
+                    if (r.getId() == request.getId()) {
+                        br.write(request.getId() + "," + request.getNome() + "," + request.getCapienza() + "," + request.getTipo());
+                    } else {
+                        br.write(r.getId() + "," + r.getNome() + "," + r.getCapienza() + "," + request.getTipo());
+                    }
+                    br.newLine();
                 }
-                else{
-                    br.write(r.getId() + "," +r.getNome() + "," + r.getCapienza() + "," + request.getTipo());
-                }
-                br.newLine();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -47,11 +50,12 @@ public class RequestDAOImplCSV implements RequestDAO {
         List<Request> requests = getRequests();
         try {
 
-            BufferedWriter bw = new BufferedWriter(new FileWriter("request.csv", true));
-            for (Request r : requests) {
-                if(r.getId() != request.getId()){
-                    bw.write(r.getId() + "," +r.getNome() + "," + r.getCapienza() + "," + request.getTipo());
-                    bw.newLine();
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE, true))) {
+                for (Request r : requests) {
+                    if (r.getId() != request.getId()) {
+                        bw.write(r.getId() + "," + r.getNome() + "," + r.getCapienza() + "," + request.getTipo());
+                        bw.newLine();
+                    }
                 }
             }
 
@@ -64,12 +68,13 @@ public class RequestDAOImplCSV implements RequestDAO {
     public List<Request> getRequests() {
         List<Request> requests = new ArrayList<>();
         try {
-            BufferedReader br = new BufferedReader(new FileReader("request.csv"));
-            String line;
-            while ((line = br.readLine()) != null){
-                String[] colonne = line.split(",");
-                requests.add(new Request(Integer.parseInt(colonne[0]), colonne[1], Integer.parseInt(colonne[2]),colonne[3]));
+            try (BufferedReader br = new BufferedReader(new FileReader(FILE))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] colonne = line.split(",");
+                    requests.add(new Request(Integer.parseInt(colonne[0]), colonne[1], Integer.parseInt(colonne[2]), colonne[3]));
 
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -80,14 +85,15 @@ public class RequestDAOImplCSV implements RequestDAO {
     @Override
     public Request getRequest(int id) {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("request.csv"));
-            String line;
-            while((line = br.readLine()) != null){
-                String[] colonne = line.split(",");
-                if(Integer.parseInt(colonne[0]) == id){
-                    return new Request(id, colonne[1], Integer.parseInt(colonne[2]),colonne[3]);
-                }
+            try (BufferedReader br = new BufferedReader(new FileReader(FILE))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] colonne = line.split(",");
+                    if (Integer.parseInt(colonne[0]) == id) {
+                        return new Request(id, colonne[1], Integer.parseInt(colonne[2]), colonne[3]);
+                    }
 
+                }
             }
 
 

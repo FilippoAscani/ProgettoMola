@@ -19,12 +19,13 @@ public class RequestDAOImplDB implements RequestDAO {
 
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, request.getId());
-            ps.setString(2, request.getNome());
-            ps.setInt(3, request.getCapienza());
-            ps.setString(4, request.getTipo());
-            ps.executeUpdate();
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, request.getId());
+                ps.setString(2, request.getNome());
+                ps.setInt(3, request.getCapienza());
+                ps.setString(4, request.getTipo());
+                ps.executeUpdate();
+            }
 
 
         }
@@ -38,11 +39,12 @@ public class RequestDAOImplDB implements RequestDAO {
         String sql = "UPDATE requests SET name = ?, capienza = ? WHERE tipo = ?";
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, request.getNome());
-            ps.setInt(2, request.getCapienza());
-            ps.setString(3, request.getTipo());
-            ps.executeUpdate();
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, request.getNome());
+                ps.setInt(2, request.getCapienza());
+                ps.setString(3, request.getTipo());
+                ps.executeUpdate();
+            }
 
         }
         catch(SQLException | DBConnectionException e){
@@ -55,10 +57,11 @@ public class RequestDAOImplDB implements RequestDAO {
         String sql = "DELETE FROM requests WHERE nome = ?";
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setString(1, request.getNome());
-            ps.executeUpdate();
+                ps.setString(1, request.getNome());
+                ps.executeUpdate();
+            }
         }
         catch(SQLException | DBConnectionException e){
             e.printStackTrace();
@@ -71,8 +74,10 @@ public class RequestDAOImplDB implements RequestDAO {
         String sql = "SELECT * FROM requests";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs;
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                rs = ps.executeQuery();
+            }
 
             while(rs.next()) {
 
@@ -100,9 +105,11 @@ public class RequestDAOImplDB implements RequestDAO {
 
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs;
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                rs = ps.executeQuery();
+            }
 
             if(rs.next()) {
                 return new Request

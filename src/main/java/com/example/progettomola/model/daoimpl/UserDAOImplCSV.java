@@ -14,6 +14,7 @@ public class UserDAOImplCSV implements UserDAO {
 
     }
 
+    private static final String FILE = "user.csv";
 
     @Override
     public void addUser(User user) {
@@ -22,7 +23,7 @@ public class UserDAOImplCSV implements UserDAO {
         //concetto di BufferedReader per la lettura e scrittura su un file
         try {
 
-            BufferedWriter bw = new BufferedWriter(new FileWriter( "user.csv", true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter( FILE, true));
             bw.write(user.getId() +
                     "," +user.getNome() +
                     "," + user.getCognome() +
@@ -44,23 +45,23 @@ public class UserDAOImplCSV implements UserDAO {
     public void updateUser(User user) {
         List<User> users = getUsers();
         try {
-            BufferedWriter br = new BufferedWriter(new FileWriter("user.csv", true));
-            for (User u : users) {
-                if(u.getId() == user.getId()){
-                    br.write(user.getId() +
-                            "," +user.getNome() +
-                            "," + user.getCognome() +
-                            "," + user.getUsername() +
-                            "," + user.getPassword());
+            try (BufferedWriter br = new BufferedWriter(new FileWriter(FILE, true))) {
+                for (User u : users) {
+                    if (u.getId() == user.getId()) {
+                        br.write(user.getId() +
+                                "," + user.getNome() +
+                                "," + user.getCognome() +
+                                "," + user.getUsername() +
+                                "," + user.getPassword());
+                    } else {
+                        br.write(u.getId() +
+                                "," + u.getNome() +
+                                "," + u.getCognome() +
+                                "," + u.getUsername() +
+                                "," + u.getPassword());
+                    }
+                    br.newLine();
                 }
-                else{
-                    br.write(u.getId() +
-                            "," +u.getNome() +
-                            "," + u.getCognome() +
-                            "," + u.getUsername() +
-                            "," + u.getPassword());
-                }
-                br.newLine();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -73,15 +74,16 @@ public class UserDAOImplCSV implements UserDAO {
         List<User> users = getUsers();
         try {
 
-            BufferedWriter bw = new BufferedWriter(new FileWriter("user.csv", true));
-            for (User u : users) {
-                if(u.getId() != user.getId()){
-                    bw.write(u.getId() +
-                            "," + u.getNome() +
-                            "," + u.getCognome() +
-                            "," + u.getUsername() +
-                            "," + u.getPassword());
-                    bw.newLine();
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE, true))) {
+                for (User u : users) {
+                    if (u.getId() != user.getId()) {
+                        bw.write(u.getId() +
+                                "," + u.getNome() +
+                                "," + u.getCognome() +
+                                "," + u.getUsername() +
+                                "," + u.getPassword());
+                        bw.newLine();
+                    }
                 }
             }
 
@@ -95,12 +97,13 @@ public class UserDAOImplCSV implements UserDAO {
 
         List<User> users = new ArrayList<>();
         try {
-            BufferedReader br = new BufferedReader(new FileReader("user.csv"));
-            String line;
-            while ((line = br.readLine()) != null){
-                String[] colonne = line.split(",");
-                users.add(new User(Integer.parseInt(colonne[0]), colonne[1], colonne[2], colonne[3], colonne[4]));
+            try (BufferedReader br = new BufferedReader(new FileReader(FILE))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] colonne = line.split(",");
+                    users.add(new User(Integer.parseInt(colonne[0]), colonne[1], colonne[2], colonne[3], colonne[4]));
 
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -112,14 +115,15 @@ public class UserDAOImplCSV implements UserDAO {
     @Override
     public User getUser(int id) {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("user.csv"));
-            String line;
-            while((line = br.readLine()) != null){
-                String[] colonne = line.split(",");
-                if(Integer.parseInt(colonne[0]) == id){
-                    return new User(id, colonne[1], colonne[2],colonne[3], colonne[4]);
-                }
+            try (BufferedReader br = new BufferedReader(new FileReader(FILE))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] colonne = line.split(",");
+                    if (Integer.parseInt(colonne[0]) == id) {
+                        return new User(id, colonne[1], colonne[2], colonne[3], colonne[4]);
+                    }
 
+                }
             }
 
 

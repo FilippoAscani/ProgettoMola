@@ -21,11 +21,12 @@ public class SponsorDAOImplDB implements SponsorDAO {
 
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, sponsor.getId());
-            ps.setString(2, sponsor.getUsername());
-            ps.setString(3, sponsor.getPassword());
-            ps.executeUpdate();
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, sponsor.getId());
+                ps.setString(2, sponsor.getUsername());
+                ps.setString(3, sponsor.getPassword());
+                ps.executeUpdate();
+            }
 
 
         }
@@ -39,9 +40,10 @@ public class SponsorDAOImplDB implements SponsorDAO {
         String sql = "UPDATE sponsors SET username = ?, WHERE username = ?";
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, sponsor.getUsername());
-            ps.executeUpdate();
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, sponsor.getUsername());
+                ps.executeUpdate();
+            }
 
         }
         catch(SQLException | DBConnectionException e){
@@ -54,10 +56,11 @@ public class SponsorDAOImplDB implements SponsorDAO {
         String sql = "DELETE FROM sponsors WHERE nome = ?";
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setString(1, sponsor.getUsername());
-            ps.executeUpdate();
+                ps.setString(1, sponsor.getUsername());
+                ps.executeUpdate();
+            }
         }
         catch(SQLException | DBConnectionException e){
             e.printStackTrace();
@@ -70,8 +73,10 @@ public class SponsorDAOImplDB implements SponsorDAO {
         String sql = "SELECT * FROM sponsors";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs;
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                rs = ps.executeQuery();
+            }
 
             while(rs.next()) {
 
@@ -98,9 +103,11 @@ public class SponsorDAOImplDB implements SponsorDAO {
 
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs;
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                rs = ps.executeQuery();
+            }
 
             if(rs.next()) {
                 return new Sponsor

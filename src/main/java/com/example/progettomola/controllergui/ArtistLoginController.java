@@ -109,6 +109,9 @@ public class ArtistLoginController implements Initializable {
                 }
                 break;
 
+            default:
+                logger.info("errore default");
+
         }
 
     }

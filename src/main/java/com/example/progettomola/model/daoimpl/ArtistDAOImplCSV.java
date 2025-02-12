@@ -14,14 +14,14 @@ public class ArtistDAOImplCSV implements ArtistDAO {
 
     }
 
-
+    private static final String FILE = "artist.csv";
 
     @Override
     public void addArtist(Artist artist) {
 
         try {
 
-            BufferedWriter bw = new BufferedWriter(new FileWriter( "artist.csv", true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter( FILE, true));
             bw.write(artist.getId()+","+artist.getUsername() +","+ artist.getPassword()+","+ artist.getTipo());
             bw.newLine();
             bw.close();
@@ -39,15 +39,15 @@ public class ArtistDAOImplCSV implements ArtistDAO {
     public void updateArtist(Artist artist) {
         List<Artist> artists = getArtists();
         try {
-            BufferedWriter br = new BufferedWriter(new FileWriter("artist.csv", true));
-            for (Artist a : artists) {
-                if(a.getId() == artist.getId()){
-                    br.write(artist.getId() + "," +artist.getUsername() + "," + artist.getPassword() + "," + artist.getTipo());
+            try (BufferedWriter br = new BufferedWriter(new FileWriter(FILE, true))) {
+                for (Artist a : artists) {
+                    if (a.getId() == artist.getId()) {
+                        br.write(artist.getId() + "," + artist.getUsername() + "," + artist.getPassword() + "," + artist.getTipo());
+                    } else {
+                        br.write(a.getId() + "," + a.getUsername() + "," + a.getPassword() + "," + a.getTipo());
+                    }
+                    br.newLine();
                 }
-                else{
-                    br.write(a.getId() + "," +a.getUsername() + "," + a.getPassword() + "," + a.getTipo());
-                }
-                br.newLine();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -60,11 +60,12 @@ public class ArtistDAOImplCSV implements ArtistDAO {
         List<Artist> artists = getArtists();
         try {
 
-            BufferedWriter bw = new BufferedWriter(new FileWriter("artist.csv", true));
-            for (Artist a : artists) {
-                if(a.getId() != artist.getId()){
-                    bw.write(a.getId() + "," +a.getUsername() + "," + a.getPassword() + "," + a.getTipo());
-                    bw.newLine();
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE, true))) {
+                for (Artist a : artists) {
+                    if (a.getId() != artist.getId()) {
+                        bw.write(a.getId() + "," + a.getUsername() + "," + a.getPassword() + "," + a.getTipo());
+                        bw.newLine();
+                    }
                 }
             }
 
@@ -78,12 +79,13 @@ public class ArtistDAOImplCSV implements ArtistDAO {
 
         List<Artist> artists = new ArrayList<>();
         try {
-            BufferedReader br = new BufferedReader(new FileReader("artist.csv"));
-            String line;
-            while ((line = br.readLine()) != null){
-                String[] colonne = line.split(",");
-                artists.add(new Artist(Integer.parseInt(colonne[0]), colonne[1], colonne[2],colonne[3]));
+            try (BufferedReader br = new BufferedReader(new FileReader(FILE))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] colonne = line.split(",");
+                    artists.add(new Artist(Integer.parseInt(colonne[0]), colonne[1], colonne[2], colonne[3]));
 
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -95,14 +97,15 @@ public class ArtistDAOImplCSV implements ArtistDAO {
     @Override
     public Artist getArtist(int id) {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("artist.csv"));
-            String line;
-            while((line = br.readLine()) != null){
-                String[] colonne = line.split(",");
-                if(Integer.parseInt(colonne[0]) == id){
-                    return new Artist(id, colonne[1], colonne[2],colonne[3]);
-                }
+            try (BufferedReader br = new BufferedReader(new FileReader(FILE))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] colonne = line.split(",");
+                    if (Integer.parseInt(colonne[0]) == id) {
+                        return new Artist(id, colonne[1], colonne[2], colonne[3]);
+                    }
 
+                }
             }
 
 
