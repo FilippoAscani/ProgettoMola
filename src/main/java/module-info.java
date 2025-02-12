@@ -2,6 +2,8 @@ module com.example.progettomola {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires mysql.connector.j;
+    requires org.slf4j;
 
 
     opens com.example.progettomola to javafx.fxml;

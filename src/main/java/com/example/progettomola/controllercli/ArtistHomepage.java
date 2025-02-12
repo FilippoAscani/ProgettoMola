@@ -5,21 +5,25 @@ import com.example.progettomola.model.entity.Request;
 import com.example.progettomola.model.entity.Show;
 import com.example.progettomola.model.daoimpl.RequestDAOImplCSV;
 import com.example.progettomola.model.daoimpl.ShowDAOImplCSV;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
+
+
 
 public class ArtistHomepage {
-
-    Logger logger = Logger.getLogger("ArtistHomepage");
 
 
     public ArtistHomepage() {
 
+        //costruttore vuoto
     }
+
+    private static final Logger logger = LoggerFactory.getLogger(ArtistHomepage.class);
 
     public void welcome(Artist artist){
 
@@ -28,23 +32,24 @@ public class ArtistHomepage {
         while(true) {
 
             logger.info("digita 1 per Profilo");
-            System.out.println("digita 2 per Richieste ricevute");
-            System.out.println("digita 3 per Recensioni");
-            System.out.println("digita 4 per Uscire");
+            logger.info("digita 2 per Richieste ricevute");
+            logger.info("digita 3 per Recensioni");
+            logger.info("digita 4 per Uscire");
 
             String choice = scanner.nextLine();
 
 
             switch (choice) {
                 case "1":
-                    System.out.println("ecco il tuo profilo");
+                    logger.info("ecco il tuo profilo");
 
-                    System.out.println("ID " + artist.getId());
-                    System.out.println("Username " + artist.getUsername());
-                    System.out.println("Password " + artist.getPassword());
+                    logger.info("ID {}" , artist.getId());
+                    logger.info("Username {}" , artist.getUsername());
+                    logger.info("Password {}" , artist.getPassword());
 
 
-                    System.out.println("attendi...");
+                    logger.info("attendi...");
+
                     try {
                         TimeUnit.SECONDS.sleep(10);
                     } catch (InterruptedException e) {
@@ -54,7 +59,7 @@ public class ArtistHomepage {
 
 
                 case "2":
-                    System.out.println("controlla richieste");
+                    logger.info("controlla richieste");
 
                     List<Request> requests = addRequestsFromCSV(artist.getTipo());
 
@@ -64,24 +69,24 @@ public class ArtistHomepage {
 
 
                 case "3":
-                    System.out.println("visualizza recensioni");
+                    logger.info("visualizza recensioni");
                     //user scrive recensione su spettacolo qualsiasi
                     //se artista è in quello spettacolo visualizza recensione
                     List<Show> shows = getShowsReviewed(artist.getTipo());
                     for(Show show : shows){
-                        System.out.println("ID " + show.getTitolo());
+                        logger.info("ID {}" , show.getTitolo());
                     }
 
                     break;
 
 
                 case "4":
-                    System.out.println("uscita in corso");
+                    logger.info("uscita in corso");
                     System.exit(0);
                     break;
 
                 default:
-                    System.out.println("errore imprevisto UserHomepage");
+                    logger.info("errore imprevisto UserHomepage");
             }
         }
 
@@ -116,18 +121,18 @@ public class ArtistHomepage {
         Scanner scanner = new Scanner(System.in);
 
         if(requests.isEmpty()){
-            System.out.println("non hai richieste ricevute\n");
+            logger.info("non hai richieste ricevute\n");
         }
         else {
             //for in un altra parte (?)
             for (Request request : requests) {
-                System.out.println("richiesta " + request.getId() + ":");
-                System.out.println("nome: " + request.getNome());
-                System.out.println("capienza " + request.getCapienza());
-                System.out.println("tipo " + request.getTipo());
-                System.out.println();
+                logger.info("richiesta {} " ,request.getId());
+                logger.info("nome {}" , request.getNome());
+                logger.info("capienza {}" , request.getCapienza());
+                logger.info("tipo {}" , request.getTipo());
+                logger.info("\n");
 
-                System.out.println("accetti la richiesta? (y/n)");
+                logger.info("accetti la richiesta? (y/n)");
 
                 String risposta = scanner.nextLine().toLowerCase();
 

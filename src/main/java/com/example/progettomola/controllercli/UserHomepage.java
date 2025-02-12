@@ -9,41 +9,46 @@ import com.example.progettomola.model.daoimpl.ShowDAOImplCSV;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 public class UserHomepage {
 
-    //private String user;
 
     public UserHomepage() {
-        //this.user = user;
+
+        //questo rappresenta il costruttore
 
     }
 
+    private static final Logger logger = LoggerFactory.getLogger(UserHomepage.class);
+
+
     public void welcome(User user){
 
+
+
         Scanner scanner = new Scanner(System.in);
+        boolean running = true;
 
-        while(true) {
+        while(running) {
 
-            System.out.println("digita 1 per Profilo");
-            System.out.println("digita 2 per Cerca Spettacolo");
-            System.out.println("digita 3 per Recensioni");
-            System.out.println("digita 4 per Uscire");
+            logger.info("digita 1 per Profilo");
+            logger.info("digita 2 per Cerca Spettacolo");
+            logger.info("digita 3 per Recensioni");
+            logger.info("digita 4 per Uscire");
 
             String choice = scanner.nextLine();
 
 
             switch (choice) {
+
+
                 case "1":
-                    System.out.println("ecco il tuo profilo");
 
-                    System.out.println("ID " + user.getId());
-                    System.out.println("Nome " + user.getNome());
-                    System.out.println("Cognome " + user.getCognome());
-                    System.out.println("Password " + user.getPassword());
-                    System.out.println("Username " + user.getUsername());
-                    System.out.println("\n");
+                    showProfile(user);
 
-                    System.out.println("attendi...");
                     try {
                         TimeUnit.SECONDS.sleep(10);
                     } catch (InterruptedException e) {
@@ -53,7 +58,7 @@ public class UserHomepage {
 
 
                 case "2":
-                    System.out.println("ecco gli spettacoli");
+                    logger.info("ecco gli spettacoli");
                     //cerca anche spettacolo()
                     //visualizza csv dell'artistacsv
                     //recensisci artista o spettacolo
@@ -63,41 +68,34 @@ public class UserHomepage {
                     showDAO.getShows();
 
                     //cerca spettacolo
-                    System.out.println("cerca spettacolo");
+                    logger.info("cerca spettacolo");
                     String tipo = scanner.nextLine();
                     Show trovatoShow = user.cercaSpettacolo(tipo);
 
-                    System.out.println("scrivi recensione");
+                    logger.info("scrivi recensione");
                     String content = scanner.nextLine();
                     user.writeReview(content, trovatoShow);
 
                     //scrivi recensione
 
 
-
-
                     String nome = scanner.nextLine();
                     Artist trovatoA = user.cercaArtista(nome);
-                    if(trovatoA != null) {
-                        System.out.println("artista trovato: " + nome + "\n");
-                    }
-                    else{
-                        System.out.println("artista non trovato\n");
-                        break;
-                    }
 
-
+                    trovaArtist(trovatoA);
 
                     try {
                         TimeUnit.SECONDS.sleep(30);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
+
                     break;
 
 
                 case "3":
-                    System.out.println("visualizza recensioni");
+
+                    logger.info("visualizza recensioni");
                     //titoli delle recensioni + descrizione recensione
 
                     ReviewDAOImplCSV reviewDAO = new ReviewDAOImplCSV();
@@ -113,16 +111,41 @@ public class UserHomepage {
 
 
                 case "4":
-                    System.out.println("uscita in corso");
-                    System.exit(0);
+
+                    logger.info("uscita in corso");
+                    running = false;
                     break;
 
                 default:
-                    System.out.println("errore imprevisto UserHomepage");
+                    logger.info("errore imprevisto UserHomepage");
+                    break;
             }
+
 
         }
 
+    }
+
+    private void showProfile(User user){
+        logger.info("ecco il tuo profilo");
+
+        logger.info("ID {}", user.getId());
+        logger.info("Nome {}", user.getNome());
+        logger.info("Cognome {}", user.getCognome());
+        logger.info("Password {}", user.getPassword());
+        logger.info("Username {}" , user.getUsername());
+        logger.info("\n");
+        logger.info("attendi...");
+
+    }
+
+    private void trovaArtist(Artist trovatoA){
+        if(trovatoA != null) {
+            logger.info("artista trovato: {} \n",trovatoA.getUsername());
+        }
+        else{
+            logger.info("artista non trovato\n");
+        }
     }
 
 

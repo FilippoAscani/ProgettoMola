@@ -6,6 +6,8 @@ import com.example.progettomola.model.entity.Sponsor;
 import com.example.progettomola.model.entity.User;
 import com.example.progettomola.enumerations.TypesOfLayers;
 import com.example.progettomola.enumerations.TypesOfRoles;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Scanner;
 
@@ -15,9 +17,11 @@ public class LoginManager {
 
     LoginManager() {
 
+        //costruttore vuoto
+
     }
 
-
+    private static final Logger logger = LoggerFactory.getLogger(LoginManager.class);
 
     public void gestore(TypesOfLayers typeLayer, TypesOfRoles typeRole){
 
@@ -34,16 +38,16 @@ public class LoginManager {
                 //controlla se arrivi da csv o da jdbc
                 if(typeLayer == TypesOfLayers.JDBC ){
 
-                    System.out.println("inizializzo la password jdbc");
+                    logger.info("inizializzo la password jdbc");
 
-                    System.out.println("id");
+                    logger.info("id");
                     int idUser = scanner.nextInt();
                     scanner.nextLine();
 
-                    System.out.println("username");
+                    logger.info("username");
                     String cognomeUser = scanner.nextLine();
 
-                    System.out.println("password");
+                    logger.info("password");
                     String passwordUser = scanner .nextLine();
 
 
@@ -53,16 +57,16 @@ public class LoginManager {
 
 
                 if(typeLayer == TypesOfLayers.CSV ){
-                    System.out.println("inizializzo la password csv");
+                    logger.info("inizializzo la password csv");
 
-                    System.out.println("id");
+                    logger.info("id");
                     int idUser = scanner.nextInt();
                     scanner.nextLine();
 
-                    System.out.println("username");
+                    logger.info("username");
                     String cognomeUser = scanner.nextLine();
 
-                    System.out.println("password");
+                    logger.info("password");
                     String passwordUser = scanner .nextLine();
 
                     User newU = new User(idUser, cognomeUser, passwordUser);
@@ -79,19 +83,19 @@ public class LoginManager {
 
                 if(typeLayer == TypesOfLayers.JDBC ){
 
-                    System.out.println("inizializzo la password jdbc da artista");
+                    logger.info("inizializzo la password jdbc da artista");
 
-                    System.out.println("id");
+                    logger.info("id");
                     int id = scanner.nextInt();
                     scanner.nextLine();
 
-                    System.out.println("username artista");
+                    logger.info("username artista");
                     String nomeArtist = scanner.nextLine();
 
-                    System.out.println("password artista");
+                    logger.info("password artista");
                     String passwordArtist = scanner.nextLine();
 
-                    System.out.println("tipo artista");
+                    logger.info("tipo artista");
                     String tipoArtist = scanner.nextLine();
 
                     Artist newA = new Artist(id, nomeArtist, passwordArtist, tipoArtist);
@@ -100,20 +104,20 @@ public class LoginManager {
 
 
                 if(typeLayer == TypesOfLayers.CSV ){
-                    System.out.println("inizializzo la password csv da artista");
+                    logger.info("inizializzo la password csv da artista");
 
 
-                    System.out.println("id");
+                    logger.info("id");
                     int id = scanner.nextInt();
                     scanner.nextLine();
 
-                    System.out.println("username artista");
+                    logger.info("username artista");
                     String nomeArtist = scanner.nextLine();
 
-                    System.out.println("password artista");
+                    logger.info("password artista");
                     String passwordArtist = scanner.nextLine();
 
-                    System.out.println("tipo artista");
+                    logger.info("tipo artista");
                     String tipoArtist = scanner.nextLine();
 
                     Artist newA = new Artist(id, nomeArtist, passwordArtist, tipoArtist);
@@ -128,16 +132,16 @@ public class LoginManager {
 
                 if(typeLayer == TypesOfLayers.JDBC ){
 
-                    System.out.println("inizializzo la password jdbc da sponsor");
+                    logger.info("inizializzo la password jdbc da sponsor");
 
-                    System.out.println("id");
+                    logger.info("id");
                     int idSponsor = scanner.nextInt();
                     scanner.nextLine();
 
-                    System.out.println("username");
+                    logger.info("username");
                     String username = scanner.nextLine();
 
-                    System.out.println("password");
+                    logger.info("password");
                     String password = scanner.nextLine();
 
 
@@ -147,16 +151,16 @@ public class LoginManager {
 
 
                 if(typeLayer == TypesOfLayers.CSV ){
-                    System.out.println("inizializzo la password csv da sponsor");
+                    logger.info("inizializzo la password csv da sponsor");
 
-                    System.out.println("id");
+                    logger.info("id");
                     int idSponsor = scanner.nextInt();
                     scanner.nextLine();
 
-                    System.out.println("username");
+                    logger.info("username");
                     String username = scanner.nextLine();
 
-                    System.out.println("password");
+                    logger.info("password");
                     String password = scanner.nextLine();
 
 
@@ -170,7 +174,7 @@ public class LoginManager {
 
 
             default:
-                System.out.println("errore");
+                logger.info("errore");
                 break;
 
         }

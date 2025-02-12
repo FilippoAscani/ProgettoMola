@@ -7,6 +7,8 @@ import com.example.progettomola.model.entity.Request;
 import com.example.progettomola.model.entity.Show;
 import com.example.progettomola.model.entity.Sponsor;
 import com.example.progettomola.model.daoimpl.ShowDAOImplCSV;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,30 +24,32 @@ public class SponsorHomepage {
 
     }
 
+    private static final Logger logger = LoggerFactory.getLogger(SponsorHomepage.class);
+
     public void welcome(Sponsor sponsor){
 
         Scanner scanner = new Scanner(System.in);
 
         while(true) {
 
-            System.out.println("digita 1 per Profilo");
-            System.out.println("digita 2 per Contatta artista");
-            System.out.println("digita 3 per Vedi Recensioni");
-            System.out.println("digita 4 per uscire");
+            logger.info("digita 1 per Profilo");
+            logger.info("digita 2 per Contatta artista");
+            logger.info("digita 3 per Vedi Recensioni");
+            logger.info("digita 4 per uscire");
 
             String choice = scanner.nextLine();
 
 
             switch (choice) {
                 case "1":
-                    System.out.println("ecco il tuo profilo");
+                    logger.info("ecco il tuo profilo");
 
-                    System.out.println("ID " + sponsor.getId());
-                    System.out.println("Username " + sponsor.getUsername());
-                    System.out.println("Password " + sponsor.getPassword());
+                    logger.info("ID {}" , sponsor.getId());
+                    logger.info("Username {}" , sponsor.getUsername());
+                    logger.info("Password {}" , sponsor.getPassword());
 
 
-                    System.out.println("attendi...");
+                    logger.info("attendi...");
                     try {
                         TimeUnit.SECONDS.sleep(10);
                     } catch (InterruptedException e) {
@@ -55,20 +59,20 @@ public class SponsorHomepage {
 
 
                 case "2":
-                    System.out.println("invia richieste");
+                    logger.info("invia richieste");
 
-                    System.out.println("inserire id richiesta");
+                    logger.info("inserire id richiesta");
                     int id = scanner.nextInt();
                     scanner.nextLine();
 
-                    System.out.println("inserire nome titolo show");
+                    logger.info("inserire nome titolo show");
                     String nomeReq = scanner.nextLine();
 
-                    System.out.println("inserire capienza");
+                    logger.info("inserire capienza");
                     int cap = scanner.nextInt();
                     scanner.nextLine();
 
-                    System.out.println("inserire tipo di artista richiesto");
+                    logger.info("inserire tipo di artista richiesto");
                     String tipoA = scanner.nextLine();
 
                     Request request = new Request(id, nomeReq, cap, tipoA);
@@ -86,14 +90,14 @@ public class SponsorHomepage {
 
 
                 case "3":
-                    System.out.println("visualizza recensioni");
+                    logger.info("visualizza recensioni");
                     //quelle di spettacoli che hanno le caratteristiche della mia richiesta
 
                     int c = scanner.nextInt();
                     scanner.nextLine();
                     List<Show> shows = getShowsReviewedCap(c);
                     for (Show show : shows) {
-                        System.out.println("ID " + show);
+                        logger.info("ID {}" , show);
                     }
 
 
@@ -106,12 +110,12 @@ public class SponsorHomepage {
 
 
                 case "4":
-                    System.out.println("uscita in corso");
+                    logger.info("uscita in corso");
                     System.exit(0);
                     break;
 
                 default:
-                    System.out.println("errore imprevisto UserHomepage");
+                    logger.info("errore imprevisto UserHomepage");
             }
         }
 
@@ -128,7 +132,7 @@ public class SponsorHomepage {
         for (Artist artist : artists) {
             if (artist.getTipo().equals(tipo)) {
                 sponsor.addObserver(artist); // Aggiungi l'artista come osservatore
-                System.out.println("Artista " + artist.getUsername() + " aggiunto come osservatore");
+                logger.info("Artista {} aggiunto come osservatore" , artist.getUsername());
 
             }
         }
