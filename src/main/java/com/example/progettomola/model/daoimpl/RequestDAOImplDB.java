@@ -1,6 +1,7 @@
 package com.example.progettomola.model.daoimpl;
 
 import com.example.progettomola.DatabaseConnection;
+import com.example.progettomola.exceptions.DBConnectionException;
 import com.example.progettomola.model.dao.RequestDAO;
 import com.example.progettomola.model.entity.Request;
 
@@ -17,7 +18,7 @@ public class RequestDAOImplDB implements RequestDAO {
         String sql = "INSERT INTO requests(id,nome,capienza,tipo) VALUES (?,?,?,?)";
 
         try {
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, request.getId());
             ps.setString(2, request.getNome());
@@ -27,7 +28,7 @@ public class RequestDAOImplDB implements RequestDAO {
 
 
         }
-        catch (SQLException e) {
+        catch (SQLException | DBConnectionException e) {
             e.printStackTrace();
         }
     }
@@ -36,7 +37,7 @@ public class RequestDAOImplDB implements RequestDAO {
     public void updateRequest(Request request) {
         String sql = "UPDATE requests SET name = ?, capienza = ? WHERE tipo = ?";
         try {
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, request.getNome());
             ps.setInt(2, request.getCapienza());
@@ -44,7 +45,7 @@ public class RequestDAOImplDB implements RequestDAO {
             ps.executeUpdate();
 
         }
-        catch(SQLException e){
+        catch(SQLException | DBConnectionException e){
             e.printStackTrace();
         }
     }
@@ -53,13 +54,13 @@ public class RequestDAOImplDB implements RequestDAO {
     public void deleteRequest(Request request) {
         String sql = "DELETE FROM requests WHERE nome = ?";
         try {
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setString(1, request.getNome());
             ps.executeUpdate();
         }
-        catch(SQLException e){
+        catch(SQLException | DBConnectionException e){
             e.printStackTrace();
         }
     }
@@ -69,7 +70,7 @@ public class RequestDAOImplDB implements RequestDAO {
         List<Request> requests = new ArrayList<>();
         String sql = "SELECT * FROM requests";
         try{
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
@@ -85,7 +86,7 @@ public class RequestDAOImplDB implements RequestDAO {
             }
 
         }
-        catch (SQLException e){
+        catch (SQLException | DBConnectionException e){
             e.printStackTrace();
         }
 
@@ -98,7 +99,7 @@ public class RequestDAOImplDB implements RequestDAO {
 
 
         try{
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -113,7 +114,7 @@ public class RequestDAOImplDB implements RequestDAO {
 
 
         }
-        catch (SQLException e) {
+        catch (SQLException | DBConnectionException e) {
             e.printStackTrace();
         }
 

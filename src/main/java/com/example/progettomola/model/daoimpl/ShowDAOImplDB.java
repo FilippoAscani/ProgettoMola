@@ -1,6 +1,7 @@
 package com.example.progettomola.model.daoimpl;
 
 import com.example.progettomola.DatabaseConnection;
+import com.example.progettomola.exceptions.DBConnectionException;
 import com.example.progettomola.model.dao.ShowDAO;
 import com.example.progettomola.model.entity.Show;
 
@@ -17,7 +18,7 @@ public class ShowDAOImplDB implements ShowDAO {
         String sql = "INSERT INTO shows(id,titolo,capienza,tipo) VALUES (?,?,?,?)";
 
         try {
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, show.getId());
             ps.setString(2, show.getTitolo());
@@ -27,7 +28,7 @@ public class ShowDAOImplDB implements ShowDAO {
 
 
         }
-        catch (SQLException e) {
+        catch (SQLException | DBConnectionException e) {
             e.printStackTrace();
         }
     }
@@ -36,7 +37,7 @@ public class ShowDAOImplDB implements ShowDAO {
     public void updateShow(Show show) {
         String sql = "UPDATE shows SET titolo = ?, capienza = ? WHERE tipo = ?";
         try {
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, show.getTitolo());
             ps.setInt(2, show.getCapienza());
@@ -44,7 +45,7 @@ public class ShowDAOImplDB implements ShowDAO {
             ps.executeUpdate();
 
         }
-        catch(SQLException e){
+        catch(SQLException | DBConnectionException e){
             e.printStackTrace();
         }
     }
@@ -53,13 +54,13 @@ public class ShowDAOImplDB implements ShowDAO {
     public void deleteShow(Show show) {
         String sql = "DELETE FROM shows WHERE titolo = ?";
         try {
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setString(1, show.getTitolo());
             ps.executeUpdate();
         }
-        catch(SQLException e){
+        catch(SQLException | DBConnectionException e){
             e.printStackTrace();
         }
     }
@@ -69,7 +70,7 @@ public class ShowDAOImplDB implements ShowDAO {
         List<Show> shows = new ArrayList<>();
         String sql = "SELECT * FROM shows";
         try{
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
@@ -85,7 +86,7 @@ public class ShowDAOImplDB implements ShowDAO {
             }
 
         }
-        catch (SQLException e){
+        catch (SQLException | DBConnectionException e){
             e.printStackTrace();
         }
 
@@ -98,7 +99,7 @@ public class ShowDAOImplDB implements ShowDAO {
 
 
         try{
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -113,7 +114,7 @@ public class ShowDAOImplDB implements ShowDAO {
 
 
         }
-        catch (SQLException e) {
+        catch (SQLException | DBConnectionException e) {
             e.printStackTrace();
         }
 

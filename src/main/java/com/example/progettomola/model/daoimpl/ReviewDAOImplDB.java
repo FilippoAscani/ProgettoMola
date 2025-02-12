@@ -1,6 +1,7 @@
 package com.example.progettomola.model.daoimpl;
 
 import com.example.progettomola.DatabaseConnection;
+import com.example.progettomola.exceptions.DBConnectionException;
 import com.example.progettomola.model.dao.ReviewDAO;
 import com.example.progettomola.model.entity.Review;
 
@@ -18,7 +19,7 @@ public class ReviewDAOImplDB implements ReviewDAO {
         String sql = "INSERT INTO reviews(id,content) VALUES (?,?)";
 
         try {
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, review.getId());
             ps.setString(2, review.getContent());
@@ -26,7 +27,7 @@ public class ReviewDAOImplDB implements ReviewDAO {
 
 
         }
-        catch (SQLException e) {
+        catch (SQLException | DBConnectionException e) {
             e.printStackTrace();
         }
     }
@@ -35,13 +36,13 @@ public class ReviewDAOImplDB implements ReviewDAO {
     public void updateReview(Review review) {
         String sql = "UPDATE reviews SET  content = ?";
         try {
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, review.getContent());
             ps.executeUpdate();
 
         }
-        catch(SQLException e){
+        catch(SQLException | DBConnectionException e){
             e.printStackTrace();
         }
     }
@@ -50,13 +51,13 @@ public class ReviewDAOImplDB implements ReviewDAO {
     public void deleteReview(Review review) {
         String sql = "DELETE FROM reviews WHERE id = ?";
         try {
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setInt(1, review.getId());
             ps.executeUpdate();
         }
-        catch(SQLException e){
+        catch(SQLException | DBConnectionException e){
             e.printStackTrace();
         }
     }
@@ -66,7 +67,7 @@ public class ReviewDAOImplDB implements ReviewDAO {
         List<Review> reviews = new ArrayList<>();
         String sql = "SELECT * FROM reviews";
         try{
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
@@ -80,7 +81,7 @@ public class ReviewDAOImplDB implements ReviewDAO {
             }
 
         }
-        catch (SQLException e){
+        catch (SQLException | DBConnectionException e){
             e.printStackTrace();
         }
 
@@ -93,7 +94,7 @@ public class ReviewDAOImplDB implements ReviewDAO {
 
 
         try{
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -104,7 +105,7 @@ public class ReviewDAOImplDB implements ReviewDAO {
                                 rs.getString("content"));
             }
         }
-        catch (SQLException e) {
+        catch (SQLException | DBConnectionException e) {
             e.printStackTrace();
         }
 

@@ -1,6 +1,7 @@
 package com.example.progettomola.model.daoimpl;
 
 import com.example.progettomola.DatabaseConnection;
+import com.example.progettomola.exceptions.DBConnectionException;
 import com.example.progettomola.model.dao.ArtistDAO;
 import com.example.progettomola.model.entity.Artist;
 
@@ -17,7 +18,7 @@ public class ArtistDAOImplDB implements ArtistDAO {
         String sql = "INSERT INTO artists(id,username,password,tipo) VALUES (?,?,?,?)";
 
         try {
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, artist.getId());
             ps.setString(2, artist.getUsername());
@@ -27,7 +28,7 @@ public class ArtistDAOImplDB implements ArtistDAO {
 
 
         }
-        catch (SQLException e) {
+        catch (SQLException | DBConnectionException e) {
             e.printStackTrace();
         }
     }
@@ -36,7 +37,7 @@ public class ArtistDAOImplDB implements ArtistDAO {
     public void updateArtist(Artist artist) {
         String sql = "UPDATE artists SET username = ?, password = ? WHERE tipo = ?";
         try {
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, artist.getUsername());
             ps.setString(2, artist.getPassword());
@@ -44,7 +45,7 @@ public class ArtistDAOImplDB implements ArtistDAO {
             ps.executeUpdate();
 
         }
-        catch(SQLException e){
+        catch(SQLException | DBConnectionException e){
             e.printStackTrace();
         }
     }
@@ -53,13 +54,13 @@ public class ArtistDAOImplDB implements ArtistDAO {
     public void deleteArtist(Artist artist) {
         String sql = "DELETE FROM artists WHERE username = ?";
         try {
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setString(1, artist.getUsername());
             ps.executeUpdate();
         }
-        catch(SQLException e){
+        catch(SQLException | DBConnectionException e){
             e.printStackTrace();
         }
     }
@@ -69,7 +70,7 @@ public class ArtistDAOImplDB implements ArtistDAO {
         List<Artist> artists = new ArrayList<>();
         String sql = "SELECT * FROM artists";
         try{
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
@@ -85,7 +86,7 @@ public class ArtistDAOImplDB implements ArtistDAO {
             }
 
         }
-        catch (SQLException e){
+        catch (SQLException | DBConnectionException e){
             e.printStackTrace();
         }
         return artists;
@@ -97,7 +98,7 @@ public class ArtistDAOImplDB implements ArtistDAO {
 
 
         try{
-            Connection connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -112,7 +113,7 @@ public class ArtistDAOImplDB implements ArtistDAO {
 
 
         }
-        catch (SQLException e) {
+        catch (SQLException | DBConnectionException e) {
             e.printStackTrace();
         }
         return null;

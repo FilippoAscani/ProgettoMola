@@ -54,7 +54,7 @@ public class ArtistRequestController  implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         try {
-            Connection conn = DatabaseConnection.getConnection();
+            Connection conn = DatabaseConnection.getInstance().getConnection();
             statement = conn.createStatement();
 
             String sqlQuery = "SELECT id, nome, capienza, tipo FROM requests";
