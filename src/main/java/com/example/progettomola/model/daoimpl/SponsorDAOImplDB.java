@@ -78,7 +78,7 @@ public class SponsorDAOImplDB implements SponsorDAO {
     @Override
     public List<Sponsor> getSponsors() {
         List<Sponsor> sponsors = new ArrayList<>();
-        String sql = "SELECT * FROM sponsors";
+        String sql = "SELECT id, username, password FROM sponsors";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
             ResultSet rs;
@@ -106,7 +106,7 @@ public class SponsorDAOImplDB implements SponsorDAO {
 
     @Override
     public Sponsor getSponsor(int id) {
-        String sql = "SELECT * FROM sponsors WHERE id = ?";
+        String sql = "SELECT id, username, password FROM sponsors WHERE id = ?";
 
 
         try{

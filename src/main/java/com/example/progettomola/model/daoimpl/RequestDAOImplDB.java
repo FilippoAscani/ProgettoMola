@@ -77,7 +77,7 @@ public class RequestDAOImplDB implements RequestDAO {
     @Override
     public List<Request> getRequests() {
         List<Request> requests = new ArrayList<>();
-        String sql = "SELECT * FROM requests";
+        String sql = "SELECT id, nome, capienza, tipo FROM requests";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
             ResultSet rs;
@@ -106,7 +106,7 @@ public class RequestDAOImplDB implements RequestDAO {
 
     @Override
     public Request getRequest(int id) {
-        String sql = "SELECT * FROM requests WHERE id = ?";
+        String sql = "SELECT id, nome, capienza, tipo FROM requests WHERE id = ?";
 
 
         try{

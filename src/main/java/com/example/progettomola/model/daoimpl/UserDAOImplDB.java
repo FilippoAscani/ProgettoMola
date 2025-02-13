@@ -46,7 +46,7 @@ public class UserDAOImplDB implements UserDAO {
 
     @Override
     public User getUser(int id) {
-        String sql = "SELECT * FROM users WHERE id = ?";
+        String sql = "SELECT id, nome, cognome, password, username FROM users WHERE id = ?";
 
 
         try{
@@ -62,8 +62,8 @@ public class UserDAOImplDB implements UserDAO {
                         (rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("cognome"),
-                        rs.getString("username"),
-                        rs.getString("password"));
+                        rs.getString("password"),
+                        rs.getString("username"));
             }
 
 
@@ -78,7 +78,7 @@ public class UserDAOImplDB implements UserDAO {
     @Override
     public List<User> getUsers() {
         List<User> users = new ArrayList<>();
-        String sql = "SELECT * FROM users";
+        String sql = "SELECT id, nome, cognome, password, username FROM users";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
             ResultSet rs;

@@ -1,5 +1,7 @@
 package com.example.progettomola.controllergui;
 
+import com.example.progettomola.DatabaseConnection;
+import com.example.progettomola.exceptions.DBConnectionException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -134,16 +136,14 @@ public class UserLoginController implements Initializable {
 
     private boolean cercaDB(String username, String password) {
 
-         final String URL = "jdbc:mysql://127.0.0.1:3306/register_schema?useUnicode=true&characterEncoding=utf8";
-         final String USERNAME = "root";
-         final String PASSWORD = "Filippo98";
+
 
 
 
         String query = "SELECT * FROM users WHERE username = ? AND password = ?";
 
-        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-                 PreparedStatement ps = conn.prepareStatement(query)) {
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
 
                 ps.setString(1, username);
                 ps.setString(2, password);
@@ -151,7 +151,7 @@ public class UserLoginController implements Initializable {
                 try (ResultSet rs = ps.executeQuery()) {
                     return rs.next();
                 }
-        } catch (SQLException e) {
+        } catch (SQLException | DBConnectionException e) {
             logger.info("Error during database operation: {}" , e.getMessage());
 
                 return false;

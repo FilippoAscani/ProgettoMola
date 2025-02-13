@@ -77,7 +77,7 @@ public class ArtistDAOImplDB implements ArtistDAO {
     @Override
     public List<Artist> getArtists() {
         List<Artist> artists = new ArrayList<>();
-        String sql = "SELECT * FROM artists";
+        String sql = "SELECT id, username, password, tipo FROM artists";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
             ResultSet rs;
@@ -105,7 +105,7 @@ public class ArtistDAOImplDB implements ArtistDAO {
 
     @Override
     public Artist getArtist(int id) {
-        String sql = "SELECT * FROM artists WHERE id = ?";
+        String sql = "SELECT id, username, password, tipo FROM artists WHERE id = ?";
 
 
         try{

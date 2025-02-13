@@ -1,5 +1,7 @@
 package com.example.progettomola.controllergui;
 
+import com.example.progettomola.DatabaseConnection;
+import com.example.progettomola.exceptions.DBConnectionException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -117,15 +119,13 @@ public class SponsorLoginController implements Initializable {
     }
 
     private boolean cercaBD(String username, String password) {
-        final String URL = "jdbc:mysql://127.0.0.1:3306/register_schema?useUnicode=true&characterEncoding=utf8";
-        final String USERNAME = "root";
-        final String PASSWORD = "Filippo98";
+
 
 
 
         String query = "SELECT * FROM sponsors WHERE username = ? AND password = ?";
 
-        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
 
             ps.setString(1, username);
@@ -134,7 +134,7 @@ public class SponsorLoginController implements Initializable {
             try (ResultSet rs = ps.executeQuery()) {
                 return rs.next();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | DBConnectionException e) {
             logger.info("Error during database operation: {}" , e.getMessage());
 
             return false;

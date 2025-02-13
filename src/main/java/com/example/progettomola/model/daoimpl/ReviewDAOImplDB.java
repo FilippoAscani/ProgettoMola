@@ -73,7 +73,7 @@ public class ReviewDAOImplDB implements ReviewDAO {
     @Override
     public List<Review> getReviews() {
         List<Review> reviews = new ArrayList<>();
-        String sql = "SELECT * FROM reviews";
+        String sql = "SELECT id, content FROM reviews";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
             ResultSet rs;
@@ -100,7 +100,7 @@ public class ReviewDAOImplDB implements ReviewDAO {
 
     @Override
     public Review getReview(int id) {
-        String sql = "SELECT * FROM reviews WHERE id = ?";
+        String sql = "SELECT id, content FROM reviews WHERE id = ?";
 
 
         try{

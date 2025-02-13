@@ -76,7 +76,7 @@ public class ShowDAOImplDB implements ShowDAO {
     @Override
     public List<Show> getShows() {
         List<Show> shows = new ArrayList<>();
-        String sql = "SELECT * FROM shows";
+        String sql = "SELECT id, titolo, capienza, tipo FROM shows";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
             ResultSet rs;
@@ -105,7 +105,7 @@ public class ShowDAOImplDB implements ShowDAO {
 
     @Override
     public Show getShow(int id) {
-        String sql = "SELECT * FROM shows WHERE id = ?";
+        String sql = "SELECT id, titolo, capienza, tipo FROM shows WHERE id = ?";
 
 
         try{

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -99,24 +100,29 @@ public class ArtistHomepage {
     public List<Request> addRequestsFromCSV(String tipo) {
         RequestDAOImplCSV requestDAO = new RequestDAOImplCSV();
         List<Request> requests = requestDAO.getRequests();
+        List<Request> newRequests = new ArrayList<>();
+
 
         for(Request request : requests){
             if(request.getTipo().equals(tipo)){
-                requests.add(request);
+                newRequests.add(request);
             }
         }
-        return requests;
+        return newRequests;
     }
 
     public List<Show> getShowsReviewed(String tipo){
         ShowDAOImplCSV showDAO = new ShowDAOImplCSV();
         List<Show> shows = showDAO.getShows();
-        for(Show s : shows){
-            if(s.getTipo().equals(tipo)){
-                shows.add(s);
+        List<Show> newShows = new ArrayList<>();
+
+
+        for(Show show : shows){
+            if(show.getTipo().equals(tipo)){
+                newShows.add(show);
             }
         }
-        return shows;
+        return newShows;
     }
 
     public void checkRequests(List<Request> requests){
