@@ -45,8 +45,7 @@ public class ArtistRequestController  implements Initializable {
     private TableView<Request> tabView;
 
 
-    private final Button btnAccept = new Button("Accetta");
-    private final Button btnDecline = new Button("Rifiuta");
+
     private static final Logger logger = LoggerFactory.getLogger(ArtistRequestController.class);
 
     ObservableList<Request> richieste = FXCollections.observableArrayList();
@@ -56,9 +55,6 @@ public class ArtistRequestController  implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
-
 
 
         try {
@@ -93,6 +89,13 @@ public class ArtistRequestController  implements Initializable {
                     if (empty) {
                         setGraphic(null);
                     } else {
+
+                        Button btnAccept = new Button("Accetta");
+                        Button btnDecline = new Button("Rifiuta");
+
+                        initializeButton(btnAccept,btnDecline);
+
+
                         HBox pane = new HBox(btnAccept, btnDecline);
                         pane.setSpacing(10);
                         setGraphic(pane);
@@ -102,9 +105,10 @@ public class ArtistRequestController  implements Initializable {
             });
 
             // Aggiungi la colonna delle azioni alla TableView
+
+
             tabView.getColumns().add(colActions);
 
-            initializeButton();
 
 
         } catch (Exception e) {
@@ -114,15 +118,13 @@ public class ArtistRequestController  implements Initializable {
 
     private void declineShow(Request request) {
 
-        request.setStatus("accettata");
+        request.setStatus("rifiutata");
 
         int index = richieste.indexOf(request);
         if (index != -1) {
-            richieste.remove(index);  // Rimuovi la richiesta alla posizione trovata
-
+            richieste.remove(request);// Rimuovi la richiesta alla posizione trovata
 
         }
-
 
     }
 
@@ -134,7 +136,7 @@ public class ArtistRequestController  implements Initializable {
 
         int index = richieste.indexOf(request);
         if (index != -1) {
-            richieste.remove(index);
+            richieste.remove(request);
 
         }
 
@@ -143,7 +145,7 @@ public class ArtistRequestController  implements Initializable {
 
     @FXML
     void handleCerca() {
-        tabView.setItems(FXCollections.observableArrayList());
+        tabView.refresh();
     }
 
     @FXML
@@ -159,7 +161,9 @@ public class ArtistRequestController  implements Initializable {
 
     }
 
-    private void initializeButton(){
+
+
+    private void initializeButton(Button btnAccept, Button btnDecline){
 
         btnAccept.setOnAction(event -> {
             Request req = tabView.getSelectionModel().getSelectedItem();
@@ -167,7 +171,7 @@ public class ArtistRequestController  implements Initializable {
                 acceptShow(req);
             }
             else{
-                logger.info("nessuna richiesta accettata");
+                logger.info("btn accept error artist request");
             }
         });
 
@@ -177,13 +181,14 @@ public class ArtistRequestController  implements Initializable {
                 declineShow(req);
             }
             else{
-                logger.info("nessuna richiesta rifiutata");
+                logger.info("btn decline error artist request");
             }
 
         });
 
 
     }
+
 
 
 
