@@ -43,17 +43,17 @@ public class LoginManager {
                     logger.info("inizializzo la password jdbc");
 
                     logger.info("id");
-                    int idUser = scanner.nextInt();
+                    int idUserDB = scanner.nextInt();
                     scanner.nextLine();
 
                     logger.info(USERNAME);
-                    String cognomeUser = scanner.nextLine();
+                    String usernameUserDB = scanner.nextLine();
 
                     logger.info(PASSWORD);
-                    String passwordUser = scanner .nextLine();
+                    String passwordUserDB = scanner .nextLine();
 
 
-                    User newU = new User(idUser, cognomeUser, passwordUser);
+                    User newU = new User(idUserDB, usernameUserDB, passwordUserDB);
                     LoginCSV.loginUser(newU);
                 }
 
@@ -66,12 +66,12 @@ public class LoginManager {
                     scanner.nextLine();
 
                     logger.info(USERNAME);
-                    String cognomeUser = scanner.nextLine();
+                    String usernameUser = scanner.nextLine();
 
                     logger.info(PASSWORD);
                     String passwordUser = scanner .nextLine();
 
-                    User newU = new User(idUser, cognomeUser, passwordUser);
+                    User newU = new User(idUser, usernameUser, passwordUser);
                     LoginCSV.loginUser(newU);
 
                 }
@@ -88,19 +88,19 @@ public class LoginManager {
                     logger.info("inizializzo la password jdbc da artista");
 
                     logger.info("id");
-                    int id = scanner.nextInt();
+                    int idDB = scanner.nextInt();
                     scanner.nextLine();
 
                     logger.info(USERNAME);
-                    String nomeArtist = scanner.nextLine();
+                    String nomeArtistDB = scanner.nextLine();
 
                     logger.info(PASSWORD);
-                    String passwordArtist = scanner.nextLine();
+                    String passwordArtistDB = scanner.nextLine();
 
                     logger.info("tipo artista");
-                    String tipoArtist = scanner.nextLine();
+                    String tipoArtistDB = scanner.nextLine();
 
-                    Artist newA = new Artist(id, nomeArtist, passwordArtist, tipoArtist);
+                    Artist newA = new Artist(idDB, nomeArtistDB, passwordArtistDB, tipoArtistDB);
                     LoginCSV.loginArtist(newA);
                 }
 
@@ -110,7 +110,7 @@ public class LoginManager {
 
 
                     logger.info("id");
-                    int id = scanner.nextInt();
+                    int idArtist = scanner.nextInt();
                     scanner.nextLine();
 
                     logger.info(USERNAME);
@@ -122,7 +122,7 @@ public class LoginManager {
                     logger.info("tipo artista");
                     String tipoArtist = scanner.nextLine();
 
-                    Artist newA = new Artist(id, nomeArtist, passwordArtist, tipoArtist);
+                    Artist newA = new Artist(idArtist, nomeArtist, passwordArtist, tipoArtist);
                     LoginCSV.loginArtist(newA);
 
                 }
@@ -137,17 +137,17 @@ public class LoginManager {
                     logger.info("inizializzo la password jdbc da sponsor");
 
                     logger.info("id");
-                    int idSponsor = scanner.nextInt();
+                    int idSponsorDB = scanner.nextInt();
                     scanner.nextLine();
 
                     logger.info(USERNAME);
-                    String username = scanner.nextLine();
+                    String usernameDB = scanner.nextLine();
 
                     logger.info(PASSWORD);
-                    String password = scanner.nextLine();
+                    String passwordDB = scanner.nextLine();
 
 
-                    Sponsor newS = new Sponsor(idSponsor, username, password);
+                    Sponsor newS = new Sponsor(idSponsorDB, usernameDB, passwordDB);
                     LoginCSV.loginSponsor(newS);
                 }
 
@@ -185,6 +185,11 @@ public class LoginManager {
 
 
     }
+
+
+
+
+
 
 
 
