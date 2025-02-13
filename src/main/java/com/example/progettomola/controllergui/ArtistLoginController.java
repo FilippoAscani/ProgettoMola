@@ -1,6 +1,7 @@
 package com.example.progettomola.controllergui;
 
 import com.example.progettomola.DatabaseConnection;
+import com.example.progettomola.controllercli.CercaCSV;
 import com.example.progettomola.controllercli.CercaDB;
 import com.example.progettomola.exceptions.DBConnectionException;
 import javafx.collections.FXCollections;
@@ -87,12 +88,13 @@ public class ArtistLoginController implements Initializable {
 
 
         String s = combo1.getSelectionModel().getSelectedItem();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
 
         switch (s) {
             case "JDBC":
 
-                String username = usernameField.getText();
-                String password = passwordField.getText();
+
 
                 String query = "SELECT username, password FROM artists WHERE username = ? AND password = ?";
 
@@ -107,7 +109,7 @@ public class ArtistLoginController implements Initializable {
                 break;
 
             case "CSV":
-                if(cercaCSV()){
+                if(CercaCSV.cercaArtist(username,password)){
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-profile-view.fxml")));
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
                     stage.setScene(new Scene(root));
@@ -145,29 +147,7 @@ public class ArtistLoginController implements Initializable {
 
 
 
-    private boolean cercaCSV() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        boolean trovato = false;
 
-        try (BufferedReader br = new BufferedReader(new FileReader("artist.csv"))) {
-            String line;
-            // Leggi il file CSV riga per riga
-            while ((line = br.readLine()) != null) {
-                String[] dati = line.split(",");
-
-                // Se il nome e cognome corrispondono, impostiamo il risultato
-                if (dati[1].equals(username) && dati[2].equals(password)) {
-                    trovato = true;
-                    break;
-
-                }
-            }
-        } catch (IOException e) {
-            logger.info("impossibile cercare artista csv");
-        }
-        return trovato;
-    }
 
 
 

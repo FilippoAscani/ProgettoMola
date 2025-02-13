@@ -1,6 +1,7 @@
 package com.example.progettomola.controllergui;
 
 import com.example.progettomola.DatabaseConnection;
+import com.example.progettomola.controllercli.CercaCSV;
 import com.example.progettomola.controllercli.CercaDB;
 import com.example.progettomola.exceptions.DBConnectionException;
 import javafx.collections.FXCollections;
@@ -105,7 +106,7 @@ public class SponsorLoginController implements Initializable {
                 break;
 
             case "CSV":
-                if(cercaCSV()){
+                if(CercaCSV.cercaSponsor(username, password)){
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sponsor-profile-view.fxml")));
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
                     stage.setScene(new Scene(root));
@@ -138,36 +139,6 @@ public class SponsorLoginController implements Initializable {
 
 
     }
-
-
-    private boolean cercaCSV() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        boolean trovato = false;
-
-        try (BufferedReader br = new BufferedReader(new FileReader("sponsor.csv"))) {
-            String linea;
-            // Leggi il file CSV riga per riga
-            while ((linea = br.readLine()) != null) {
-                String[] dati = linea.split(",");
-
-                // Se il nome e cognome corrispondono, impostiamo il risultato
-                if (dati[1].equals(username) && dati[2].equals(password)) {
-                    trovato = true;
-                    break;
-
-                }
-            }
-        } catch (IOException e) {
-            logger.info("impossibile cercare sponsor csv");
-        }
-        return trovato;
-    }
-
-
-
-
-
 
 
 }

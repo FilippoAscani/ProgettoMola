@@ -1,6 +1,7 @@
 package com.example.progettomola.controllergui;
 
 import com.example.progettomola.DatabaseConnection;
+import com.example.progettomola.controllercli.CercaCSV;
 import com.example.progettomola.controllercli.CercaDB;
 import com.example.progettomola.exceptions.DBConnectionException;
 import javafx.collections.FXCollections;
@@ -108,7 +109,7 @@ public class UserLoginController implements Initializable {
                 break;
 
             case "CSV":
-                if(cercaCSV()){
+                if(CercaCSV.cercaUser(username, password)){
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-profile-view.fxml")));
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
                     stage.setScene(new Scene(root));
@@ -139,30 +140,6 @@ public class UserLoginController implements Initializable {
     }
 
 
-
-    private boolean cercaCSV() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        boolean trovato = false;
-
-        try (BufferedReader br = new BufferedReader(new FileReader("user.csv"))) {
-            String linea;
-            // Leggi il file CSV riga per riga
-            while ((linea = br.readLine()) != null) {
-                String[] dati = linea.split(",");
-
-                // Se il nome e cognome corrispondono, impostiamo il risultato
-                if (dati[3].equals(username) && dati[4].equals(password)) {
-                    trovato = true;
-                    break;
-
-                }
-            }
-        } catch (IOException e) {
-            logger.info("impossibile cercare csv login controller");
-        }
-        return trovato;
-    }
 }
 
 
