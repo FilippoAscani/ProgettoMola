@@ -25,13 +25,13 @@ public class CercaCSV {
         boolean trovato = false;
 
         try (BufferedReader br = new BufferedReader(new FileReader("user.csv"))) {
-            String line;
+            String stringa;
             // Leggi il file CSV riga per riga
-            while ((line = br.readLine()) != null) {
-                String[] dati = line.split(",");
+            while ((stringa = br.readLine()) != null) {
+                String[] value = stringa.split(",");
 
                 // Se il nome e cognome corrispondono, impostiamo il risultato
-                if (dati[1].equals(username) && dati[2].equals(password)) {
+                if (value[1].equals(username) && value[2].equals(password)) {
                     trovato = true;
                     break;
 
@@ -74,13 +74,13 @@ public class CercaCSV {
         boolean trovato = false;
 
         try (BufferedReader br = new BufferedReader(new FileReader("sponsor.csv"))) {
-            String line;
+            String linea;
             // Leggi il file CSV riga per riga
-            while ((line = br.readLine()) != null) {
-                String[] dati = line.split(",");
+            while ((linea = br.readLine()) != null) {
+                String[] data = linea.split(",");
 
                 // Se il nome e cognome corrispondono, impostiamo il risultato
-                if (dati[1].equals(username) && dati[2].equals(password)) {
+                if (data[1].equals(username) && data[2].equals(password)) {
                     trovato = true;
                     break;
 

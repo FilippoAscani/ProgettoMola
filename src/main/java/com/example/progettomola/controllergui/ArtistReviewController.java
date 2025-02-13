@@ -1,6 +1,6 @@
 package com.example.progettomola.controllergui;
 
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,22 +33,13 @@ public class ArtistReviewController {
 
 
 
-
-
-
-
-    //standard
-
-
-
-
     @FXML
-    void handleCerca(ActionEvent event) {
+    void handleCerca() {
         //metodo che deve essere implementato
     }
 
     @FXML
-    void handleIndietro(ActionEvent event) {
+    void handleIndietro() {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-profile-view.fxml")));
             Stage stage = (Stage) btnIndietro.getScene().getWindow();
