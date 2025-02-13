@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.progettomola.controllergui.ArtistProfileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.progettomola.controllergui.ArtistProfileController">
    <children>
       <Button fx:id="btnSeeRequests" layoutX="412.0" layoutY="87.0" mnemonicParsing="false" onAction="#handleSeeRequests" prefHeight="25.0" prefWidth="129.0" text="Controlla Richieste" />
       <Button fx:id="btnSeeReviews" layoutX="412.0" layoutY="143.0" mnemonicParsing="false" onAction="#handleSeeReviews" prefHeight="25.0" prefWidth="129.0" text="Vedi Recensioni" />
