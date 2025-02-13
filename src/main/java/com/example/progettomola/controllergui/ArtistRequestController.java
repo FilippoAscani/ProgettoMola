@@ -1,12 +1,12 @@
 package com.example.progettomola.controllergui;
 
+
 import com.example.progettomola.DatabaseConnection;
 import com.example.progettomola.controllercli.Register;
 import com.example.progettomola.model.entity.Request;
 import com.example.progettomola.model.entity.Show;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -50,12 +50,16 @@ public class ArtistRequestController  implements Initializable {
     private static final Logger logger = LoggerFactory.getLogger(ArtistRequestController.class);
 
     ObservableList<Request> richieste = FXCollections.observableArrayList();
+
     Statement statement = null;
     ResultSet resultSet = null;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+
+
 
         try {
             Connection conn = DatabaseConnection.getInstance().getConnection();
@@ -80,7 +84,7 @@ public class ArtistRequestController  implements Initializable {
             // Aggiungi una colonna 
             TableColumn<Request, Void> colActions = new TableColumn<>("Azioni");
 
-            colActions.setCellFactory(param -> new TableCell<Request, Void>() {
+            colActions.setCellFactory(param -> new TableCell<>() {
 
 
                 @Override
@@ -104,7 +108,7 @@ public class ArtistRequestController  implements Initializable {
 
 
         } catch (Exception e) {
-            throw new IllegalStateException("Impossibile caricare le richieste", e);
+            throw new IllegalStateException("Impossibile caricare le richieste artist request", e);
         }
     }
 
@@ -138,12 +142,12 @@ public class ArtistRequestController  implements Initializable {
 
 
     @FXML
-    void handleCerca(ActionEvent event) {
+    void handleCerca() {
         tabView.setItems(FXCollections.observableArrayList());
     }
 
     @FXML
-    void handleIndietro(ActionEvent event) {
+    void handleIndietro() {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-profile-view.fxml")));
             Stage stage = (Stage) btnIndietro.getScene().getWindow();

@@ -1,7 +1,6 @@
 package com.example.progettomola;
 
 import com.example.progettomola.exceptions.DBConnectionException;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -10,7 +9,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 
-public class DatabaseConnection {
+public class DatabaseConnection  {
 
     private static DatabaseConnection instance = null;  // Singleton instance
     private Connection conn = null;  // Connection object
@@ -29,7 +28,7 @@ public class DatabaseConnection {
 
     // Metodo per ottenere una connessione al database
     public Connection getConnection() throws DBConnectionException {
-        try (InputStream input = DatabaseConnection.class.getClassLoader().getResourceAsStream("application.properties")) {
+        try (InputStream input = DatabaseConnection.class.getClassLoader().getResourceAsStream("app.properties")) {
             // Se la connessione è null o chiusa, la riapriamo
             if (conn == null || conn.isClosed()) {
                 if (input == null) {
@@ -51,7 +50,7 @@ public class DatabaseConnection {
         return conn;
     }
 
-    // Metodo per chiudere la connessione (quando necessario)
+    // Metodo per chiudere la connessione
     public void closeConnection() throws SQLException {
         if (conn != null && !conn.isClosed()) {
             conn.close();
