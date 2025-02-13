@@ -1,6 +1,7 @@
 package com.example.progettomola.controllergui;
 
 import com.example.progettomola.DatabaseConnection;
+import com.example.progettomola.controllercli.CercaDB;
 import com.example.progettomola.exceptions.DBConnectionException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -90,7 +91,10 @@ public class SponsorLoginController implements Initializable {
 
         switch (s) {
             case "JDBC":
-                if(cercaBD(username, password)){
+
+                String query = "SELECT username, password FROM sponsors WHERE username = ? AND password = ?";
+
+                if(CercaDB.cercaS(query,username, password)){
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sponsor-profile-view.fxml")));
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
                     stage.setScene(new Scene(root));
@@ -116,29 +120,6 @@ public class SponsorLoginController implements Initializable {
 
         }
 
-    }
-
-    private boolean cercaBD(String username, String password) {
-
-
-
-
-        String query = "SELECT username, password FROM sponsors WHERE username = ? AND password = ?";
-
-        try (Connection conn = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement ps = conn.prepareStatement(query)) {
-
-            ps.setString(1, username);
-            ps.setString(2, password);
-
-            try (ResultSet rs = ps.executeQuery()) {
-                return rs.next();
-            }
-        } catch (SQLException | DBConnectionException e) {
-            logger.info("Error during database operation sponsors: {}" , e.getMessage());
-
-            return false;
-        }
     }
 
 

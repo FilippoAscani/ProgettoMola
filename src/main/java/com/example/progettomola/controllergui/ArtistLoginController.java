@@ -1,6 +1,7 @@
 package com.example.progettomola.controllergui;
 
 import com.example.progettomola.DatabaseConnection;
+import com.example.progettomola.controllercli.CercaDB;
 import com.example.progettomola.exceptions.DBConnectionException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -82,15 +83,20 @@ public class ArtistLoginController implements Initializable {
     }
 
     @FXML
-    public void handleLogin(ActionEvent actionEvent) throws IOException {
+    public void handleLogin() throws IOException {
 
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+
         String s = combo1.getSelectionModel().getSelectedItem();
 
         switch (s) {
             case "JDBC":
-                if(cercaDB(username, password)){
+
+                String username = usernameField.getText();
+                String password = passwordField.getText();
+
+                String query = "SELECT username, password FROM artists WHERE username = ? AND password = ?";
+
+                if(CercaDB.cercaA(query,username,password)){
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-profile-view.fxml")));
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
                     stage.setScene(new Scene(root));
@@ -137,28 +143,6 @@ public class ArtistLoginController implements Initializable {
 
     }
 
-    private boolean cercaDB(String username, String password) {
-
-
-
-        String query = "SELECT username, password FROM artists WHERE username = ? AND password = ?";
-
-        try (Connection conn = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement ps = conn.prepareStatement(query)) {
-
-            ps.setString(1, username);
-            ps.setString(2, password);
-
-            try (ResultSet rs = ps.executeQuery()) {
-                return rs.next();
-            }
-        } catch (SQLException | DBConnectionException e) {
-            logger.info("Error during database operation artists : {}" , e.getMessage());
-
-            return false;
-        }
-
-    }
 
 
     private boolean cercaCSV() {

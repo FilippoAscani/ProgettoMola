@@ -1,6 +1,7 @@
 package com.example.progettomola.controllergui;
 
 import com.example.progettomola.DatabaseConnection;
+import com.example.progettomola.controllercli.CercaDB;
 import com.example.progettomola.exceptions.DBConnectionException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -93,7 +94,10 @@ public class UserLoginController implements Initializable {
 
         switch (s) {
             case "JDBC":
-                if(cercaDB(username, password)){
+
+                String query = "SELECT username, password FROM users WHERE username = ? AND password = ?";
+
+                if(CercaDB.cercaU(query, username, password)){
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-profile-view.fxml")));
                     Stage stage = (Stage) btnLogin.getScene().getWindow();
                     stage.setScene(new Scene(root));
@@ -132,31 +136,6 @@ public class UserLoginController implements Initializable {
         } catch (IOException e) {
             throw new IllegalStateException("Impossibile caricare la schermata main homepage", e);
         }
-    }
-
-    private boolean cercaDB(String username, String password) {
-
-
-
-
-
-        String query = "SELECT username, password FROM users WHERE username = ? AND password = ?";
-
-        try (Connection conn = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement ps = conn.prepareStatement(query)) {
-
-                ps.setString(1, username);
-                ps.setString(2, password);
-
-                try (ResultSet rs = ps.executeQuery()) {
-                    return rs.next();
-                }
-        } catch (SQLException | DBConnectionException e) {
-            logger.info("Error during database operation login : {}" , e.getMessage());
-
-                return false;
-        }
-
     }
 
 
