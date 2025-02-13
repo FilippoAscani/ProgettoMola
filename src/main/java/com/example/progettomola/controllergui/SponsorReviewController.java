@@ -33,7 +33,7 @@ public class SponsorReviewController {
 
     @FXML
     void handleCerca(ActionEvent event) {
-
+        //metodo che deve essere implementato
     }
 
     @FXML

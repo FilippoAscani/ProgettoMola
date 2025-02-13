@@ -152,7 +152,7 @@ public class UserLoginController implements Initializable {
                     return rs.next();
                 }
         } catch (SQLException | DBConnectionException e) {
-            logger.info("Error during database operation: {}" , e.getMessage());
+            logger.info("Error during database operation login : {}" , e.getMessage());
 
                 return false;
         }

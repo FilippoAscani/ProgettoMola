@@ -44,13 +44,10 @@ public class Sponsor implements Subject {
 
     public void createRequest(Request request) {
         sendRequests.add(request);
-        saveRequestCSV(request);
         notifyObservers(request);
     }
 
-    private void saveRequestCSV(Request request) {
-        //salva nel csv relativo alle richieste
-    }
+
 
 
 

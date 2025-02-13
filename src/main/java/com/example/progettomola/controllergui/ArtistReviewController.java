@@ -44,7 +44,7 @@ public class ArtistReviewController {
 
     @FXML
     void handleCerca(ActionEvent event) {
-
+        //metodo che deve essere implementato
     }
 
     @FXML

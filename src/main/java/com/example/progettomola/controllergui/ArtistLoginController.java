@@ -153,7 +153,7 @@ public class ArtistLoginController implements Initializable {
                 return rs.next();
             }
         } catch (SQLException | DBConnectionException e) {
-            logger.info("Error during database operation: {}" , e.getMessage());
+            logger.info("Error during database operation artists : {}" , e.getMessage());
 
             return false;
         }

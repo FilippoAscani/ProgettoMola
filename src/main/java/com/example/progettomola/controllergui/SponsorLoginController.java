@@ -135,7 +135,7 @@ public class SponsorLoginController implements Initializable {
                 return rs.next();
             }
         } catch (SQLException | DBConnectionException e) {
-            logger.info("Error during database operation: {}" , e.getMessage());
+            logger.info("Error during database operation sponsors: {}" , e.getMessage());
 
             return false;
         }

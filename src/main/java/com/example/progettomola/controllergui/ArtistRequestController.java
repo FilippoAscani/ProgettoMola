@@ -16,7 +16,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import javafx.util.Callback;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,6 +45,9 @@ public class ArtistRequestController  implements Initializable {
     private TableView<Request> tabView;
 
 
+    private final Button btnAccept = new Button("Accetta");
+    private final Button btnDecline = new Button("Rifiuta");
+    private static final Logger logger = LoggerFactory.getLogger(ArtistRequestController.class);
 
     ObservableList<Request> richieste = FXCollections.observableArrayList();
     Statement statement = null;
@@ -73,48 +77,31 @@ public class ArtistRequestController  implements Initializable {
             colRequests.setCellValueFactory(new PropertyValueFactory<>("nome"));
             tabView.setItems(richieste);
 
-            // Aggiungi una colonna per i pulsanti (Accetta e Rifiuta)
+            // Aggiungi una colonna 
             TableColumn<Request, Void> colActions = new TableColumn<>("Azioni");
 
-            colActions.setCellFactory(new Callback<>() {
+            colActions.setCellFactory(param -> new TableCell<Request, Void>() {
+
+
                 @Override
-                public TableCell<Request, Void> call(TableColumn<Request, Void> param) {
-                    return new TableCell<>() {
-
-                        private final Button btnAccept = new Button("Accetta");
-                        private final Button btnDecline = new Button("Rifiuta");
-
-                        {
-                            // Azione per il pulsante "Accetta"
-                            btnAccept.setOnAction(event -> {
-                                Request request = getTableView().getItems().get(getIndex());
-                                acceptShow(request); // Implementa la logica per accettare lo show
-                            });
-
-                            // Azione per il pulsante "Rifiuta"
-                            btnDecline.setOnAction(event -> {
-                                Request request = getTableView().getItems().get(getIndex());
-                                declineShow(request); // Implementa la logica per rifiutare lo show
-                            });
-                        }
-
-                        @Override
-                        public void updateItem(Void item, boolean empty) {
-                            super.updateItem(item, empty);
-                            if (empty) {
-                                setGraphic(null);
-                            } else {
-                                HBox pane = new HBox(btnAccept, btnDecline);
-                                pane.setSpacing(10);
-                                setGraphic(pane);
-                            }
-                        }
-                    };
+                public void updateItem(Void item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        HBox pane = new HBox(btnAccept, btnDecline);
+                        pane.setSpacing(10);
+                        setGraphic(pane);
+                    }
                 }
+
             });
 
             // Aggiungi la colonna delle azioni alla TableView
             tabView.getColumns().add(colActions);
+
+            initializeButton();
+
 
         } catch (Exception e) {
             throw new IllegalStateException("Impossibile caricare le richieste", e);
@@ -167,5 +154,36 @@ public class ArtistRequestController  implements Initializable {
         }
 
     }
+
+    private void initializeButton(){
+
+        btnAccept.setOnAction(event -> {
+            Request req = tabView.getSelectionModel().getSelectedItem();
+            if (req != null) {
+                acceptShow(req);
+            }
+            else{
+                logger.info("nessuna richiesta accettata");
+            }
+        });
+
+        btnDecline.setOnAction(event -> {
+            Request req = tabView.getSelectionModel().getSelectedItem();
+            if(req != null){
+                declineShow(req);
+            }
+            else{
+                logger.info("nessuna richiesta rifiutata");
+            }
+
+        });
+
+
+    }
+
+
+
+
+
 
 }
