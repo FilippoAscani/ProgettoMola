@@ -146,7 +146,7 @@ public class ArtistRegisterController {
 
 
 
-        String query = "SELECT * FROM artists WHERE username = ? AND password = ? AND  tipo = ?";
+        String query = "SELECT username, password, tipo FROM artists WHERE username = ? AND password = ? AND  tipo = ?";
 
         try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {

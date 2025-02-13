@@ -140,7 +140,7 @@ public class UserLoginController implements Initializable {
 
 
 
-        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+        String query = "SELECT username, password FROM users WHERE username = ? AND password = ?";
 
         try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {

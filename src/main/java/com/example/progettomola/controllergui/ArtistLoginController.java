@@ -141,7 +141,7 @@ public class ArtistLoginController implements Initializable {
 
 
 
-        String query = "SELECT * FROM artists WHERE username = ? AND password = ?";
+        String query = "SELECT username, password FROM artists WHERE username = ? AND password = ?";
 
         try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {

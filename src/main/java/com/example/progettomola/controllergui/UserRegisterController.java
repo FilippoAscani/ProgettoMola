@@ -152,7 +152,7 @@ public class UserRegisterController {
 
 
 
-        String query = "SELECT * FROM users WHERE nome = ? AND cognome = ? AND  username = ? AND password = ?";
+        String query = "SELECT nome, cognome, username, password FROM users WHERE nome = ? AND cognome = ? AND  username = ? AND password = ?";
 
         try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {

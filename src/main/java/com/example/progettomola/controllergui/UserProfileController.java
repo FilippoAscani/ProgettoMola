@@ -77,6 +77,6 @@ public class UserProfileController {
     }
 
     public void deleteProfile(ActionEvent actionEvent) {
-
+        //delete profile from db and csv
     }
 }

@@ -123,7 +123,7 @@ public class SponsorLoginController implements Initializable {
 
 
 
-        String query = "SELECT * FROM sponsors WHERE username = ? AND password = ?";
+        String query = "SELECT username, password FROM sponsors WHERE username = ? AND password = ?";
 
         try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {

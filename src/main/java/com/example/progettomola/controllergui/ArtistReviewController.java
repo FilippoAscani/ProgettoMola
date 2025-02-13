@@ -37,19 +37,6 @@ public class ArtistReviewController {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     //standard
 
 
