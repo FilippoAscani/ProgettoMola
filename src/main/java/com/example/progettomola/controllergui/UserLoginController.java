@@ -1,12 +1,11 @@
 package com.example.progettomola.controllergui;
 
-import com.example.progettomola.DatabaseConnection;
+
 import com.example.progettomola.controllercli.CercaCSV;
 import com.example.progettomola.controllercli.CercaDB;
-import com.example.progettomola.exceptions.DBConnectionException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,66 +16,64 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
+
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class UserLoginController implements Initializable {
 
     @FXML
-    public Button btnIndietro;
+    public Button btnIndietroU;
     @FXML
-    private Button btnLogin;
+    private Button btnLoginU;
 
     @FXML
-    private Button btnRegister;
+    private Button btnRegisterU;
 
     @FXML
-    private Label lblLogin;
+    private Label lblLoginU;
 
     @FXML
-    private Label lblpassword;
+    private Label lblpasswordU;
 
     @FXML
-    private Label lblusername;
+    private Label lblusernameU;
 
     @FXML
-    private PasswordField passwordField;
+    private PasswordField passwordFieldU;
 
     @FXML
-    private TextField usernameField;
+    private TextField usernameFieldU;
 
     @FXML
-    private ComboBox<String>  combo1;
+    private ComboBox<String>  combo1U;
 
 
     private static final Logger logger = LoggerFactory.getLogger(UserLoginController.class);
 
 
     public void select() {
-        combo1.getSelectionModel().getSelectedItem();
+        combo1U.getSelectionModel().getSelectedItem();
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> list = FXCollections.observableArrayList("JDBC","CSV");
-        combo1.setItems(list);
+        combo1U.setItems(list);
 
     }
 
 
     @FXML
-    public void handleRegister(ActionEvent actionEvent){
+    public void handleRegister(){
         //cambia schermata e porta alla registrazione
 
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-register-view.fxml")));
-            Stage stage = (Stage) btnRegister.getScene().getWindow();
+            Stage stage = (Stage) btnRegisterU.getScene().getWindow();
             stage.setScene(new Scene(root));
 
         } catch (IOException e) {
@@ -87,11 +84,11 @@ public class UserLoginController implements Initializable {
     }
 
     @FXML
-    public void handleLogin(ActionEvent actionEvent) throws IOException {
+    public void handleLogin() throws IOException {
 
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        String s = combo1.getSelectionModel().getSelectedItem();
+        String username = usernameFieldU.getText();
+        String password = passwordFieldU.getText();
+        String s = combo1U.getSelectionModel().getSelectedItem();
 
         switch (s) {
             case "JDBC":
@@ -100,7 +97,7 @@ public class UserLoginController implements Initializable {
 
                 if(CercaDB.cercaU(query, username, password)){
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-profile-view.fxml")));
-                    Stage stage = (Stage) btnLogin.getScene().getWindow();
+                    Stage stage = (Stage) btnLoginU.getScene().getWindow();
                     stage.setScene(new Scene(root));
                 }
                 else{
@@ -111,7 +108,7 @@ public class UserLoginController implements Initializable {
             case "CSV":
                 if(CercaCSV.cercaUser(username, password)){
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-profile-view.fxml")));
-                    Stage stage = (Stage) btnLogin.getScene().getWindow();
+                    Stage stage = (Stage) btnLoginU.getScene().getWindow();
                     stage.setScene(new Scene(root));
                 }
                 else{
@@ -132,7 +129,7 @@ public class UserLoginController implements Initializable {
     public void handleIndietro() {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-homepage-view.fxml")));
-            Stage stage = (Stage) btnIndietro.getScene().getWindow();
+            Stage stage = (Stage) btnIndietroU.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new IllegalStateException("Impossibile caricare la schermata main homepage", e);

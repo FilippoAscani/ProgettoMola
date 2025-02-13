@@ -32,43 +32,43 @@ import java.util.ResourceBundle;
 public class ArtistLoginController implements Initializable {
 
     @FXML
-    private Button btnIndietro;
+    private Button btnIndietroA;
 
     @FXML
-    private Button btnLogin;
+    private Button btnLoginA;
 
     @FXML
-    private Button btnRegister;
+    private Button btnRegisterA;
 
     @FXML
-    private ComboBox<String> combo1;
+    private ComboBox<String> combo1A;
 
     @FXML
-    private Label lblLogin;
+    private Label lblLoginA;
 
     @FXML
-    private Label lblpassword;
+    private Label lblpasswordA;
 
     @FXML
-    private Label lblusername;
+    private Label lblusernameA;
 
     @FXML
-    private PasswordField passwordField;
+    private PasswordField passwordFieldA;
 
     @FXML
-    private TextField usernameField;
+    private TextField usernameFieldA;
 
     private static final Logger logger = LoggerFactory.getLogger(ArtistLoginController.class);
 
     @FXML
     public void select(ActionEvent actionEvent) {
-        combo1.getSelectionModel().getSelectedItem();
+        combo1A.getSelectionModel().getSelectedItem();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> list = FXCollections.observableArrayList("JDBC","CSV");
-        combo1.setItems(list);
+        combo1A.setItems(list);
 
     }
 
@@ -76,7 +76,7 @@ public class ArtistLoginController implements Initializable {
     public void handleIndietro(ActionEvent actionEvent) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-homepage-view.fxml")));
-            Stage stage = (Stage) btnIndietro.getScene().getWindow();
+            Stage stage = (Stage) btnIndietroA.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new IllegalStateException("Impossibile caricare la schermata di registrazione.", e);
@@ -87,9 +87,9 @@ public class ArtistLoginController implements Initializable {
     public void handleLogin() throws IOException {
 
 
-        String s = combo1.getSelectionModel().getSelectedItem();
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+        String s = combo1A.getSelectionModel().getSelectedItem();
+        String username = usernameFieldA.getText();
+        String password = passwordFieldA.getText();
 
         switch (s) {
             case "JDBC":
@@ -100,7 +100,7 @@ public class ArtistLoginController implements Initializable {
 
                 if(CercaDB.cercaA(query,username,password)){
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-profile-view.fxml")));
-                    Stage stage = (Stage) btnLogin.getScene().getWindow();
+                    Stage stage = (Stage) btnLoginA.getScene().getWindow();
                     stage.setScene(new Scene(root));
                 }
                 else{
@@ -111,7 +111,7 @@ public class ArtistLoginController implements Initializable {
             case "CSV":
                 if(CercaCSV.cercaArtist(username,password)){
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-profile-view.fxml")));
-                    Stage stage = (Stage) btnLogin.getScene().getWindow();
+                    Stage stage = (Stage) btnLoginA.getScene().getWindow();
                     stage.setScene(new Scene(root));
                 }
                 else{
@@ -135,7 +135,7 @@ public class ArtistLoginController implements Initializable {
 
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-register-view.fxml")));
-            Stage stage = (Stage) btnRegister.getScene().getWindow();
+            Stage stage = (Stage) btnRegisterA.getScene().getWindow();
             stage.setScene(new Scene(root));
 
         } catch (IOException e) {

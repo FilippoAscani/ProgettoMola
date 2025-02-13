@@ -32,43 +32,43 @@ import java.util.ResourceBundle;
 public class SponsorLoginController implements Initializable {
 
     @FXML
-    private Button btnIndietro;
+    private Button btnIndietroS;
 
     @FXML
-    private Button btnLogin;
+    private Button btnLoginS;
 
     @FXML
-    private Button btnRegister;
+    private Button btnRegisterS;
 
     @FXML
-    private ComboBox<String> combo1;
+    private ComboBox<String> combo1S;
 
     @FXML
-    private Label lblLogin;
+    private Label lblLoginS;
 
     @FXML
-    private Label lblpassword;
+    private Label lblpasswordS;
 
     @FXML
-    private Label lblusername;
+    private Label lblusernameS;
 
     @FXML
-    private PasswordField passwordField;
+    private PasswordField passwordFieldS;
 
     @FXML
-    private TextField usernameField;
+    private TextField usernameFieldS;
 
     private static final Logger logger = LoggerFactory.getLogger(SponsorLoginController.class);
 
     @FXML
     public void select() {
-        combo1.getSelectionModel().getSelectedItem();
+        combo1S.getSelectionModel().getSelectedItem();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> list = FXCollections.observableArrayList("JDBC","CSV");
-        combo1.setItems(list);
+        combo1S.setItems(list);
 
     }
 
@@ -76,7 +76,7 @@ public class SponsorLoginController implements Initializable {
     public void handleIndietro(ActionEvent actionEvent) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-homepage-view.fxml")));
-            Stage stage = (Stage) btnIndietro.getScene().getWindow();
+            Stage stage = (Stage) btnIndietroS.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new IllegalStateException("Impossibile caricare la schermata main homepage", e);
@@ -86,9 +86,9 @@ public class SponsorLoginController implements Initializable {
     @FXML
     public void handleLogin(ActionEvent actionEvent) throws IOException {
 
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        String s = combo1.getSelectionModel().getSelectedItem();
+        String username = usernameFieldS.getText();
+        String password = passwordFieldS.getText();
+        String s = combo1S.getSelectionModel().getSelectedItem();
 
         switch (s) {
             case "JDBC":
@@ -97,7 +97,7 @@ public class SponsorLoginController implements Initializable {
 
                 if(CercaDB.cercaS(query,username, password)){
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sponsor-profile-view.fxml")));
-                    Stage stage = (Stage) btnLogin.getScene().getWindow();
+                    Stage stage = (Stage) btnLoginS.getScene().getWindow();
                     stage.setScene(new Scene(root));
                 }
                 else{
@@ -108,7 +108,7 @@ public class SponsorLoginController implements Initializable {
             case "CSV":
                 if(CercaCSV.cercaSponsor(username, password)){
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sponsor-profile-view.fxml")));
-                    Stage stage = (Stage) btnLogin.getScene().getWindow();
+                    Stage stage = (Stage) btnLoginS.getScene().getWindow();
                     stage.setScene(new Scene(root));
                 }
                 else{
@@ -130,7 +130,7 @@ public class SponsorLoginController implements Initializable {
 
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sponsor-register-view.fxml")));
-            Stage stage = (Stage) btnRegister.getScene().getWindow();
+            Stage stage = (Stage) btnRegisterS.getScene().getWindow();
             stage.setScene(new Scene(root));
 
         } catch (IOException e) {
