@@ -28,34 +28,34 @@ import java.util.Objects;
 public class ArtistRegisterController {
 
     @FXML
-    private Button btnIndietro;
+    private Button btnIndietroA;
 
     @FXML
-    private Button btnRegistra;
+    private Button btnRegistraA;
 
     @FXML
-    private Button btnRegistra1;
+    private Button btnRegistra1A;
 
     @FXML
-    private Label lblPassword;
+    private Label lblPasswordA;
 
     @FXML
-    private Label lblRegistrazione;
+    private Label lblRegistrazioneA;
 
     @FXML
-    private Label lblTipo;
+    private Label lblTipoA;
 
     @FXML
-    private Label lblUsername;
+    private Label lblUsernameA;
 
     @FXML
-    private TextField tipoField;
+    private TextField tipoFieldA;
 
     @FXML
-    private PasswordField passwordField;
+    private PasswordField passwordFieldA;
 
     @FXML
-    private TextField usernameField;
+    private TextField usernameFieldA;
 
     private static final Logger logger = LoggerFactory.getLogger(ArtistRegisterController.class);
     private final SecureRandom rand = new SecureRandom();
@@ -64,7 +64,7 @@ public class ArtistRegisterController {
     void handleIndietro(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("artist-login-view.fxml")));
-            Stage stage = (Stage) btnIndietro.getScene().getWindow();
+            Stage stage = (Stage) btnIndietroA.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new IllegalStateException("Impossibile caricare artist login.", e);
@@ -99,9 +99,9 @@ public class ArtistRegisterController {
 
 
     private Artist createArtist() {
-        String usename = usernameField.getText();
-        String password = passwordField.getText();
-        String tipo = tipoField.getText();
+        String usename = usernameFieldA.getText();
+        String password = passwordFieldA.getText();
+        String tipo = tipoFieldA.getText();
 
         int id = this.rand.nextInt(10000);
 
@@ -112,9 +112,9 @@ public class ArtistRegisterController {
 
 
     private boolean cercaCSV() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        String tipo = tipoField.getText();
+        String username = usernameFieldA.getText();
+        String password = passwordFieldA.getText();
+        String tipo = tipoFieldA.getText();
         boolean trovato = false;
 
         try (BufferedReader br = new BufferedReader(new FileReader("artist.csv"))) {
@@ -151,9 +151,9 @@ public class ArtistRegisterController {
         try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
 
-            ps.setString(1, usernameField.getText());
-            ps.setString(2, passwordField.getText());
-            ps.setString(3, tipoField.getText());
+            ps.setString(1, usernameFieldA.getText());
+            ps.setString(2, passwordFieldA.getText());
+            ps.setString(3, tipoFieldA.getText());
 
             try (ResultSet rs = ps.executeQuery()) {
                 return rs.next();
