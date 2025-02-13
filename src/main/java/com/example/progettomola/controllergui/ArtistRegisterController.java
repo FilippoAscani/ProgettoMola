@@ -18,9 +18,9 @@ import org.slf4j.LoggerFactory;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.sql.*;
 import java.util.Objects;
-import java.util.Random;
 
 
 public class ArtistRegisterController {
@@ -56,7 +56,7 @@ public class ArtistRegisterController {
     private TextField usernameField;
 
     private static final Logger logger = LoggerFactory.getLogger(ArtistRegisterController.class);
-    private final Random rand = new Random();
+    private final SecureRandom rand = new SecureRandom();
 
     @FXML
     void handleIndietro(ActionEvent event) {

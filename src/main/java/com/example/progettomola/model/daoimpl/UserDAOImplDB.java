@@ -5,6 +5,8 @@ import com.example.progettomola.DatabaseConnection;
 import com.example.progettomola.exceptions.DBConnectionException;
 import com.example.progettomola.model.dao.UserDAO;
 import com.example.progettomola.model.entity.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAOImplDB implements UserDAO {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserDAOImplDB.class);
 
     @Override
     public void addUser(User user) {
@@ -34,7 +38,7 @@ public class UserDAOImplDB implements UserDAO {
 
         }
         catch (SQLException | DBConnectionException e) {
-            e.printStackTrace();
+            logger.info("impossibile aggiungere user impldb");
         }
     }
 
@@ -65,7 +69,7 @@ public class UserDAOImplDB implements UserDAO {
 
         }
         catch (SQLException | DBConnectionException e) {
-            e.printStackTrace();
+            logger.info("impossibile visualizzare user impldb");
         }
 
         return null;
@@ -96,7 +100,7 @@ public class UserDAOImplDB implements UserDAO {
 
         }
         catch (SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile visualizzare users impldb");
         }
 
         return users;
@@ -116,7 +120,7 @@ public class UserDAOImplDB implements UserDAO {
 
         }
         catch(SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile aggiornare user impldb");
         }
 
     }
@@ -133,7 +137,7 @@ public class UserDAOImplDB implements UserDAO {
             }
         }
         catch(SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile eliminare user impldb");
         }
 
     }

@@ -5,7 +5,7 @@ import com.example.progettomola.model.daoimpl.ReviewDAOImplCSV;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class User {
 
@@ -31,7 +31,7 @@ public class User {
 
     }
 
-    private final Random rand = new Random();
+    private final SecureRandom rand = new SecureRandom();
 
 
     public Artist cercaArtista(String string){

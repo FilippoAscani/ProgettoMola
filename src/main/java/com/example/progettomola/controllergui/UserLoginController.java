@@ -180,7 +180,7 @@ public class UserLoginController implements Initializable {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.info("impossibile cercare csv login controller");
         }
         return trovato;
     }

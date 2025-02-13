@@ -4,6 +4,8 @@ import com.example.progettomola.DatabaseConnection;
 import com.example.progettomola.exceptions.DBConnectionException;
 import com.example.progettomola.model.dao.ReviewDAO;
 import com.example.progettomola.model.entity.Review;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import java.sql.Connection;
@@ -14,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewDAOImplDB implements ReviewDAO {
+
+    private static final Logger logger = LoggerFactory.getLogger(ReviewDAOImplDB.class);
+
     @Override
     public void addReview(Review review) {
         String sql = "INSERT INTO reviews(id,content) VALUES (?,?)";
@@ -29,7 +34,7 @@ public class ReviewDAOImplDB implements ReviewDAO {
 
         }
         catch (SQLException | DBConnectionException e) {
-            e.printStackTrace();
+            logger.info("impossibile aggiungere review impldb");
         }
     }
 
@@ -45,7 +50,7 @@ public class ReviewDAOImplDB implements ReviewDAO {
 
         }
         catch(SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile aggiornare review impldb");
         }
     }
 
@@ -61,7 +66,7 @@ public class ReviewDAOImplDB implements ReviewDAO {
             }
         }
         catch(SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile eliminare review impldb");
         }
     }
 
@@ -87,7 +92,7 @@ public class ReviewDAOImplDB implements ReviewDAO {
 
         }
         catch (SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile visualizzare reviews impldb");
         }
 
         return reviews;
@@ -113,7 +118,7 @@ public class ReviewDAOImplDB implements ReviewDAO {
             }
         }
         catch (SQLException | DBConnectionException e) {
-            e.printStackTrace();
+            logger.info("impossibile visualizzare review impldb");
         }
 
         return null;

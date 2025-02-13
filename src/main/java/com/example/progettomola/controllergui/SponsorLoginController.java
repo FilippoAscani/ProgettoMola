@@ -178,7 +178,7 @@ public class SponsorLoginController implements Initializable {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.info("impossibile cercare sponsor csv");
         }
         return trovato;
     }

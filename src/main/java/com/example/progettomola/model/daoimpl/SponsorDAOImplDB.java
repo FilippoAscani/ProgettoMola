@@ -4,6 +4,8 @@ import com.example.progettomola.DatabaseConnection;
 import com.example.progettomola.exceptions.DBConnectionException;
 import com.example.progettomola.model.dao.SponsorDAO;
 import com.example.progettomola.model.entity.Sponsor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import java.sql.Connection;
@@ -15,8 +17,14 @@ import java.util.List;
 
 public class SponsorDAOImplDB implements SponsorDAO {
 
+
+    private static final Logger logger = LoggerFactory.getLogger(SponsorDAOImplDB.class);
+
     @Override
     public void addSponsor(Sponsor sponsor) {
+
+
+
         String sql = "INSERT INTO sponsors(id,username,password ) VALUES (?,?,?)";
 
         try {
@@ -31,7 +39,7 @@ public class SponsorDAOImplDB implements SponsorDAO {
 
         }
         catch (SQLException | DBConnectionException e) {
-            e.printStackTrace();
+            logger.info("impossibile aggiungere sponsor impldb");
         }
     }
 
@@ -47,7 +55,7 @@ public class SponsorDAOImplDB implements SponsorDAO {
 
         }
         catch(SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile aggiornare sponsor impldb");
         }
     }
 
@@ -63,7 +71,7 @@ public class SponsorDAOImplDB implements SponsorDAO {
             }
         }
         catch(SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile eliminare sponsor impldb");
         }
     }
 
@@ -90,7 +98,7 @@ public class SponsorDAOImplDB implements SponsorDAO {
 
         }
         catch (SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile visualizzare sponsors impldb");
         }
 
         return sponsors;
@@ -119,7 +127,7 @@ public class SponsorDAOImplDB implements SponsorDAO {
 
         }
         catch (SQLException | DBConnectionException e) {
-            e.printStackTrace();
+            logger.info("impossibile visualizzare sponsor impldb");
         }
 
         return null;

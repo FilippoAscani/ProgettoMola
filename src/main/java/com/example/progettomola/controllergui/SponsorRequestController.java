@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ public class SponsorRequestController {
     private TextField txtTitolo;
 
 
+    private static final Logger logger = LoggerFactory.getLogger(SponsorRequestController.class);
 
     @FXML
     void handleCrea(ActionEvent event) {
@@ -62,7 +65,7 @@ public class SponsorRequestController {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.info("impossibile cercare sponsor csv");
         }
 
     }

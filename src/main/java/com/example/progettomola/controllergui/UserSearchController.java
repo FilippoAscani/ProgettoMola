@@ -17,6 +17,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,6 +51,7 @@ public class UserSearchController implements Initializable {
     private TableView<Show> tabView;
 
 
+    private static final Logger logger = LoggerFactory.getLogger(UserSearchController.class);
 
 
     public void handleCerca() {
@@ -105,7 +108,7 @@ public class UserSearchController implements Initializable {
 
         }
         catch (Exception e) {
-            e.printStackTrace();
+            logger.info("impossibile cercare show db search controller");
         }
 
 

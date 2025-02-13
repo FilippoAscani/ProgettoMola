@@ -4,6 +4,8 @@ import com.example.progettomola.DatabaseConnection;
 import com.example.progettomola.exceptions.DBConnectionException;
 import com.example.progettomola.model.dao.ArtistDAO;
 import com.example.progettomola.model.entity.Artist;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArtistDAOImplDB implements ArtistDAO {
+
+
+    private static final Logger logger = LoggerFactory.getLogger(ArtistDAOImplDB.class);
+
     @Override
     public void addArtist(Artist artist) {
         String sql = "INSERT INTO artists(id,username,password,tipo) VALUES (?,?,?,?)";
@@ -30,7 +36,7 @@ public class ArtistDAOImplDB implements ArtistDAO {
 
         }
         catch (SQLException | DBConnectionException e) {
-            e.printStackTrace();
+            logger.info("impossibile aggiungere artist impldb");
         }
     }
 
@@ -48,7 +54,7 @@ public class ArtistDAOImplDB implements ArtistDAO {
 
         }
         catch(SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile aggiornare artist impldb");
         }
     }
 
@@ -64,7 +70,7 @@ public class ArtistDAOImplDB implements ArtistDAO {
             }
         }
         catch(SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile eliminare artist impldb");
         }
     }
 
@@ -92,7 +98,7 @@ public class ArtistDAOImplDB implements ArtistDAO {
 
         }
         catch (SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile visualizzare artists impldb");
         }
         return artists;
     }
@@ -121,7 +127,7 @@ public class ArtistDAOImplDB implements ArtistDAO {
 
         }
         catch (SQLException | DBConnectionException e) {
-            e.printStackTrace();
+            logger.info("impossibile visualizzare artist impldb");
         }
         return null;
     }

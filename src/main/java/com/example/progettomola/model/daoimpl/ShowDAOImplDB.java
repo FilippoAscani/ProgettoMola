@@ -4,6 +4,8 @@ import com.example.progettomola.DatabaseConnection;
 import com.example.progettomola.exceptions.DBConnectionException;
 import com.example.progettomola.model.dao.ShowDAO;
 import com.example.progettomola.model.entity.Show;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShowDAOImplDB implements ShowDAO {
+
+    private static final Logger logger = LoggerFactory.getLogger(ShowDAOImplDB.class);
+
     @Override
     public void addShow(Show show) {
         String sql = "INSERT INTO shows(id,titolo,capienza,tipo) VALUES (?,?,?,?)";
@@ -30,7 +35,7 @@ public class ShowDAOImplDB implements ShowDAO {
 
         }
         catch (SQLException | DBConnectionException e) {
-            e.printStackTrace();
+            logger.info("impossibile aggiungere show impldb");
         }
     }
 
@@ -48,7 +53,7 @@ public class ShowDAOImplDB implements ShowDAO {
 
         }
         catch(SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile aggiornare show impldb");
         }
     }
 
@@ -64,7 +69,7 @@ public class ShowDAOImplDB implements ShowDAO {
             }
         }
         catch(SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile eliminare show impldb");
         }
     }
 
@@ -92,7 +97,7 @@ public class ShowDAOImplDB implements ShowDAO {
 
         }
         catch (SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile visualizzare shows impldb");
         }
 
         return shows;
@@ -122,7 +127,7 @@ public class ShowDAOImplDB implements ShowDAO {
 
         }
         catch (SQLException | DBConnectionException e) {
-            e.printStackTrace();
+            logger.info("impossibile visualizzare show impldb");
         }
 
         return null;

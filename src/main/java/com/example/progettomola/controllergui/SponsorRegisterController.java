@@ -18,9 +18,9 @@ import org.slf4j.LoggerFactory;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.sql.*;
 import java.util.Objects;
-import java.util.Random;
 
 public class SponsorRegisterController {
 
@@ -50,7 +50,7 @@ public class SponsorRegisterController {
 
     private static final Logger logger = LoggerFactory.getLogger(SponsorRegisterController.class);
 
-    private final Random rand = new Random();
+    private final SecureRandom rand = new SecureRandom();
 
     @FXML
     void handleIndietro(ActionEvent event) {
@@ -123,7 +123,7 @@ public class SponsorRegisterController {
                    }
                }
            } catch (IOException e) {
-                e.printStackTrace();
+               logger.info("impossibile cercare sponsor csv in register controller");
            }
            return find;
     }

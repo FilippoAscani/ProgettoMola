@@ -4,6 +4,8 @@ import com.example.progettomola.DatabaseConnection;
 import com.example.progettomola.exceptions.DBConnectionException;
 import com.example.progettomola.model.dao.RequestDAO;
 import com.example.progettomola.model.entity.Request;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RequestDAOImplDB implements RequestDAO {
+
+    private static final Logger logger = LoggerFactory.getLogger(RequestDAOImplDB.class);
+
+
     @Override
     public void addRequest(Request request) {
         String sql = "INSERT INTO requests(id,nome,capienza,tipo) VALUES (?,?,?,?)";
@@ -30,7 +36,7 @@ public class RequestDAOImplDB implements RequestDAO {
 
         }
         catch (SQLException | DBConnectionException e) {
-            e.printStackTrace();
+            logger.info("impossibile aggiungere request impldb");
         }
     }
 
@@ -48,7 +54,7 @@ public class RequestDAOImplDB implements RequestDAO {
 
         }
         catch(SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile aggiornare request impldb");
         }
     }
 
@@ -64,7 +70,7 @@ public class RequestDAOImplDB implements RequestDAO {
             }
         }
         catch(SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile eliminare request impldb");
         }
     }
 
@@ -92,7 +98,7 @@ public class RequestDAOImplDB implements RequestDAO {
 
         }
         catch (SQLException | DBConnectionException e){
-            e.printStackTrace();
+            logger.info("impossibile visualizzare requests impldb");
         }
 
         return requests;
@@ -122,7 +128,7 @@ public class RequestDAOImplDB implements RequestDAO {
 
         }
         catch (SQLException | DBConnectionException e) {
-            e.printStackTrace();
+            logger.info("impossibile visualizzare request impldb");
         }
 
         return null;

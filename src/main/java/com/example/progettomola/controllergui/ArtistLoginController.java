@@ -182,7 +182,7 @@ public class ArtistLoginController implements Initializable {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.info("impossibile cercare artista csv");
         }
         return trovato;
     }
