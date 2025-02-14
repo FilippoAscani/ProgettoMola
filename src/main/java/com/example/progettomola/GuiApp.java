@@ -15,7 +15,7 @@ public class GuiApp extends Application {
         @Override
         public void start(Stage primaryStage) throws IOException {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/progettomola/controllergui/main-homepage-view.fxml")));
-            primaryStage.setTitle("Azzipizzi");
+            primaryStage.setTitle("ArtConnect");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         }

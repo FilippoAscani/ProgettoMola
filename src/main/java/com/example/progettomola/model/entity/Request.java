@@ -14,7 +14,7 @@ public class Request {
         this.nome = nome;
         this.capienza = capienza;
         this.tipo = tipo;
-        this.status = "pending";
+        this.status = "status";
 
     }
 

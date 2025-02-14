@@ -91,6 +91,8 @@ public class ArtistLoginController implements Initializable {
         String username = usernameFieldA.getText();
         String password = passwordFieldA.getText();
 
+
+
         switch (s) {
             case "JDBC":
 

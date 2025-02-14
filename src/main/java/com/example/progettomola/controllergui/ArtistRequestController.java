@@ -77,7 +77,7 @@ public class ArtistRequestController  implements Initializable {
             colRequests.setCellValueFactory(new PropertyValueFactory<>("nome"));
             tabView.setItems(richieste);
 
-            // Aggiungi una colonna 
+
             TableColumn<Request, Void> colActions = new TableColumn<>("Azioni");
 
             colActions.setCellFactory(param -> new TableCell<>() {
@@ -188,9 +188,6 @@ public class ArtistRequestController  implements Initializable {
 
 
     }
-
-
-
 
 
 
