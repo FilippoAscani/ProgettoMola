@@ -34,13 +34,13 @@ public class SponsorProfileController {
     private Text txtPassword;
 
     @FXML
-    private Text txtUsername;
+    private Text txtUsernameS;
 
     @FXML
-    private VBox verticalBox;
+    private VBox verticalBoxS;
 
     @FXML
-    void deleteProfile(ActionEvent event) {
+    void deleteProfileS(ActionEvent event) {
      //da aggiungere se c'è tempo
     }
 
@@ -56,7 +56,7 @@ public class SponsorProfileController {
     }
 
     @FXML
-    void handleRequests(ActionEvent event) {
+    void handleRequestsS(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sponsor-request-view.fxml")));
             Stage stage = (Stage) btnCreaRichieste.getScene().getWindow();
@@ -67,7 +67,7 @@ public class SponsorProfileController {
     }
 
     @FXML
-    void handleReviews(ActionEvent event) {
+    void handleReviewsS(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sponsor-review-view.fxml")));
             Stage stage = (Stage) btnRecensioni.getScene().getWindow();
