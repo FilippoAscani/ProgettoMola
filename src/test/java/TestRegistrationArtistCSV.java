@@ -8,12 +8,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.security.SecureRandom;
 
-public class TestRegistrationArtistCSV {
+ class TestRegistrationArtistCSV {
 
     SecureRandom random = new SecureRandom();
 
     @Test
-    void TestRegistrationArtistCSV() throws IOException {
+    void testRegistrationArtistCSV() throws IOException {
         int id = random.nextInt(10000); // Generazione di un ID casuale per l'artista
         Artist artist = new Artist(id, "picasso", "cubismo", "pittura");
 

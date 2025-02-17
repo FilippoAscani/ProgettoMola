@@ -3,10 +3,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-public class TestConnectionDB {
+class TestConnectionDB {
 
     @Test
-    public void testConnection() {
+    void testConnection() {
         int value = 0;
 
         if(DatabaseConnection.getInstance() != null){

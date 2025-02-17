@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import java.security.SecureRandom;
 
-public class TestUserLogin {
+ class TestUserLogin {
 
     SecureRandom random = new SecureRandom();
     @Test
-    public void testUserLogin() {
+    void testUserLogin() {
 
 
         int id = this.random.nextInt(10000);
