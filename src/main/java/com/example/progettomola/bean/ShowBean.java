@@ -2,52 +2,52 @@ package com.example.progettomola.bean;
 
 public class ShowBean {
 
-    private int idB;
-    private String titoloB;
-    private String tipoB;
-    private int capienzaB;
+    private int idShow;
+    private String titoloShow;
+    private String tipoShow;
+    private int capienzaShow;
 
     public ShowBean() {
 
     }
 
-    public ShowBean(int idB, String titoloB, String tipoB, int capienzaB) {
-        this.idB = idB;
-        this.titoloB = titoloB;
-        this.tipoB = tipoB;
-        this.capienzaB = capienzaB;
+    public ShowBean(int idShow, String titoloShow, String tipoShow, int capienzaShow) {
+        this.idShow = idShow;
+        this.titoloShow = titoloShow;
+        this.tipoShow = tipoShow;
+        this.capienzaShow = capienzaShow;
     }
 
 
-    public int getIdB() {
-        return idB;
+    public int getIdShow() {
+        return idShow;
     }
 
-    public void setIdB(int idB) {
-        this.idB = idB;
+    public void setIdShow(int idShow) {
+        this.idShow = idShow;
     }
 
-    public String getTitoloB() {
-        return titoloB;
+    public String getTitoloShow() {
+        return titoloShow;
     }
 
-    public void setTitoloB(String titoloB) {
-        this.titoloB = titoloB;
+    public void setTitoloShow(String titoloShow) {
+        this.titoloShow = titoloShow;
     }
 
-    public String getTipoB() {
-        return tipoB;
+    public String getTipoShow() {
+        return tipoShow;
     }
 
-    public void setTipoB(String tipoB) {
-        this.tipoB = tipoB;
+    public void setTipoShow(String tipoShow) {
+        this.tipoShow = tipoShow;
     }
 
-    public int getCapienzaB() {
-        return capienzaB;
+    public int getCapienzaShow() {
+        return capienzaShow;
     }
 
-    public void setCapienzaB(int capienzaB) {
-        this.capienzaB = capienzaB;
+    public void setCapienzaShow(int capienzaShow) {
+        this.capienzaShow = capienzaShow;
     }
 }
