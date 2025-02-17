@@ -1,3 +1,5 @@
+package com.example.progettomola;
+
 import com.example.progettomola.model.entity.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

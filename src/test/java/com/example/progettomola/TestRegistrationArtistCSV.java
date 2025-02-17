@@ -1,3 +1,5 @@
+package com.example.progettomola;
+
 import com.example.progettomola.controllercli.Register;
 import com.example.progettomola.model.entity.Artist;
 import org.junit.jupiter.api.Assertions;

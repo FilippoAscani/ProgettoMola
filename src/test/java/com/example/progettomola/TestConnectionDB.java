@@ -1,4 +1,5 @@
-import com.example.progettomola.DatabaseConnection;
+package com.example.progettomola;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
