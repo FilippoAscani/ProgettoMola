@@ -2,42 +2,42 @@ package com.example.progettomola.bean;
 
 public class SponsorBean {
 
-    private int idB;
-    private String usernameB;
-    private String passwordB;
+    private int idBs;
+    private String usernameBs;
+    private String passwordBs;
 
     public SponsorBean() {
 
     }
 
-    public SponsorBean(int idB, String usernameB, String passwordB) {
-        this.idB = idB;
-        this.usernameB = usernameB;
-        this.passwordB = passwordB;
+    public SponsorBean(int idBs, String usernameBs, String passwordBs) {
+        this.idBs = idBs;
+        this.usernameBs = usernameBs;
+        this.passwordBs = passwordBs;
     }
 
 
-    public int getIdB() {
-        return idB;
+    public int getIdBs() {
+        return idBs;
     }
 
-    public void setIdB(int idB) {
-        this.idB = idB;
+    public void setIdBs(int idBs) {
+        this.idBs = idBs;
     }
 
-    public String getUsernameB() {
-        return usernameB;
+    public String getUsernameBs() {
+        return usernameBs;
     }
 
-    public void setUsernameB(String usernameB) {
-        this.usernameB = usernameB;
+    public void setUsernameBs(String usernameBs) {
+        this.usernameBs = usernameBs;
     }
 
-    public String getPasswordB() {
-        return passwordB;
+    public String getPasswordBs() {
+        return passwordBs;
     }
 
-    public void setPasswordB(String passwordB) {
-        this.passwordB = passwordB;
+    public void setPasswordBs(String passwordBs) {
+        this.passwordBs = passwordBs;
     }
 }

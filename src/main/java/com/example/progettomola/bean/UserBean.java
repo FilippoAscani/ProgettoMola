@@ -2,62 +2,62 @@ package com.example.progettomola.bean;
 
 public class UserBean {
 
-    private int idB;
-    private String nomeB;
-    private String cognomeB;
-    private String passwordB;
-    private String usernameB;
+    private int idBu;
+    private String nomeBu;
+    private String cognomeBu;
+    private String passwordBu;
+    private String usernameBu;
 
     public UserBean() {
 
     }
 
-    public UserBean(int idB, String nomeB, String cognomeB, String passwordB, String usernameB) {
-        this.idB = idB;
-        this.nomeB = nomeB;
-        this.cognomeB = cognomeB;
-        this.passwordB = passwordB;
-        this.usernameB = usernameB;
+    public UserBean(int idBu, String nomeBu, String cognomeBu, String passwordBu, String usernameBu) {
+        this.idBu = idBu;
+        this.nomeBu = nomeBu;
+        this.cognomeBu = cognomeBu;
+        this.passwordBu = passwordBu;
+        this.usernameBu = usernameBu;
     }
 
 
-    public int getIdB() {
-        return idB;
+    public int getIdBu() {
+        return idBu;
     }
 
-    public void setIdB(int idB) {
-        this.idB = idB;
+    public void setIdBu(int idBu) {
+        this.idBu = idBu;
     }
 
-    public String getNomeB() {
-        return nomeB;
+    public String getNomeBu() {
+        return nomeBu;
     }
 
-    public void setNomeB(String nomeB) {
-        this.nomeB = nomeB;
+    public void setNomeBu(String nomeBu) {
+        this.nomeBu = nomeBu;
     }
 
-    public String getCognomeB() {
-        return cognomeB;
+    public String getPasswordBu() {
+        return passwordBu;
     }
 
-    public void setCognomeB(String cognomeB) {
-        this.cognomeB = cognomeB;
+    public void setPasswordBu(String passwordBu) {
+        this.passwordBu = passwordBu;
     }
 
-    public String getPasswordB() {
-        return passwordB;
+    public String getCognomeBu() {
+        return cognomeBu;
     }
 
-    public void setPasswordB(String passwordB) {
-        this.passwordB = passwordB;
+    public void setCognomeBu(String cognomeBu) {
+        this.cognomeBu = cognomeBu;
     }
 
-    public String getUsernameB() {
-        return usernameB;
+    public String getUsernameBu() {
+        return usernameBu;
     }
 
-    public void setUsernameB(String usernameB) {
-        this.usernameB = usernameB;
+    public void setUsernameBu(String usernameBu) {
+        this.usernameBu = usernameBu;
     }
 }
