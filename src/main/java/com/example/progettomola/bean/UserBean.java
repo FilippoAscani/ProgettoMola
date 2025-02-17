@@ -2,61 +2,62 @@ package com.example.progettomola.bean;
 
 public class UserBean {
 
-    private int id;
-    private String nome;
-    private String cognome;
-    private String password;
-    private String username;
+    private int idB;
+    private String nomeB;
+    private String cognomeB;
+    private String passwordB;
+    private String usernameB;
 
     public UserBean() {
 
     }
 
-    public UserBean(int id, String nome, String cognome, String password, String username) {
-        this.id = id;
-        this.nome = nome;
-        this.cognome = cognome;
-        this.password = password;
-        this.username = username;
+    public UserBean(int idB, String nomeB, String cognomeB, String passwordB, String usernameB) {
+        this.idB = idB;
+        this.nomeB = nomeB;
+        this.cognomeB = cognomeB;
+        this.passwordB = passwordB;
+        this.usernameB = usernameB;
     }
 
-    public int getId() {
-        return id;
+
+    public int getIdB() {
+        return idB;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdB(int idB) {
+        this.idB = idB;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeB() {
+        return nomeB;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeB(String nomeB) {
+        this.nomeB = nomeB;
     }
 
-    public String getCognome() {
-        return cognome;
+    public String getCognomeB() {
+        return cognomeB;
     }
 
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
+    public void setCognomeB(String cognomeB) {
+        this.cognomeB = cognomeB;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordB() {
+        return passwordB;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordB(String passwordB) {
+        this.passwordB = passwordB;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUsernameB() {
+        return usernameB;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsernameB(String usernameB) {
+        this.usernameB = usernameB;
     }
 }

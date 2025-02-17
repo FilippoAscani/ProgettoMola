@@ -2,52 +2,52 @@ package com.example.progettomola.bean;
 
 public class RequestBean {
 
-    private int id;
-    private String nome;
-    private int capienza;
-    private String tipo;
+    private int idB;
+    private String nomeB;
+    private int capienzaB;
+    private String tipoB;
 
     public RequestBean() {
 
     }
 
-    public RequestBean(int id, String nome, int capienza, String tipo) {
-        this.id = id;
-        this.nome = nome;
-        this.capienza = capienza;
-        this.tipo = tipo;
+    public RequestBean(int idB, String nomeB, int capienzaB, String tipoB) {
+        this.idB = idB;
+        this.nomeB = nomeB;
+        this.capienzaB = capienzaB;
+        this.tipoB = tipoB;
 
     }
 
-    public int getId() {
-        return id;
+    public int getIdB() {
+        return idB;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdB(int idB) {
+        this.idB = idB;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeB() {
+        return nomeB;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeB(String nomeB) {
+        this.nomeB = nomeB;
     }
 
-    public int getCapienza() {
-        return capienza;
+    public int getCapienzaB() {
+        return capienzaB;
     }
 
-    public void setCapienza(int capienza) {
-        this.capienza = capienza;
+    public void setCapienzaB(int capienzaB) {
+        this.capienzaB = capienzaB;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getTipoB() {
+        return tipoB;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipoB(String tipoB) {
+        this.tipoB = tipoB;
     }
 }

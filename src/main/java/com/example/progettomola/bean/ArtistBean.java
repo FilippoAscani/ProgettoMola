@@ -4,71 +4,72 @@ import java.io.Serializable;
 
 public class ArtistBean implements Serializable {
 
-    private int id;
-    private String username;
-    private String password;
-    private String email;
-    private String telefono;
-    private String tipo;
+    private int idB;
+    private String usernameB;
+    private String passwordB;
+    private String emailB;
+    private String telefonoB;
+    private String tipoB;
 
     public ArtistBean() {
 
     }
 
-    public ArtistBean(int id, String username, String password, String email, String telefono, String tipo) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.telefono = telefono;
-        this.tipo = tipo;
+    public ArtistBean(int idB, String usernameB, String passwordB, String emailB, String telefonoB, String tipoB) {
+        this.idB = idB;
+        this.usernameB = usernameB;
+        this.passwordB = passwordB;
+        this.emailB = emailB;
+        this.telefonoB = telefonoB;
+        this.tipoB = tipoB;
     }
 
-    public int getId() {
-        return id;
+
+    public int getIdB() {
+        return idB;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdB(int idB) {
+        this.idB = idB;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUsernameB() {
+        return usernameB;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsernameB(String usernameB) {
+        this.usernameB = usernameB;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordB() {
+        return passwordB;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordB(String passwordB) {
+        this.passwordB = passwordB;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmailB() {
+        return emailB;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailB(String emailB) {
+        this.emailB = emailB;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getTelefonoB() {
+        return telefonoB;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setTelefonoB(String telefonoB) {
+        this.telefonoB = telefonoB;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getTipoB() {
+        return tipoB;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipoB(String tipoB) {
+        this.tipoB = tipoB;
     }
 }
