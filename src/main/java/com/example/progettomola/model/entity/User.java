@@ -59,6 +59,11 @@ public class User {
 
     }
 
+    public boolean testLogin(String username, String password) {
+        // Verifica le credenziali
+        return this.username.equals(username) && this.password.equals(password);
+    }
+
 
 
 

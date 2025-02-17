@@ -9,6 +9,7 @@ import com.example.progettomola.enumerations.TypesOfRoles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.security.SecureRandom;
 import java.util.Scanner;
 
 
@@ -24,6 +25,7 @@ public class LoginManager {
     private static final Logger logger = LoggerFactory.getLogger(LoginManager.class);
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
+    SecureRandom rand = new SecureRandom();
 
     public void gestore(TypesOfLayers typeLayer, TypesOfRoles typeRole){
 
@@ -42,9 +44,7 @@ public class LoginManager {
 
                     logger.info("inizializzo la password jdbc");
 
-                    logger.info("id");
-                    int idUserDB = scanner.nextInt();
-                    scanner.nextLine();
+                    int idU = this.rand.nextInt(10000);
 
                     logger.info(USERNAME);
                     String usernameUserDB = scanner.nextLine();
@@ -53,7 +53,7 @@ public class LoginManager {
                     String passwordUserDB = scanner .nextLine();
 
 
-                    User newU = new User(idUserDB, usernameUserDB, passwordUserDB);
+                    User newU = new User(idU, usernameUserDB, passwordUserDB);
                     LoginCSV.loginUser(newU);
                 }
 
@@ -61,9 +61,7 @@ public class LoginManager {
                 if(typeLayer == TypesOfLayers.CSV ){
                     logger.info("inizializzo la password csv");
 
-                    logger.info("id");
-                    int idUser = scanner.nextInt();
-                    scanner.nextLine();
+                    int idUser = this.rand.nextInt(10000);
 
                     logger.info(USERNAME);
                     String usernameUser = scanner.nextLine();
@@ -87,9 +85,7 @@ public class LoginManager {
 
                     logger.info("inizializzo la password jdbc da artista");
 
-                    logger.info("id");
-                    int idDB = scanner.nextInt();
-                    scanner.nextLine();
+                    int idAdb = this.rand.nextInt(10000);
 
                     logger.info(USERNAME);
                     String nomeArtistDB = scanner.nextLine();
@@ -100,7 +96,7 @@ public class LoginManager {
                     logger.info("tipo artista");
                     String tipoArtistDB = scanner.nextLine();
 
-                    Artist newA = new Artist(idDB, nomeArtistDB, passwordArtistDB, tipoArtistDB);
+                    Artist newA = new Artist(idAdb, nomeArtistDB, passwordArtistDB, tipoArtistDB);
                     LoginCSV.loginArtist(newA);
                 }
 
@@ -109,9 +105,7 @@ public class LoginManager {
                     logger.info("inizializzo la password csv da artista");
 
 
-                    logger.info("id");
-                    int idArtist = scanner.nextInt();
-                    scanner.nextLine();
+                    int idA = this.rand.nextInt(10000);
 
                     logger.info(USERNAME);
                     String nomeArtist = scanner.nextLine();
@@ -122,7 +116,7 @@ public class LoginManager {
                     logger.info("tipo artista");
                     String tipoArtist = scanner.nextLine();
 
-                    Artist newA = new Artist(idArtist, nomeArtist, passwordArtist, tipoArtist);
+                    Artist newA = new Artist(idA, nomeArtist, passwordArtist, tipoArtist);
                     LoginCSV.loginArtist(newA);
 
                 }
@@ -136,9 +130,7 @@ public class LoginManager {
 
                     logger.info("inizializzo la password jdbc da sponsor");
 
-                    logger.info("id");
-                    int idSponsorDB = scanner.nextInt();
-                    scanner.nextLine();
+                    int idS = this.rand.nextInt(10000);
 
                     logger.info(USERNAME);
                     String usernameDB = scanner.nextLine();
@@ -147,7 +139,7 @@ public class LoginManager {
                     String passwordDB = scanner.nextLine();
 
 
-                    Sponsor newS = new Sponsor(idSponsorDB, usernameDB, passwordDB);
+                    Sponsor newS = new Sponsor(idS, usernameDB, passwordDB);
                     LoginCSV.loginSponsor(newS);
                 }
 
@@ -155,9 +147,7 @@ public class LoginManager {
                 if(typeLayer == TypesOfLayers.CSV ){
                     logger.info("inizializzo la password csv da sponsor");
 
-                    logger.info("id");
-                    int idSponsor = scanner.nextInt();
-                    scanner.nextLine();
+                    int idS = this.rand.nextInt(10000);
 
                     logger.info(USERNAME);
                     String username = scanner.nextLine();
@@ -166,7 +156,7 @@ public class LoginManager {
                     String password = scanner.nextLine();
 
 
-                    Sponsor newS = new Sponsor(idSponsor, username, password);
+                    Sponsor newS = new Sponsor(idS, username, password);
                     LoginCSV.loginSponsor(newS);
 
                 }

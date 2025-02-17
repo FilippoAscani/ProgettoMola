@@ -10,8 +10,6 @@ public class Artist implements Observer {
     private int id;
     private String username;
     private String password;
-    private String email;
-    private String telefono;
     private String tipo;
 
 
@@ -37,7 +35,7 @@ public class Artist implements Observer {
     }
 
     public void receiveRequest(Request request) {
-        logger.info("Request received: {}" , request.getNome());
+        logger.info("{} Request received: {}", this.username, request.getNome());
         // Implementa la logica per mostrare i bottoni "accetta" e "rifiuta"
     }
 
@@ -57,22 +55,6 @@ public class Artist implements Observer {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
     }
 
     public String getTipo() {
