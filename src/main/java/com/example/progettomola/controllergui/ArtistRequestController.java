@@ -145,7 +145,23 @@ public class ArtistRequestController  implements Initializable {
 
     @FXML
     void handleCerca() {
-        tabView.refresh();
+        String searchText = searchField.getText().toLowerCase();
+        ObservableList<Request> filteredRequests = FXCollections.observableArrayList();
+
+        if (searchText.isEmpty()) {
+            // Se il campo di ricerca è vuoto, mostra tutte le richieste
+            filteredRequests = richieste;
+        } else {
+            //  richieste in base al nome
+            for (Request request : richieste) {
+                if (request.getNome().toLowerCase().contains(searchText)) {
+                    filteredRequests.add(request);
+                }
+            }
+        }
+
+        // Aggiungi le richieste filtrate alla TableView
+        tabView.setItems(filteredRequests);
     }
 
     @FXML
